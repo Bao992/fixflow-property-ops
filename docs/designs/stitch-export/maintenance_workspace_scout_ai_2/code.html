@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-highest": "#dae2fd", "on-primary-fixed-variant": "#00504a", "on-error-container": "#93000a", "surface-container-high": "#e2e7ff", "surface-container-low": "#f2f3ff", "tertiary": "#a6002f", "on-primary-fixed": "#00201d", "background": "#faf8ff", "on-tertiary-fixed-variant": "#920028", "surface-bright": "#faf8ff", "outline-variant": "#bdc9c6", "inverse-surface": "#283044", "on-tertiary": "#ffffff", "outline": "#6e7977", "tertiary-fixed": "#ffdada", "primary-container": "#0f766e", "on-secondary-container": "#00476e", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#004b73", "surface-dim": "#d2d9f4", "error": "#ba1a1a", "secondary-fixed-dim": "#93ccff", "secondary": "#006398", "inverse-on-surface": "#eef0ff", "on-surface-variant": "#3e4947", "primary": "#005c55", "secondary-container": "#5bb8fe", "tertiary-fixed-dim": "#ffb3b6", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-container": "#eaedff", "on-surface": "#131b2e", "surface-tint": "#006a63", "on-primary-container": "#a3faef", "primary-fixed-dim": "#80d5cb", "surface-variant": "#dae2fd", "on-tertiary-container": "#ffe4e4", "inverse-primary": "#80d5cb", "tertiary-container": "#d2093f", "on-background": "#131b2e", "error-container": "#ffdad6", "on-secondary-fixed": "#001d31", "secondary-fixed": "#cce5ff", "on-tertiary-fixed": "#40000c", "primary-fixed": "#9cf2e8", "on-error": "#ffffff", "surface-container-lowest": "#ffffff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "0.75rem", "margin-lg": "2rem", "space-sm": "0.5rem", "margin": "1rem", "space-lg": "1.25rem", "gutter-lg": "1.5rem", "space-xs": "0.25rem", "margin-md": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, fontFamily: { "headline-xl-mobile": ["Space Grotesk"], "label-md": ["Geist"], "headline-xl": ["Space Grotesk"], "label-sm": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "body-lg": ["Geist"], "label-lg": ["Geist"], "body-md": ["Geist"], "headline-lg": ["Space Grotesk"], "body-sm": ["Geist"] }, fontSize: { "headline-xl-mobile": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "38px", letterSpacing: "-0.03em", fontWeight: "600" }], "label-sm": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "600" }], "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "500" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-lg": ["14px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-lg": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs min-w-0 flex-1"><button aria-label="Go back" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors shrink-0" onclick="history.back()"><span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span></button><img alt="FixFlow Brand Logo" class="h-7 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrA7neyvcwVRl6BEuIYY-mMeiwsGo4WgciMq8wQIFOvbZN13qvog8zWXTD9A5kCPd0UqqZj-v0rAWfC_ihCuwI-pN-ru8YpzdMa6-P7qqnrrCh9aXLOXdXYDsqxXHm3vNUytncbHkfOKjL7JcvB2kOcRKoZMD-DnooIj3B9DBdPT_o3z5W6fWDo0f2O5UdTNdjfx3nI2xLrI9OzJQUFHXSJ6gBeGbUo-liTNKq7b4I-2"/><h1 class="font-headline-md text-headline-md tracking-tight text-on-surface truncate min-w-0 pl-1">Work Order Details</h1></div><div class="flex items-center gap-space-sm shrink-0"><button aria-label="More actions" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[22px]">more_vert</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-background"><div class="flex flex-col w-full pb-10">
+<!-- Top Ticket Metadata Strip -->
+<div class="px-gutter pt-space-md pb-space-sm bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+          Action Required
+        </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">#WO-1048</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Created 18m ago</span>
+</div>
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight mt-1">
+      Ceiling Water Leak Under 2nd Floor Bath
+    </h2>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">apartment</span>
+<span>Unit 4B • Elmwood Heights (4 units multi-family)</span>
+</div>
+</div>
+<!-- Operational Progress Stepper -->
+<div class="px-gutter py-space-md bg-surface-container overflow-x-auto no-scrollbar shadow-sm">
+<div class="min-w-[420px] flex items-center justify-between relative">
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Reported</span>
+</div>
+<div class="flex-1 h-0.5 bg-primary -mx-1"></div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-xs">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">AI Triaged</span>
+</div>
+<div class="flex-1 h-0.5 bg-secondary -mx-1"></div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-md animate-pulse">
+<span class="material-symbols-outlined text-[14px]">approval</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Quote &amp; Approval</span>
+</div>
+<div class="flex-1 h-0.5 bg-surface-dim -mx-1"></div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Dispatch</span>
+</div>
+<div class="flex-1 h-0.5 bg-surface-dim -mx-1"></div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">handshake</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sign-off</span>
+</div>
+</div>
+</div>
+<div class="px-gutter pt-space-lg flex flex-col gap-space-lg">
+<!-- SECTION 1: Scout AI Advisory Suggestion Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden transition-all duration-200" id="scout-card">
+<!-- Card Header -->
+<div class="p-space-md bg-gradient-to-r from-primary-container via-primary to-primary-container text-on-primary flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container animate-spin" style="animation-duration: 6s;">auto_awesome</span>
+<div>
+<span class="font-headline-md text-headline-md tracking-tight block">Scout AI Advisory</span>
+<span class="font-label-sm text-label-sm text-on-primary-container opacity-90">Algorithmic Diagnostic Triage</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-on-primary font-label-sm text-label-sm font-medium tracking-tight">
+          Human Review Required
+        </span>
+</div>
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Safety Flag Box -->
+<div class="p-space-sm bg-error-container/40 rounded-lg flex items-start gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+</div>
+<div class="min-w-0">
+<h4 class="font-label-lg text-label-lg text-error font-semibold leading-tight">Critical Hazard Detected</h4>
+<p class="font-body-sm text-body-sm text-on-error-container mt-0.5">
+              Water proximity to live electrical recessed can fixture ceiling sector B. Immediate shut-off advisory in effect.
+            </p>
+</div>
+</div>
+<!-- Diagnostic Summary -->
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-1 text-primary font-label-sm text-label-sm font-semibold uppercase mb-1">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+            Automated Diagnostic Summary
+          </div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Tenant reported steady dripping progressing to pooling beneath Unit 4B bathroom subfloor. Thermal profile &amp; drip intervals strongly indicate an upper-floor main valve seal degradation. Recommended mitigation: isolated main cut-off and emergency master plumbing dispatch.
+          </p>
+</div>
+<!-- Editable Attributes Grid -->
+<div class="grid grid-cols-1 gap-space-xs">
+<!-- Suggestion Field 1 -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">SUGGESTED CATEGORY</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate" id="val-category">Plumbing • Active Internal Leak</span>
+</div>
+<button aria-label="Edit category" class="w-8 h-8 rounded-full bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors shadow-xs" onclick="editField('category')">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<!-- Suggestion Field 2 -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">SUGGESTED TRADE</span>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold truncate" id="val-trade">Licensed Master Plumber (Emergency)</span>
+</div>
+<button aria-label="Edit trade" class="w-8 h-8 rounded-full bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors shadow-xs" onclick="editField('trade')">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<!-- Suggestion Field 3 -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">RISK &amp; URGENCY</span>
+<span class="font-label-lg text-label-lg text-error font-semibold flex items-center gap-1">
+                Priority 1 — High Dry-Rot / Structural Hazard
+              </span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-error">priority_high</span>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="pt-space-xs flex flex-col gap-space-xs">
+<button class="w-full py-3 px-space-md bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-xs transition-transform active:scale-[0.98] shadow-sm" id="btn-accept" onclick="handleAccept()">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+            Accept &amp; Auto-Dispatch Apex Plumbing
+          </button>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="py-2.5 px-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high rounded-lg font-label-md text-label-md font-medium flex items-center justify-center gap-1 transition-colors" onclick="toggleModifyModal()">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+              Modify Scope
+            </button>
+<button class="py-2.5 px-space-sm bg-surface-container-lowest text-on-surface-variant hover:text-error hover:bg-error-container/20 rounded-lg font-label-md text-label-md font-medium flex items-center justify-center gap-1 transition-colors" onclick="dismissScoutCard()">
+<span class="material-symbols-outlined text-[16px]">close</span>
+              Dismiss Card
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Contractor Quote & Cost Box -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold">Apex Plumbing Co.</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">
+              Preferred
+            </span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-amber-500 text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium text-on-surface">4.9</span>
+<span>(142 verified jobs) • 8 mins away</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold">
+          AP
+        </div>
+</div>
+<!-- Cost estimate breakdown -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase block">Binding Pre-Approval Range</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">$380 - $480</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Diagnosis + Valve Replacement</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Includes dry thermal scan</span>
+</div>
+</div>
+<button class="w-full py-3 px-space-md bg-secondary hover:bg-on-secondary-container text-on-secondary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-xs transition-colors shadow-sm" id="btn-approve-funds" onclick="approveFunds()">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Approve &amp; Release Funds ($480 Max)</span>
+</button>
+</div>
+<!-- SECTION: Photo Evidence Carousel -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Tenant Attachments (2)</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">Inspected by Scout AI</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-video shadow-xs group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Close up photography of drywall ceiling showing deep water stain and bubbling paint around an illuminated modern recessed halogen pot light in a condominium hallway, moisture ripples visible under harsh warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKlQvir-M7Eh5YXr8gYpEJa7eCRH8S4Us7Ph5QmEcOW_0E7_x8G0gQDh-HMPrNiGJTFiMZs6glzz_KO-m30QXAJgd9N6mVKEmZPvV4AabYNEuTPVxHoUhA76JX6fqHTNPCXtBnjQpH1gR_il2_1cRGJ7YXTaQYvxms-lgd8jV82GjNQLBOQwlIzh5XyxfU4prqexlPG8nMnOMaUXn5LlVFdoDTne54WELfAk_jy4Y"/>
+<div class="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-black/60 text-white font-label-sm text-label-sm flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">photo_camera</span>
+            Ceiling Can Light
+          </div>
+</div>
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-video shadow-xs group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High angle shot of ceramic tile flooring with water puddle reflecting ceiling light near a white bathroom vanity cabinet baseboard, showing small localized water flood damage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlU-jJzz4Xy-ZlnkaOT6h8RLA5fU4YO4tYbIEm480doJR2v5X5KmiIgQnVpKWJ3XlKmLPlewP6M2J5NCflFLTAa54rxq5gDVp8eYAVaCk_5Ywt2pqUvD-zXVKpAk8EuKgO0GCXHYf9t24Vzl1Gg17fzoBSnecqT4M7wTmowYxtQm-FYpETJCUBQl43RSmnZ_-V4Kh9UHMNt-DMzAkrDqOUAm8Gt7RhGx2v4X8XvYw"/>
+<div class="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-black/60 text-white font-label-sm text-label-sm flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">photo_camera</span>
+            Bath Baseboard
+          </div>
+</div>
+</div>
+</div>
+<!-- SECTION 4: Real-time Activity Timeline -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-2 border-none">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">history</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Triage Audit Log</h3>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          Live Feed
+        </span>
+</div>
+<!-- Timeline Items -->
+<div class="flex flex-col gap-space-md pl-2 relative before:content-[''] before:absolute before:left-5 before:top-3 before:bottom-3 before:w-0.5 before:bg-surface-container-high" id="timeline-container">
+<!-- Timeline Item 1 -->
+<div class="flex items-start gap-space-md relative">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0 z-10 shadow-xs">
+<span class="material-symbols-outlined text-[14px]">person</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between mb-0.5">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Sarah Jenkins (Tenant, 4B)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">10:14 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Submitted urgent report: "Significant dripping from kitchen ceiling immediately below the second-floor bath. Sounds like constant water pressure behind wall." Uploaded 2 photos.
+            </p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="flex items-start gap-space-md relative">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0 z-10 shadow-xs">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between mb-0.5">
+<span class="font-label-md text-label-md font-semibold text-secondary">Scout AI System Engine</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">10:15 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Visual telemetry parsed. Classified severity as <strong class="text-error">Priority 1 (Emergency)</strong>. Raised electrical hazard flag due to ceiling conduit junction proximity. Matching dispatch candidate queued.
+            </p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="flex items-start gap-space-md relative">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 z-10 shadow-xs">
+<span class="material-symbols-outlined text-[14px]">shield_person</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between mb-0.5">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Marcus Vance (Ops Dispatcher)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">10:22 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Approved preliminary dispatch ticket. Tenant SMS auto-sent requesting main riser valve clearance.
+            </p>
+</div>
+</div>
+</div>
+<!-- Add Note / Comment Box -->
+<div class="pt-space-xs flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase" for="timeline-input">Add Internal Operational Note</label>
+<div class="relative flex items-center">
+<input class="w-full pl-3 pr-10 py-2.5 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-inner" id="timeline-input" onkeydown="if(event.key==='Enter') addComment()" placeholder="Add note or contractor update..." type="text"/>
+<button aria-label="Send message" class="absolute right-1 w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container transition-colors" onclick="addComment()">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Toast Container -->
+<div class="fixed bottom-6 left-4 right-4 max-w-sm mx-auto bg-inverse-surface text-inverse-on-surface p-space-sm rounded-lg shadow-xl flex items-center gap-space-sm transition-all duration-300 opacity-0 pointer-events-none translate-y-3 z-50" id="toast">
+<span class="material-symbols-outlined text-primary-fixed-dim" id="toast-icon">check_circle</span>
+<span class="font-body-sm text-body-sm flex-1" id="toast-msg">Action processed successfully</span>
+</div>
+</div>
+<script>
+  function showToast(msg, icon = 'check_circle') {
+    const toast = document.getElementById('toast');
+    const msgEl = document.getElementById('toast-msg');
+    const iconEl = document.getElementById('toast-icon');
+    msgEl.textContent = msg;
+    iconEl.textContent = icon;
+    toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }, 2800);
+  }
+
+  function handleAccept() {
+    const btn = document.getElementById('btn-accept');
+    btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Dispatching Apex Plumbing...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span> Dispatched & Confirmed';
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-secondary');
+      showToast('Apex Plumbing dispatched! Technician ETA: 10:45 AM');
+      appendTimeline('Apex Plumbing assigned and unit access PIN securely issued.', 'Auto-Dispatch Gateway', 'bolt');
+    }, 1200);
+  }
+
+  function approveFunds() {
+    const btn = document.getElementById('btn-approve-funds');
+    btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">lock</span> Pre-Authorized ($480 Held)';
+    btn.classList.remove('bg-secondary');
+    btn.classList.add('bg-primary-container');
+    showToast('Escrow allocation locked. Contractor verified.', 'lock');
+    appendTimeline('Escrow limit released up to $480.00 for on-site diagnostic & hardware replacement.', 'Property Finance Auto-Rule', 'payments');
+  }
+
+  function dismissScoutCard() {
+    const card = document.getElementById('scout-card');
+    card.classList.add('opacity-40', 'scale-[0.98]');
+    setTimeout(() => {
+      card.style.display = 'none';
+      showToast('Scout AI recommendation dismissed.', 'info');
+    }, 250);
+  }
+
+  function editField(field) {
+    if (field === 'category') {
+      const current = document.getElementById('val-category').innerText;
+      const newVal = prompt('Edit Category Scope:', current);
+      if (newVal) {
+        document.getElementById('val-category').innerText = newVal;
+        showToast('Category updated.');
+      }
+    } else if (field === 'trade') {
+      const current = document.getElementById('val-trade').innerText;
+      const newVal = prompt('Assign Specific Trade Specialization:', current);
+      if (newVal) {
+        document.getElementById('val-trade').innerText = newVal;
+        showToast('Trade assignment updated.');
+      }
+    }
+  }
+
+  function toggleModifyModal() {
+    const promptVal = prompt('Enter manual instructions or overrides for Scout AI:');
+    if (promptVal) {
+      showToast('Advisory adjustments saved.');
+      appendTimeline('Operator modified triage parameters: "' + promptVal + '"', 'Marcus Vance (Dispatcher)', 'tune');
+    }
+  }
+
+  function addComment() {
+    const input = document.getElementById('timeline-input');
+    const val = input.value.trim();
+    if (!val) return;
+    appendTimeline(val, 'Operator Note', 'comment');
+    input.value = '';
+    showToast('Note added to timeline.');
+  }
+
+  function appendTimeline(text, author, icon) {
+    const container = document.getElementById('timeline-container');
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    const item = document.createElement('div');
+    item.className = 'flex items-start gap-space-md relative animate-fadeIn';
+    item.innerHTML = `
+      <div class="w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0 z-10 shadow-xs">
+        <span class="material-symbols-outlined text-[14px]">${icon}</span>
+      </div>
+      <div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+        <div class="flex items-center justify-between mb-0.5">
+          <span class="font-label-md text-label-md font-semibold text-on-surface">${author}</span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant">${timeStr}</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">${text}</p>
+      </div>
+    `;
+    container.appendChild(item);
+  }
+</script></main></body></html>

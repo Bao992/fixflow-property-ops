@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-background": "#131b2e", "on-tertiary-container": "#ffe4e4", "primary-container": "#0f766e", "tertiary-fixed": "#ffdada", "secondary": "#006398", "on-secondary-container": "#00476e", "on-surface": "#131b2e", "primary-fixed": "#9cf2e8", "on-tertiary-fixed-variant": "#920028", "error-container": "#ffdad6", "on-secondary": "#ffffff", "outline-variant": "#bdc9c6", "on-tertiary": "#ffffff", "secondary-container": "#5bb8fe", "on-error": "#ffffff", "inverse-surface": "#283044", "on-primary-fixed": "#00201d", "background": "#faf8ff", "secondary-fixed": "#cce5ff", "surface-container-high": "#e2e7ff", "surface-tint": "#006a63", "surface-container-low": "#f2f3ff", "error": "#ba1a1a", "primary-fixed-dim": "#80d5cb", "surface-variant": "#dae2fd", "on-secondary-fixed-variant": "#004b73", "surface-container-lowest": "#ffffff", "outline": "#6e7977", "secondary-fixed-dim": "#93ccff", "inverse-on-surface": "#eef0ff", "surface-dim": "#d2d9f4", "tertiary-fixed-dim": "#ffb3b6", "surface-container-highest": "#dae2fd", "inverse-primary": "#80d5cb", "on-tertiary-fixed": "#40000c", "surface-bright": "#faf8ff", "on-primary-fixed-variant": "#00504a", "tertiary": "#a6002f", "primary": "#005c55", "on-primary-container": "#a3faef", "surface": "#faf8ff", "on-surface-variant": "#3e4947", "on-secondary-fixed": "#001d31", "surface-container": "#eaedff", "on-primary": "#ffffff", "on-error-container": "#93000a", "tertiary-container": "#d2093f" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2rem", "margin": "1rem", "space-sm": "0.5rem", "space-md": "0.75rem", "gutter": "1rem", "margin-md": "1.5rem", "margin-lg": "2rem", "space-lg": "1.25rem" }, "fontFamily": { "headline-md": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "headline-xl-mobile": ["Space Grotesk"], "label-md": ["Geist"], "label-sm": ["Space Grotesk"], "body-sm": ["Geist"], "headline-lg": ["Space Grotesk"], "body-lg": ["Geist"], "label-lg": ["Geist"], "body-md": ["Geist"] }, "fontSize": { "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-xl": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-xl-mobile": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.06em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-space-sm flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Go Back" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors active:scale-95" onclick="history.back()"><span class="material-symbols-outlined text-[22px]">arrow_back</span></button><h1 class="font-headline-md text-headline-md text-on-surface truncate max-w-[200px]">Report Issue</h1></div><div class="flex items-center gap-space-xs pr-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full px-margin pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full pb-10 space-y-space-md">
+<!-- Locked Unit Context Strip -->
+<div class="bg-surface-container-low p-space-md rounded-none flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">apartment</span>
+</div>
+<div class="min-w-0">
+<div class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Active Residence</div>
+<div class="font-headline-md text-headline-md text-on-surface truncate">Oakridge Crest, Unit 4B</div>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high px-space-xs py-0.5 text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span class="font-label-sm text-label-sm uppercase">Verified</span>
+</div>
+</div>
+<!-- Realtime Diagnostic Ribbon (Scout AI Telematics) -->
+<div class="bg-surface-container-lowest p-space-sm shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Scout AI Dispatch Pipeline</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Priority Queue: Triage Ready</span>
+</div>
+<!-- Form Wrapper -->
+<form class="space-y-space-md" id="maintenance-form" onsubmit="event.preventDefault();">
+<!-- Section 1: Maintenance Category -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-headline-md text-headline-md text-on-surface flex items-center gap-1">
+          1. Maintenance Category <span class="text-tertiary">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-primary font-semibold uppercase">Plumbing Selected</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs" id="category-grid">
+<!-- Plumbing (Active) -->
+<button class="category-btn flex items-center justify-between p-space-sm bg-primary text-on-primary transition-all text-left" data-category="plumbing" type="button">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-on-primary">plumbing</span>
+<span class="font-label-lg text-label-lg truncate">Plumbing</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">check_circle</span>
+</button>
+<!-- Electrical -->
+<button class="category-btn flex items-center justify-between p-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high transition-all text-left" data-category="electrical" type="button">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">bolt</span>
+<span class="font-label-lg text-label-lg truncate">Electrical</span>
+</div>
+</button>
+<!-- Heating / AC -->
+<button class="category-btn flex items-center justify-between p-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high transition-all text-left" data-category="hvac" type="button">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">thermostat</span>
+<span class="font-label-lg text-label-lg truncate">Heating / AC</span>
+</div>
+</button>
+<!-- Appliances -->
+<button class="category-btn flex items-center justify-between p-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high transition-all text-left" data-category="appliances" type="button">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">kitchen</span>
+<span class="font-label-lg text-label-lg truncate">Appliances</span>
+</div>
+</button>
+<!-- Structural / Windows -->
+<button class="category-btn flex items-center justify-between p-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high transition-all text-left" data-category="structural" type="button">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">window</span>
+<span class="font-label-lg text-label-lg truncate">Structural</span>
+</div>
+</button>
+<!-- Security / Locks -->
+<button class="category-btn flex items-center justify-between p-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high transition-all text-left" data-category="security" type="button">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">vpn_key</span>
+<span class="font-label-lg text-label-lg truncate">Security / Locks</span>
+</div>
+</button>
+<!-- Other -->
+<button class="category-btn col-span-2 flex items-center justify-between p-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high transition-all text-left" data-category="other" type="button">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">more_horiz</span>
+<span class="font-label-lg text-label-lg truncate">Other Incident</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Section 2: Issue Title & Specific Zone -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm space-y-space-md">
+<div class="space-y-space-xs">
+<label class="font-headline-md text-headline-md text-on-surface flex items-center gap-1" for="issue-title">
+          2. Issue Title &amp; Location <span class="text-tertiary">*</span>
+</label>
+<input class="w-full bg-surface-container-low text-on-surface p-space-sm font-body-md text-body-md focus:bg-surface-container-lowest outline-none focus:outline focus:outline-primary transition-all rounded-none" id="issue-title" placeholder="Brief summary of failure..." type="text" value="Ceiling water leak under upstairs bathroom"/>
+</div>
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Incident Sub-zone / Room</span>
+<div class="flex flex-wrap gap-space-xs" id="location-chips">
+<button class="location-chip px-space-sm py-1 bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">check</span> Master Bathroom
+          </button>
+<button class="location-chip px-space-sm py-1 bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md" type="button">
+            Kitchen
+          </button>
+<button class="location-chip px-space-sm py-1 bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md" type="button">
+            Living Room
+          </button>
+<button class="location-chip px-space-sm py-1 bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md" type="button">
+            Bedroom 1
+          </button>
+<button class="location-chip px-space-sm py-1 bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md" type="button">
+            Balcony / Exterior
+          </button>
+</div>
+</div>
+</div>
+<!-- Section 3: Detailed Description & Scout AI Triage -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-headline-md text-headline-md text-on-surface flex items-center gap-1" for="issue-desc">
+          3. Detailed Description <span class="text-tertiary">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-outline">132 / 500 chars</span>
+</div>
+<textarea class="w-full bg-surface-container-low text-on-surface p-space-sm font-body-md text-body-md outline-none focus:outline focus:outline-primary transition-all resize-none rounded-none" id="issue-desc" placeholder="Provide observable indicators: color, sounds, duration..." rows="4">Water is actively dripping from the ceiling fixture right beneath the upstairs unit. Paint is bubbling and there's a slow puddle forming on the tile floor.</textarea>
+<!-- AI Real-time Triage Assistant -->
+<div class="bg-surface-container-low p-space-sm space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">auto_awesome</span>
+<span class="font-label-sm text-label-sm font-semibold uppercase text-primary tracking-wider">Scout AI Match Diagnostic</span>
+</div>
+<span class="font-label-sm text-label-sm bg-primary-container text-on-primary-container px-1 font-bold">98.2% CONFIDENCE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Live stream matched to <strong class="text-on-surface">Emergency Plumbing Dispatch (Hydraulic Escapes)</strong>. Contractor tier: Licensed Master Plumber. Estimated response SLA: &lt; 90 minutes.
+        </p>
+</div>
+</div>
+<!-- Section 4: Photo & Video Telematics -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">4. Diagnostic Media</h2>
+<p class="font-body-sm text-body-sm text-outline">Visual evidence decreases dispatch verification by 40%</p>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">2 Files</span>
+</div>
+<!-- Capture Controls -->
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="flex items-center justify-center gap-space-xs py-space-sm px-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">photo_camera</span>
+<span>Take Photo</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs py-space-sm px-space-xs bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">upload_file</span>
+<span>Upload Files</span>
+</button>
+</div>
+<!-- Upload Progress Telemetry -->
+<div class="bg-surface-container-low p-space-xs space-y-1">
+<div class="flex justify-between items-center font-label-sm text-label-sm">
+<span class="text-primary font-bold">UPLOAD SYNCHRONIZED</span>
+<span class="text-outline">100% (2.4 MB of 2.4 MB)</span>
+</div>
+<div class="w-full h-1 bg-surface-container-high">
+<div class="bg-primary h-full w-full"></div>
+</div>
+</div>
+<!-- Uploaded Thumbnails Mosaic -->
+<div class="grid grid-cols-2 gap-space-xs pt-1">
+<!-- Thumbnail 1 -->
+<div class="relative bg-surface-container overflow-hidden group aspect-video">
+<img class="w-full h-full object-cover" data-alt="Close-up architectural shot of drywall ceiling showing swollen circular water leak spot with discoloration and visible droplet forming beneath off-white paint layer in residential bathroom environment, sharp clinical lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD5UUrapwFwg8ck_fRHkQyk7il-uiUvrJCGZjiIcbMhHWmPCynFVuKsUuYDLp7xo8Il4C1kOnooAtp9SbAB1alqZ5mfc6SnLeuCfCZsCGKyYblqMXOU8tS6vwbQHWHEi7uCqtgl8bqjo_X7876GMVKvpebOaKPOBLp4ELXpqBUgOhog41X8z7Vqz7f87QBL-jf8LT4jzHj5Vg1le39ChWAmI45zbSqYxteLqBfDbc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 flex flex-col justify-between p-1.5">
+<div class="flex justify-between items-start">
+<span class="bg-primary text-on-primary font-label-sm text-label-sm px-1 flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">neurology</span> Scout Verified
+              </span>
+<button class="w-5 h-5 bg-black/60 text-white flex items-center justify-center hover:bg-tertiary transition-colors" title="Remove" type="button">
+<span class="material-symbols-outlined text-[12px]">close</span>
+</button>
+</div>
+<span class="text-white font-label-sm text-label-sm truncate">Ceiling_01_Leak.jpg</span>
+</div>
+</div>
+<!-- Thumbnail 2 -->
+<div class="relative bg-surface-container overflow-hidden group aspect-video">
+<img class="w-full h-full object-cover" data-alt="Macro floor photograph of ceramic tile flooring with water ripples gathering from an overhead drip, soft specular reflections, architectural clean focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3mSk1NTg-fyGaIptTpZ4ybCVA13Cm1W4BuLKjZenqd-K4blCzyjt3k5ZKwLlwyXu_zVWp7eatu4EajDyHhwJHnO8iCmH5uCD9qw_hvpAX1zOrj3omaZrODdoGlQnTHMYBoaYC_nRQHOF0dWyIPHQo_3gv-V5m6ct4YygRe2oL1Uiaz01XZJDFd1pI0euY7_9ngaIf_7ysjmwUg3DZnFnBFtF9UTsbhpakE019Wtk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 flex flex-col justify-between p-1.5">
+<div class="flex justify-end items-start">
+<button class="w-5 h-5 bg-black/60 text-white flex items-center justify-center hover:bg-tertiary transition-colors" title="Remove" type="button">
+<span class="material-symbols-outlined text-[12px]">close</span>
+</button>
+</div>
+<span class="text-white font-label-sm text-label-sm truncate">Floor_Puddle_02.jpg</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 5: Safety Precaution & Authorized Access -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm space-y-space-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">5. Critical Safety &amp; Access Protocols</h2>
+<!-- Safety Flagging Checkbox Card -->
+<label class="flex items-start gap-space-sm p-space-sm bg-tertiary-fixed text-on-tertiary-fixed cursor-pointer">
+<input checked="" class="mt-0.5 w-4 h-4 accent-tertiary rounded-none cursor-pointer" type="checkbox"/>
+<div class="space-y-0.5 min-w-0">
+<div class="flex items-center gap-1 font-headline-md text-headline-md text-tertiary">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span>Safety Hazard Detected</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed-variant">
+<strong>Active Flag:</strong> Water source is directly adjacent to overhead wiring or luminaire fixture. Priority upgraded to Code Red (Containment First).
+          </p>
+</div>
+</label>
+<!-- Entry Access Selection -->
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Technician Entry Authorization</span>
+<div class="grid grid-cols-1 gap-space-xs" id="access-options">
+<label class="flex items-center gap-space-sm p-space-sm bg-surface-container-high text-on-surface cursor-pointer">
+<input checked="" class="accent-primary w-4 h-4 rounded-none" name="entry-permission" type="radio" value="keycode"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-semibold">Grant immediate entry (Keycode / Lockbox)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Recommended for emergency mitigation while away</span>
+</div>
+</label>
+<label class="flex items-center gap-space-sm p-space-sm bg-surface-container text-on-surface cursor-pointer">
+<input class="accent-primary w-4 h-4 rounded-none" name="entry-permission" type="radio" value="call"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-semibold">Call resident prior to dispatch arrival</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Technician waits for verbal confirmation</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Submission Hub -->
+<div class="space-y-space-sm pt-space-xs">
+<button class="w-full py-3.5 px-space-md bg-primary hover:bg-primary-container text-on-primary font-headline-md text-headline-md flex items-center justify-center gap-space-xs shadow-md transition-all active:scale-[0.99]" id="submit-btn" type="submit">
+<span class="material-symbols-outlined text-[20px]">send_time_extension</span>
+<span>Submit Maintenance Request</span>
+</button>
+<div class="bg-surface-container-low p-space-sm flex items-start gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">verified_user</span>
+<p class="font-body-sm text-body-sm">
+          Dispatched directly to Property Manager <strong class="text-on-surface">Marcus Vance</strong> via FixFlow Resolution Pipeline. Automated tenant telematics log #FX-9842.
+        </p>
+</div>
+</div>
+</form>
+<!-- Interactive Feedback Script -->
+<script>
+    // Category Selector
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.category-btn').forEach(b => {
+          b.className = 'category-btn flex items-center justify-between p-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high transition-all text-left' + (b.dataset.category === 'other' ? ' col-span-2' : '');
+          const check = b.querySelector('.material-symbols-outlined:last-child');
+          if (check && check.innerText === 'check_circle') check.remove();
+        });
+        btn.className = 'category-btn flex items-center justify-between p-space-sm bg-primary text-on-primary transition-all text-left' + (btn.dataset.category === 'other' ? ' col-span-2' : '');
+        const checkIcon = document.createElement('span');
+        checkIcon.className = 'material-symbols-outlined text-[18px] text-primary-fixed';
+        checkIcon.innerText = 'check_circle';
+        btn.appendChild(checkIcon);
+      });
+    });
+
+    // Location Chip Selector
+    document.querySelectorAll('.location-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.location-chip').forEach(c => {
+          c.className = 'location-chip px-space-sm py-1 bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md text-label-md';
+          const innerCheck = c.querySelector('span');
+          if (innerCheck) innerCheck.remove();
+        });
+        chip.className = 'location-chip px-space-sm py-1 bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1';
+        const check = document.createElement('span');
+        check.className = 'material-symbols-outlined text-[14px]';
+        check.innerText = 'check';
+        chip.prepend(check);
+      });
+    });
+
+    // Simple submission reaction
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.addEventListener('click', () => {
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span><span>Transmitting Telematics...</span>';
+      setTimeout(() => {
+        submitBtn.className = 'w-full py-3.5 px-space-md bg-secondary text-on-secondary font-headline-md text-headline-md flex items-center justify-center gap-space-xs shadow-md';
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">task_alt</span><span>Ticket Dispatched #FX-9842</span>';
+      }, 900);
+    });
+  </script>
+</div></main></body></html>

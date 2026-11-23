@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface":"#131b2e","inverse-surface":"#283044","on-tertiary-fixed-variant":"#920028","on-secondary-container":"#00476e","on-error-container":"#93000a","background":"#faf8ff","error-container":"#ffdad6","primary-fixed":"#9cf2e8","surface-container-lowest":"#ffffff","surface-container-highest":"#dae2fd","outline":"#6e7977","surface":"#faf8ff","secondary":"#006398","on-tertiary-container":"#ffe4e4","on-error":"#ffffff","surface-dim":"#d2d9f4","surface-container-low":"#f2f3ff","surface-tint":"#006a63","on-surface-variant":"#3e4947","inverse-on-surface":"#eef0ff","on-background":"#131b2e","secondary-fixed-dim":"#93ccff","on-secondary":"#ffffff","tertiary-container":"#d2093f","surface-variant":"#dae2fd","tertiary":"#a6002f","secondary-fixed":"#cce5ff","primary-container":"#0f766e","on-primary-fixed-variant":"#00504a","on-tertiary":"#ffffff","outline-variant":"#bdc9c6","tertiary-fixed":"#ffdada","error":"#ba1a1a","inverse-primary":"#80d5cb","on-secondary-fixed-variant":"#004b73","on-tertiary-fixed":"#40000c","primary-fixed-dim":"#80d5cb","secondary-container":"#5bb8fe","on-primary-fixed":"#00201d","on-secondary-fixed":"#001d31","surface-container-high":"#e2e7ff","tertiary-fixed-dim":"#ffb3b6","on-primary-container":"#a3faef","on-primary":"#ffffff","surface-container":"#eaedff","primary":"#005c55","surface-bright":"#faf8ff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","space-lg":"1.25rem","margin":"1rem","margin-lg":"2rem","space-md":"0.75rem","gutter-lg":"1.5rem","space-sm":"0.5rem","margin-md":"1.5rem","space-xl":"2rem","space-xs":"0.25rem"},"fontFamily":{"label-sm":["Space Grotesk"],"headline-lg":["Space Grotesk"],"headline-md":["Space Grotesk"],"label-lg":["Geist"],"body-sm":["Geist"],"body-md":["Geist"],"body-lg":["Geist"],"headline-xl-mobile":["Space Grotesk"],"label-md":["Geist"],"headline-xl":["Space Grotesk"]},"fontSize":{"label-sm":["10px",{"lineHeight":"12px","letterSpacing":"0.06em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"30px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-lg":["14px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"500"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl-mobile":["24px",{"lineHeight":"30px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-xl":["32px",{"lineHeight":"38px","letterSpacing":"-0.03em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-inverse-surface z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-16 px-space-md flex items-center justify-between bg-inverse-surface"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-none bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">tune</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-inverse-on-surface tracking-tight leading-none">FixFlow Ops</span><span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider mt-0.5">Telematics v2.4</span></div></div><div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse" title="Telematics Active"></div></div><div class="px-space-md py-space-sm"><div class="text-label-sm font-label-sm text-inverse-on-surface/50 uppercase tracking-widest px-space-xs mb-space-xs">Operations Matrix</div></div><nav class="flex flex-col gap-0.5 px-space-sm" data-active-classes="bg-primary-container text-on-primary font-label-md"><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="maintenance-requests" href="#"><span class="material-symbols-outlined text-[18px]">assignment_late</span><span>Maintenance Requests</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="properties-units" href="#"><span class="material-symbols-outlined text-[18px]">apartment</span><span>Properties &amp; Units</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="contractors" href="#"><span class="material-symbols-outlined text-[18px]">engineering</span><span>Contractors</span></a><a class="flex items-center justify-between px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="ai-operations" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">neurology</span><span>AI Operations</span></div><span class="px-1.5 py-0.5 bg-primary text-on-primary font-label-sm text-[9px] uppercase tracking-wider">Live</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="insights" href="#"><span class="material-symbols-outlined text-[18px]">monitoring</span><span>Insights</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px]">settings_ethernet</span><span>Settings</span></a></nav></div><div class="p-space-md bg-inverse-surface"><div class="p-space-sm bg-on-surface-variant/10 flex flex-col gap-1"><div class="flex items-center justify-between text-inverse-on-surface font-label-sm text-label-sm"><span>NODE RUNTIME</span><span class="text-primary-fixed">99.98%</span></div><div class="w-full bg-on-surface-variant/30 h-1"><div class="bg-primary h-1 w-[99%]"></div></div><div class="flex justify-between items-center text-inverse-on-surface/50 font-label-sm text-[9px] mt-1"><span>US-EAST HUB 04</span><span>LATENCY: 12ms</span></div></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-2xl"><div class="relative flex items-center"><button class="flex items-center gap-space-xs px-space-sm py-1.5 bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button" fdprocessedid="p3o0h"><span class="material-symbols-outlined text-[16px] text-primary">domain</span><span>All Properties (32 Units)</span><span class="material-symbols-outlined text-[16px] text-outline">arrow_drop_down</span></button></div><div class="relative flex-1"><div class="flex items-center w-full bg-surface-container-low px-space-sm py-1.5 text-body-sm"><span class="material-symbols-outlined text-outline text-[18px] mr-space-xs">search</span><span class="text-on-surface-variant font-body-sm flex-1 select-none">Search units, tickets, properties...</span><kbd class="font-label-sm text-[10px] bg-surface-container-highest px-1.5 py-0.5 text-on-surface-variant shadow-none">⌘K</kbd></div></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><button class="relative w-9 h-9 flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button" fdprocessedid="u4e76r"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-tertiary text-on-tertiary font-label-sm text-[9px] flex items-center justify-center leading-none">4</span></button><button class="w-9 h-9 flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button" fdprocessedid="y08yfh"><span class="material-symbols-outlined text-[20px]">headset_mic</span></button></div><div class="h-6 w-px bg-outline-variant/30"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface leading-tight">Marcus Vance</span><span class="font-label-sm text-label-sm text-outline leading-tight">Property Director</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 flex-1 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Command Matrix & State Controller Ribbon -->
+<div class="w-full bg-surface-container-low px-gutter-lg py-space-sm flex flex-wrap items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 bg-primary-container inline-block"></span>
+<span class="font-headline-md text-headline-md text-on-surface tracking-tight">Interactive Operations Modals &amp; Registry Forms</span>
+</div>
+<div class="h-4 w-px bg-surface-container-highest"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider bg-surface-container px-2 py-0.5">SPEC S5.5 • STAGING MATRIX</span>
+</div>
+<!-- Mode Selector / Preview Switcher Tabs -->
+<div class="flex items-center gap-1 bg-surface-container-highest p-1 select-none"><button class="px-space-sm py-1.5 font-label-md text-label-md transition-colors bg-surface-container-lowest text-primary-container font-semibold shadow-sm" id="tab-add-unit" onclick="switchPreview('add-unit')" type="button">[Preview 1: Add Rental Unit]</button><button class="px-space-sm py-1.5 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" id="tab-edit-prop" onclick="switchPreview('edit-prop')" type="button">[Preview 2: Edit Property]</button><button class="px-space-sm py-1.5 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" id="tab-link-tenant" onclick="switchPreview('link-tenant')" type="button">[Preview 3: Link Tenant]</button><button class="px-space-sm py-1.5 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" id="tab-errors" onclick="switchPreview('errors')" type="button">[Preview 4: Validation &amp; Errors]</button><button class="px-space-sm py-1.5 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" id="tab-empty" onclick="switchPreview('empty')" type="button">[Preview 5: Empty State]</button></div>
+</div>
+<!-- Main Viewport Arena: Simulated Background Workspace with Scrim & Layered Dialog -->
+<div class="relative w-full overflow-hidden min-h-[calc(100vh-8rem)]">
+<!-- BACKGROUND: Simulated Highrise Unit Management Workspace Grid -->
+<div class="w-full px-gutter-lg py-space-lg pointer-events-none select-none filter blur-[1.5px] opacity-40">
+<!-- Sub-header bar of base view -->
+<div class="flex items-center justify-between pb-space-md mb-space-md bg-surface-container-low p-space-md">
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">Oakridge Crest Highrise — Asset Grid</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Metro District • 32 Units Active • 97.4% Occupancy • Telematics Link Active</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="px-space-md py-2 bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm">Filter: All Stacks</div>
+<div class="px-space-md py-2 bg-primary-container text-on-primary font-label-md text-label-md shadow-sm">+ Unit Record</div>
+</div>
+</div>
+<!-- Simulated Grid of unit cards -->
+<div class="grid grid-cols-4 gap-gutter mb-space-lg">
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-on-surface">Unit 4A</span>
+<span class="px-2 py-0.5 bg-surface-container font-label-sm text-label-sm text-primary">OCCUPIED</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Level 4 • Floorplan B-1 (980 sq ft)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tenant: J. Sterling • Lease Exp: 2026-03</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-on-surface">Unit 4B</span>
+<span class="px-2 py-0.5 bg-surface-container font-label-sm text-label-sm text-primary">OCCUPIED</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Level 4 • Floorplan A-2 (740 sq ft)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tenant: K. Chen • Lease Exp: 2025-11</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-on-surface">Unit 4C</span>
+<span class="px-2 py-0.5 bg-surface-container font-label-sm text-label-sm text-secondary">TURNOVER</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Level 4 • Floorplan C-1 (1,220 sq ft)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Turnover Ticket #TK-8891 • Ready in 2d</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-on-surface">Unit 4D</span>
+<span class="px-2 py-0.5 bg-surface-container font-label-sm text-label-sm text-primary">OCCUPIED</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Level 4 • Floorplan B-2 (1,040 sq ft)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tenant: R. Alvarez • Lease Exp: 2026-01</span>
+</div>
+</div>
+<!-- Visual Placeholder Image Context for Oakridge Crest -->
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-8 bg-surface-container-lowest p-space-md shadow-sm">
+<div class="font-headline-md text-headline-md mb-2">Building Elevation Diagnostics</div>
+<div class="w-full h-48 bg-surface-container-low flex items-center justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Stack Telematics Riser Visualization Matrix</span>
+</div>
+</div>
+<div class="col-span-4 bg-surface-container-lowest p-space-md shadow-sm">
+<div class="font-headline-md text-headline-md mb-2">Building Snapshot</div>
+<img class="w-full h-48 object-cover shadow-sm" data-alt="High-contrast architectural photograph of a luxury modern residential highrise building facade with geometric balconies, sharp clean concrete lines, moody dusk ambient sky, teal and warm slate tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0WZ-elvKH7UYINmNHfV-yFt0JImqqgXmdqCqwnmQrxAaoUfYPi5Uo9nOW168lrUmabbbne2Y_wb4ojrP2j3a-tcIIeLLjFFenN3JBXfw8MyPe2BGfp4JcFV93nvMCnNGuIuoZJSOD2U1UzEydYKa1xwyi6pQ1xSwgaEsXjLppIQRvKdoAIT3326ZR4wCnMFjeH6WGrYXiVZqFmtRU63mVHUNL-wh8CIra9ax_xDo">
+</div>
+</div>
+</div>
+<!-- SEMI-OPAQUE BACKDROP SHIELD (Level 3 Modal Elevation Protocol) -->
+<div class="absolute inset-0 bg-inverse-surface/45 flex items-center justify-center p-space-md overflow-y-auto">
+<!-- ======================================================== -->
+<!-- MODAL CONTAINER 1: ADD RENTAL UNIT (PRIMARY ACTIVE)      -->
+<!-- ======================================================== -->
+<div class="relative w-full max-w-2xl bg-surface-container-lowest shadow-2xl flex flex-col my-auto transition-all" id="modal-add-unit">
+<!-- Header Banner with Protocol Metadata -->
+<div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-between">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-primary-container uppercase tracking-wider">REGISTRY MUTATION • LEVEL 3 DIALOG</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight">Add New Rental Unit</h2>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+                Oakridge Crest Highrise • #PROP-8812
+              </span>
+</div>
+</div>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" onclick="closeModal()" title="Close dialog" type="button" fdprocessedid="hvgysp">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Security / Contract Authorization Banner -->
+<div class="px-gutter py-2.5 bg-surface-container-low flex items-center justify-between text-on-surface-variant"><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-primary">verified_user</span><span class="font-body-sm text-body-sm">Action restricted to authorized Property Manager <strong class="text-on-surface font-semibold">Marcus Vance</strong>. Verified Contract #MC-9941.</span></div><div class="flex items-center gap-1 text-primary font-label-sm text-label-sm font-semibold uppercase"><span class="material-symbols-outlined text-[14px]">lock</span><span>Immutable Audit Trail Active</span></div></div>
+<!-- Scrollable Modal Body Form -->
+<div class="p-gutter flex flex-col gap-space-md max-h-[70vh] overflow-y-auto">
+<!-- Field Row 1: Unit Identifier & Floor Level -->
+<div class="grid grid-cols-12 gap-space-md">
+<!-- Unit Label Field with Active Validation Checkmark -->
+<div class="col-span-7 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="unit-identifier">
+<span>Unit Identifier / Label</span>
+<span class="text-tertiary font-bold">*</span>
+</label>
+<span class="flex items-center gap-1 text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px]">check_circle</span><span>Unit 5A — Identifier available in Oakridge Crest</span></span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full bg-surface px-space-sm py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" id="unit-identifier" placeholder="e.g. Unit 402 or Penthouse B" type="text" value="Unit 5A" fdprocessedid="36yif">
+<span class="absolute right-3 material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Unique identifier within Oakridge Crest Highrise registry.</p>
+</div>
+<!-- Floor / Level Field -->
+<div class="col-span-5 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="floor-level">
+<span>Floor / Level</span>
+<span class="text-tertiary font-bold">*</span>
+</label>
+<input class="w-full bg-surface px-space-sm py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" id="floor-level" placeholder="e.g. 5, Mezzanine, B1" type="text" value="Floor 5" fdprocessedid="f9htjo">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Used for telemetry mapping.</p>
+</div>
+</div>
+<!-- Field Row 2: Unit Type Specification Dropdown -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="unit-type">
+<span>Unit Floorplan &amp; Typology</span>
+<span class="text-tertiary font-bold">*</span>
+</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Manage Oakridge Floorplans</a>
+</div>
+<div class="relative">
+<select class="w-full bg-surface px-space-sm py-2 font-body-md text-body-md text-on-surface appearance-none focus:outline-none focus:ring-1 focus:ring-primary shadow-sm cursor-pointer" id="unit-type" fdprocessedid="rv7q98">
+<option selected="" value="b2">2 Bedroom, 2 Bath (Type B-2, 1,040 sq ft)</option>
+<option value="a1">1 Bedroom, 1 Bath (Type A-1, 620 sq ft)</option>
+<option value="b1">2 Bedroom, 1 Bath (Type B-1, 890 sq ft)</option>
+<option value="c1">3 Bedroom, 2 Bath (Type C-1, 1,320 sq ft)</option>
+<option value="ph">Penthouse Suite (Type PH-1, 2,150 sq ft)</option>
+</select>
+<span class="absolute right-3 top-2.5 pointer-events-none material-symbols-outlined text-on-surface-variant text-[20px]">
+                unfold_more
+              </span>
+</div>
+<div class="flex items-center gap-space-sm mt-0.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="bg-surface-container px-1.5 py-0.5">2 BEDS</span>
+<span class="bg-surface-container px-1.5 py-0.5">2 BATHS</span>
+<span class="bg-surface-container px-1.5 py-0.5">1,040 SQ FT</span>
+<span class="bg-surface-container px-1.5 py-0.5">TARGET RENT: $2,850/mo</span>
+</div>
+</div>
+<!-- Field Row 3: Occupancy Status Radio Matrix -->
+<div class="flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface">Occupancy Baseline Status</span>
+<div class="grid grid-cols-3 gap-space-sm">
+<!-- Option 1: Vacant Ready (Checked) -->
+<label class="cursor-pointer bg-surface-container-low p-space-sm flex flex-col gap-1.5 relative transition-all hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">READY</span>
+<input checked="" class="w-4 h-4 accent-primary" name="occupancy_status" type="radio" value="vacant_ready">
+</div>
+<div class="font-headline-md text-[14px] leading-tight text-on-surface font-semibold">Vacant - Move-In Ready</div>
+<div class="font-body-sm text-[11px] leading-tight text-on-surface-variant">Inspect complete, lock assigned, instant lease available.</div>
+</label>
+<!-- Option 2: Vacant Turnover -->
+<label class="cursor-pointer bg-surface p-space-sm flex flex-col gap-1.5 relative transition-all hover:bg-surface-container-low">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">TURNOVER</span>
+<input class="w-4 h-4 accent-primary" name="occupancy_status" type="radio" value="vacant_turnover">
+</div>
+<div class="font-headline-md text-[14px] leading-tight text-on-surface font-semibold">Vacant - Turnover Needed</div>
+<div class="font-body-sm text-[11px] leading-tight text-on-surface-variant">Maintenance or paint required before lease.</div>
+</label>
+<!-- Option 3: Occupied -->
+<label class="cursor-pointer bg-surface p-space-sm flex flex-col gap-1.5 relative transition-all hover:bg-surface-container-low">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">OCCUPIED</span>
+<input class="w-4 h-4 accent-primary" name="occupancy_status" type="radio" value="occupied">
+</div>
+<div class="font-headline-md text-[14px] leading-tight text-on-surface font-semibold">Occupied (Link Tenant)</div>
+<div class="font-body-sm text-[11px] leading-tight text-on-surface-variant">Prompts tenant account invite immediately.</div>
+</label>
+</div>
+</div>
+<!-- SECTION: Telematics & Smart Building Integration Sub-Panel -->
+<div class="bg-surface-container-low p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">router</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Scout AI Telematics &amp; Hardware Tagging</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider bg-surface-container px-2 py-0.5">Automated Dispatch Nodes</span>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<!-- Smart Lock Field -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="lock-gw-id">
+<span>Smart Lock Gateway ID</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">(Optional)</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface px-space-sm py-1.5 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" id="lock-gw-id" type="text" value="SALTO-GW-9821" fdprocessedid="7opbbd">
+<span class="absolute right-2 font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-1">ONLINE</span>
+</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant">Enables temporary contractor pin codes.</p>
+</div>
+<!-- Water Isolation Valve Field (Emergency Node) -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between" for="water-valve-id">
+<span>Emergency Water Isolation Valve</span>
+<span class="font-label-sm text-label-sm text-primary">Telematics Tag</span>
+</label>
+<input class="w-full bg-surface px-space-sm py-1.5 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" id="water-valve-id" type="text" value="Riser 5 - Stack B Valve #12" fdprocessedid="m0q1qm">
+<p class="font-body-sm text-[11px] text-on-surface-variant">Scout AI tags this valve during burst pipe dispatches.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer Actions (Teal / Monoline Zero-Radius Precision) -->
+<div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary">lock_clock</span><span>AUDIT TRAIL: Record timestamped and signed to immutable audit trail.</span></div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2 bg-surface text-on-surface font-label-md text-label-md hover:bg-surface-container-highest transition-colors shadow-sm" onclick="closeModal()" type="button" fdprocessedid="68piw">
+              Cancel
+            </button>
+<button class="px-gutter py-2 bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm flex items-center gap-space-xs" onclick="triggerCreateUnitSuccess()" type="button" fdprocessedid="tf18f5">
+<span class="material-symbols-outlined text-[18px]">add_task</span>
+<span>Create Unit Record</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- MODAL CONTAINER 2: EDIT PROPERTY INFORMATION             -->
+<!-- ======================================================== -->
+<div class="relative w-full max-w-2xl bg-surface-container-lowest shadow-2xl flex flex-col my-auto transition-all hidden" id="modal-edit-prop">
+<div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-between">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">PROPERTY METRIC CONFIGURATION</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Edit Oakridge Crest Highrise</h2>
+</div>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface-variant hover:text-on-surface" onclick="closeModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-gutter flex flex-col gap-space-md">
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Official Asset Name</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm focus:outline-none" type="text" value="Oakridge Crest Highrise">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Regional Asset Identifier</label>
+<input class="bg-surface-container px-space-sm py-2 font-body-md text-on-surface-variant shadow-sm cursor-not-allowed" disabled="" type="text" value="PROP-8812-METRO">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Street Address &amp; Access Protocol</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm" type="text" value="8400 Crestline Boulevard, Tower B, Seattle WA 98101">
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Total Units</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm" type="number" value="32">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Building Levels</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm" type="number" value="8">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Year Commissioned</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm" type="number" value="2021">
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2 bg-surface text-on-surface font-label-md" onclick="closeModal()" type="button">Cancel</button>
+<button class="px-gutter py-2 bg-primary-container text-on-primary font-label-md" onclick="closeModal()" type="button">Save Property Changes</button>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- MODAL CONTAINER 3: LINK TENANT ACCOUNT DIALOG            -->
+<!-- ======================================================== -->
+<div class="relative w-full max-w-xl bg-surface-container-lowest shadow-2xl flex flex-col my-auto transition-all hidden" id="modal-link-tenant">
+<div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-between">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">TENANT ASSOCIATION DISPATCH</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Link Tenant to Unit 5A</h2>
+</div>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface-variant hover:text-on-surface" onclick="closeModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-gutter flex flex-col gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Tenant Full Name</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm focus:outline-none" placeholder="e.g. Eleanor Vance" type="text">
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Email Address</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm focus:outline-none" placeholder="e.vance@workplace.com" type="email">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Mobile Phone (SMS Portal)</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm focus:outline-none" placeholder="+1 (206) 555-0199" type="tel">
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Lease Start Date</label>
+<input class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm" type="date" value="2025-06-01">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface">Lease Term Duration</label>
+<select class="bg-surface px-space-sm py-2 font-body-md text-on-surface shadow-sm">
+<option selected="">12 Months Standard</option>
+<option>24 Months Preferred</option>
+<option>Month-to-Month Rolling</option>
+</select>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low flex items-start gap-space-sm">
+<input checked="" class="mt-1 w-4 h-4 accent-primary" id="sms-notify" type="checkbox">
+<label class="font-body-sm text-body-sm text-on-surface" for="sms-notify">
+              Trigger automated SMS Welcome Packet with digital Salto door credential activation instructions.
+            </label>
+</div>
+</div>
+<div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2 bg-surface text-on-surface font-label-md" onclick="closeModal()" type="button">Cancel</button>
+<button class="px-gutter py-2 bg-primary-container text-on-primary font-label-md" onclick="closeModal()" type="button">Send Invite &amp; Link Unit</button>
+</div>
+</div>
+<!-- ======================================================== -->
+<!-- MODAL CONTAINER 4: VALIDATION & ERROR STATES SHOWCASE    -->
+<!-- ======================================================== -->
+<div class="relative w-full max-w-2xl bg-surface-container-lowest shadow-2xl flex flex-col my-auto transition-all hidden" id="modal-errors">
+<div class="bg-error-container/40 px-gutter py-space-md flex items-center justify-between">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-error uppercase tracking-wider font-bold">MUTATION BLOCKED • CONFLICT DETECTED</span>
+<h2 class="font-headline-lg text-headline-lg text-on-error-container">Registry Validation Exception</h2>
+</div>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface-variant hover:text-on-surface" onclick="closeModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-gutter flex flex-col gap-space-md"><div class="bg-error-container/60 p-space-md flex items-start gap-space-sm"><span class="material-symbols-outlined text-error text-[20px] mt-0.5">warning</span><div class="flex flex-col"><span class="font-label-md text-label-md text-on-error-container font-semibold">Error: Unit Identifier already exists in this property</span><span class="font-body-sm text-body-sm text-on-surface-variant">Unit '4A' is already provisioned and occupied by tenant J. Sterling. Each identifier must be unique within property scope.</span></div></div><div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-error flex items-center justify-between"><span>Unit Identifier / Label <span class="text-tertiary font-bold">*</span></span><span class="font-label-sm text-label-sm text-error">Identifier Conflict</span></label><div class="relative flex items-center"><input class="w-full bg-error-container/20 px-space-sm py-2 font-body-md text-body-md text-error shadow-sm focus:outline-none ring-1 ring-error" type="text" value="Unit 4A"><span class="absolute right-3 material-symbols-outlined text-error text-[18px]">error</span></div><p class="font-body-sm text-body-sm text-error font-medium">Please specify an unused label, e.g. 'Unit 5A' or 'Unit 4E'.</p></div><div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-error flex items-center justify-between"><span>Unit Floorplan &amp; Typology <span class="text-tertiary font-bold">*</span></span><span class="font-label-sm text-label-sm text-error">Missing required field</span></label><div class="relative flex items-center"><select class="w-full bg-error-container/20 px-space-sm py-2 font-body-md text-body-md text-error shadow-sm focus:outline-none ring-1 ring-error"><option value="">-- Select Floorplan --</option></select><span class="absolute right-3 material-symbols-outlined text-error text-[18px]">error</span></div><p class="font-body-sm text-body-sm text-error font-medium">Missing required field: Unit Floorplan must be assigned for telemetry &amp; billing.</p></div><div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-on-surface">Smart Lock Gateway ID <span class="font-label-sm text-label-sm text-on-surface-variant">(Optional)</span></label><div class="relative flex items-center"><input class="w-full bg-surface px-space-sm py-2 font-body-md text-body-md text-on-surface shadow-sm focus:outline-none ring-1 ring-tertiary" type="text" value="GW-UNKNOWN-0000"><span class="absolute right-3 material-symbols-outlined text-tertiary text-[18px]">signal_disconnected</span></div><p class="font-body-sm text-body-sm text-on-tertiary-fixed-variant">Gateway unreachable on local mesh. Scout AI cannot verify offline pin sync.</p></div><div class="p-space-sm bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-primary">auto_fix_high</span><span>Scout Suggestion: Auto-increment to next sequential label (Unit 5A) and apply Type B-2</span></div><button class="px-space-sm py-1 bg-surface-container-lowest font-label-sm text-label-sm text-primary shadow-sm hover:bg-surface" onclick="switchPreview('add-unit')" type="button">Apply Fix</button></div></div>
+<div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-error uppercase">2 Issues Prevent Registry Write</span>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2 bg-surface text-on-surface font-label-md" onclick="closeModal()" type="button">Dismiss</button>
+<button class="px-gutter py-2 bg-surface-container-highest text-outline font-label-md cursor-not-allowed" disabled="" type="button">
+              Resolve Errors to Commit
+            </button>
+</div>
+</div>
+</div><div class="relative w-full max-w-2xl bg-surface-container-lowest shadow-2xl flex flex-col my-auto transition-all hidden" id="modal-empty"><div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-between"><div class="flex flex-col gap-0.5"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 bg-outline"></span><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">REGISTRY QUERY • ZERO RECORDS</span></div><h2 class="font-headline-lg text-headline-lg text-on-surface">Empty State: No Units Registered</h2></div><button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-colors" onclick="closeModal()" type="button"><span class="material-symbols-outlined text-[18px]">close</span></button></div><div class="p-gutter flex flex-col items-center justify-center text-center py-space-xl gap-space-md"><div class="w-16 h-16 bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-outline text-[32px]">domain_disabled</span></div><div class="flex flex-col gap-1 max-w-md"><div class="font-headline-md text-headline-md text-on-surface">No Rental Units or Properties Found</div><p class="font-body-sm text-body-sm text-on-surface-variant">No active rental units exist under this asset stack. Start by registering the first unit or importing floorplan configurations from Scout AI telematics.</p></div><div class="flex items-center gap-space-sm mt-2"><button class="px-gutter py-2 bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm flex items-center gap-space-xs" onclick="switchPreview('add-unit')" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Add First Unit Record</span></button><button class="px-space-md py-2 bg-surface text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors shadow-sm" onclick="switchPreview('edit-prop')" type="button">Configure Property</button></div></div><div class="bg-surface-container-low px-gutter py-space-md flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px] text-primary">verified_user</span><span>Manager: Marcus Vance (Authorized)</span></div><span class="text-outline">REGISTRY STATUS: UNINITIALIZED</span></div></div>
+</div>
+<!-- SUCCESS TOAST BANNER (Triggered on 'Create Unit Record' or Preview Demo) -->
+<div class="absolute bottom-6 right-6 max-w-lg bg-surface-container-lowest p-space-md shadow-2xl flex items-start gap-space-md transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-none" id="success-banner">
+<div class="w-8 h-8 bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<div class="flex flex-col gap-0.5 pr-space-md">
+<div class="font-headline-md text-headline-md text-on-surface">Unit 5A successfully added to Oakridge Crest Highrise registry</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+          Unit 5A successfully registered into Oakridge Crest Highrise registry. Salto Gateway assigned; Scout AI telemetry listener active.
+        </div>
+<div class="flex items-center gap-space-md mt-2">
+<a class="font-label-sm text-label-sm text-primary font-bold hover:underline" href="#">VIEW UNIT TELEMATICS →</a>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface" onclick="hideSuccessBanner()" type="button" fdprocessedid="woy32c">DISMISS</button>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface ml-auto" onclick="hideSuccessBanner()" type="button" fdprocessedid="8u21hk">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  function switchPreview(mode) {
+    const modals = {
+      'add-unit': document.getElementById('modal-add-unit'),
+      'edit-prop': document.getElementById('modal-edit-prop'),
+      'link-tenant': document.getElementById('modal-link-tenant'),
+      'errors': document.getElementById('modal-errors')
+    };
+
+    const tabs = {
+      'add-unit': document.getElementById('tab-add-unit'),
+      'edit-prop': document.getElementById('tab-edit-prop'),
+      'link-tenant': document.getElementById('tab-link-tenant'),
+      'errors': document.getElementById('tab-errors')
+    };
+
+    // Hide all modals & remove active styling on tabs
+    Object.keys(modals).forEach(key => {
+      if (modals[key]) modals[key].classList.add('hidden');
+      if (tabs[key]) {
+        tabs[key].className = 'px-space-sm py-1.5 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors';
+      }
+    });
+
+    // Show selected modal & activate tab
+    if (modals[mode]) modals[mode].classList.remove('hidden');
+    if (tabs[mode]) {
+      tabs[mode].className = 'px-space-sm py-1.5 font-label-md text-label-md transition-colors bg-surface-container-lowest text-primary-container font-semibold shadow-sm';
+    }
+  }
+
+  function triggerCreateUnitSuccess() {
+    const banner = document.getElementById('success-banner');
+    if (banner) {
+      banner.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+      banner.classList.add('opacity-100', 'translate-y-0');
+      
+      setTimeout(() => {
+        hideSuccessBanner();
+      }, 6000);
+    }
+  }
+
+  function hideSuccessBanner() {
+    const banner = document.getElementById('success-banner');
+    if (banner) {
+      banner.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+      banner.classList.remove('opacity-100', 'translate-y-0');
+    }
+  }
+
+  function closeModal() {
+    // Return to the primary add unit view as baseline
+    switchPreview('add-unit');
+  }
+</script></main></div>
+
+<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>

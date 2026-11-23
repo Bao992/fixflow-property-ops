@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface":"#131b2e","inverse-surface":"#283044","on-tertiary-fixed-variant":"#920028","on-secondary-container":"#00476e","on-error-container":"#93000a","background":"#faf8ff","error-container":"#ffdad6","primary-fixed":"#9cf2e8","surface-container-lowest":"#ffffff","surface-container-highest":"#dae2fd","outline":"#6e7977","surface":"#faf8ff","secondary":"#006398","on-tertiary-container":"#ffe4e4","on-error":"#ffffff","surface-dim":"#d2d9f4","surface-container-low":"#f2f3ff","surface-tint":"#006a63","on-surface-variant":"#3e4947","inverse-on-surface":"#eef0ff","on-background":"#131b2e","secondary-fixed-dim":"#93ccff","on-secondary":"#ffffff","tertiary-container":"#d2093f","surface-variant":"#dae2fd","tertiary":"#a6002f","secondary-fixed":"#cce5ff","primary-container":"#0f766e","on-primary-fixed-variant":"#00504a","on-tertiary":"#ffffff","outline-variant":"#bdc9c6","tertiary-fixed":"#ffdada","error":"#ba1a1a","inverse-primary":"#80d5cb","on-secondary-fixed-variant":"#004b73","on-tertiary-fixed":"#40000c","primary-fixed-dim":"#80d5cb","secondary-container":"#5bb8fe","on-primary-fixed":"#00201d","on-secondary-fixed":"#001d31","surface-container-high":"#e2e7ff","tertiary-fixed-dim":"#ffb3b6","on-primary-container":"#a3faef","on-primary":"#ffffff","surface-container":"#eaedff","primary":"#005c55","surface-bright":"#faf8ff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","space-lg":"1.25rem","margin":"1rem","margin-lg":"2rem","space-md":"0.75rem","gutter-lg":"1.5rem","space-sm":"0.5rem","margin-md":"1.5rem","space-xl":"2rem","space-xs":"0.25rem"},"fontFamily":{"label-sm":["Space Grotesk"],"headline-lg":["Space Grotesk"],"headline-md":["Space Grotesk"],"label-lg":["Geist"],"body-sm":["Geist"],"body-md":["Geist"],"body-lg":["Geist"],"headline-xl-mobile":["Space Grotesk"],"label-md":["Geist"],"headline-xl":["Space Grotesk"]},"fontSize":{"label-sm":["10px",{"lineHeight":"12px","letterSpacing":"0.06em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"30px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"500"}],"label-lg":["14px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"500"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl-mobile":["24px",{"lineHeight":"30px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-xl":["32px",{"lineHeight":"38px","letterSpacing":"-0.03em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-inverse-surface z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-16 px-space-md flex items-center justify-between bg-inverse-surface"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-none bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">tune</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-inverse-on-surface tracking-tight leading-none">FixFlow Ops</span><span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider mt-0.5">Telematics v2.4</span></div></div><div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse" title="Telematics Active"></div></div><div class="px-space-md py-space-sm"><div class="text-label-sm font-label-sm text-inverse-on-surface/50 uppercase tracking-widest px-space-xs mb-space-xs">Operations Matrix</div></div><nav class="flex flex-col gap-0.5 px-space-sm" data-active-classes="bg-primary-container text-on-primary font-label-md"><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="maintenance-requests" href="#"><span class="material-symbols-outlined text-[18px]">assignment_late</span><span>Maintenance Requests</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="properties-units" href="#"><span class="material-symbols-outlined text-[18px]">apartment</span><span>Properties &amp; Units</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="contractors" href="#"><span class="material-symbols-outlined text-[18px]">engineering</span><span>Contractors</span></a><a class="flex items-center justify-between px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="ai-operations" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">neurology</span><span>AI Operations</span></div><span class="px-1.5 py-0.5 bg-primary text-on-primary font-label-sm text-[9px] uppercase tracking-wider">Live</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="insights" href="#"><span class="material-symbols-outlined text-[18px]">monitoring</span><span>Insights</span></a><a class="flex items-center gap-space-sm px-space-sm py-2.5 text-inverse-on-surface/70 hover:bg-on-surface-variant/20 hover:text-inverse-on-surface transition-colors font-label-md text-label-md" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px]">settings_ethernet</span><span>Settings</span></a></nav></div><div class="p-space-md bg-inverse-surface"><div class="p-space-sm bg-on-surface-variant/10 flex flex-col gap-1"><div class="flex items-center justify-between text-inverse-on-surface font-label-sm text-label-sm"><span>NODE RUNTIME</span><span class="text-primary-fixed">99.98%</span></div><div class="w-full bg-on-surface-variant/30 h-1"><div class="bg-primary h-1 w-[99%]"></div></div><div class="flex justify-between items-center text-inverse-on-surface/50 font-label-sm text-[9px] mt-1"><span>US-EAST HUB 04</span><span>LATENCY: 12ms</span></div></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-2xl"><div class="relative flex items-center"><button class="flex items-center gap-space-xs px-space-sm py-1.5 bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[16px] text-primary">domain</span><span>All Properties (32 Units)</span><span class="material-symbols-outlined text-[16px] text-outline">arrow_drop_down</span></button></div><div class="relative flex-1"><div class="flex items-center w-full bg-surface-container-low px-space-sm py-1.5 text-body-sm"><span class="material-symbols-outlined text-outline text-[18px] mr-space-xs">search</span><span class="text-on-surface-variant font-body-sm flex-1 select-none">Search units, tickets, properties...</span><kbd class="font-label-sm text-[10px] bg-surface-container-highest px-1.5 py-0.5 text-on-surface-variant shadow-none">⌘K</kbd></div></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><button class="relative w-9 h-9 flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-tertiary text-on-tertiary font-label-sm text-[9px] flex items-center justify-center leading-none">4</span></button><button class="w-9 h-9 flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">headset_mic</span></button></div><div class="h-6 w-px bg-outline-variant/30"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface leading-tight">Marcus Vance</span><span class="font-label-sm text-label-sm text-outline leading-tight">Property Director</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 flex-1 bg-surface"><div class="flex flex-col w-full">
+<!-- Sub-header Command Strip with Breadcrumbs & Primary Actions -->
+<div class="w-full bg-surface-container-lowest px-gutter-lg py-space-md shadow-sm">
+<div class="flex flex-col gap-space-sm">
+<!-- Breadcrumb Bar -->
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-outline">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">domain</span>
+<span>Properties &amp; Units</span>
+</a>
+<span class="text-outline-variant font-label-sm">/</span>
+<span class="text-on-surface font-label-md">Oakridge Crest Highrise</span>
+<span class="ml-space-sm px-2 py-0.5 bg-surface-container text-on-surface-variant font-label-sm text-label-sm">PROP-8812</span>
+</div>
+<!-- Main Heading Strip -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-space-xs">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Oakridge Crest Highrise</h1>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-ping"></span>
+              2 PRIORITY ACTIONS PENDING
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2">
+<span>1420 Oakridge Blvd, Denver, CO 80202</span>
+<span class="text-outline-variant">•</span>
+<span>Built 2018</span>
+<span class="text-outline-variant">•</span>
+<span class="text-primary font-label-sm">CLASS A RESIDENTIAL</span>
+</p>
+</div>
+<!-- Action Trigger Cluster (Sharp Geometry, No Border Radii) -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-2 bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span>Edit Property Info</span>
+</button>
+<button class="px-space-md py-2 bg-primary-container text-on-primary hover:bg-primary transition-colors font-label-md text-label-md flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Add Unit</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Telematics Summary Matrix (Tonal Step Panels) -->
+<div class="w-full px-gutter-lg py-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-sm">
+<!-- Card 1: Occupancy Telematics -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Units &amp; Occupancy</span>
+<span class="font-headline-xl text-headline-xl text-on-surface mt-1">93.8%</span>
+</div>
+<div class="w-8 h-8 bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">door_front</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs">
+<div class="w-full bg-surface-container h-1.5 overflow-hidden flex">
+<div class="bg-primary h-full w-[93.8%]"></div>
+<div class="bg-surface-container-highest h-full w-[6.2%]"></div>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm mt-2">
+<span>15 Occupied Units</span>
+<span class="text-tertiary font-label-sm">1 Vacant (Unit 3A)</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Dispatch SLA & Active Queue -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Active Maintenance</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-headline-xl text-headline-xl text-tertiary">3</span>
+<span class="font-label-sm text-label-sm text-outline">Tickets in Flight</span>
+</div>
+</div>
+<div class="w-8 h-8 bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">assignment_late</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Mean Dispatch SLA</span>
+<span class="text-primary font-label-md px-1.5 py-0.5 bg-primary-fixed/30">38 min</span>
+</div>
+</div>
+<!-- Card 3: Building Infrastructure Status -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Infrastructure Health</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">All Nodes Live</span>
+</div>
+<div class="w-8 h-8 bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</div>
+</div>
+<div class="mt-space-md flex flex-col gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex justify-between items-center">
+<span>Central Chiller / HVAC</span>
+<span class="font-label-sm text-primary">ONLINE</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Salto Gateways</span>
+<span class="font-label-sm text-primary">CONNECTED (100%)</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Operating Personnel Block -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Dispatch Governance</span>
+<span class="font-label-md text-label-md text-on-surface mt-1">Marcus Vance</span>
+<span class="font-body-sm text-body-sm text-outline">Lead Property Director</span>
+</div>
+<div class="w-8 h-8 bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-body-sm">
+<span class="text-outline">On-Site Super:</span>
+<span class="font-label-sm text-on-surface flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+            Ray Chen (Ext 401)
+          </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Operational Two-Column Grid (65% / 35%) -->
+<div class="w-full px-gutter-lg pb-margin-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start">
+<!-- LEFT COLUMN: Triage, Sub-tabs & Incident Execution (65% -> 8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- Tabbed Navigation Ribbon -->
+<div class="w-full bg-surface-container-lowest shadow-sm flex items-center overflow-x-auto">
+<button class="px-space-md py-3 text-primary font-label-md text-label-md border-b-2 border-primary whitespace-nowrap bg-primary-fixed/10 flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span>Active Maintenance (3)</span>
+</button>
+<button class="px-space-md py-3 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap flex items-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">apartment</span>
+<span>Units Directory (16)</span>
+</button>
+<button class="px-space-md py-3 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap flex items-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span>Tenant Registry (15)</span>
+</button>
+<button class="px-space-md py-3 text-on-surface-variant hover:text-on-surface font-label-md text-label-md whitespace-nowrap flex items-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">memory</span>
+<span>Building Systems &amp; Telematics</span>
+</button>
+</div>
+<!-- Section: Active Maintenance Work Orders -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-space-xs">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Active Maintenance Work Orders</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-secondary-container font-label-sm text-label-sm">Real-Time Routing</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">AUTO-REFRESH: 15s</span>
+</div>
+<!-- Card 1: Urgent Critical with AI Policy Blocker Ribbon -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative flex flex-col gap-space-sm transition-all hover:shadow-md">
+<!-- Header Row -->
+<div class="flex items-start justify-between gap-space-sm flex-wrap">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">water_damage</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Unit 4B — Ceiling Water Leak</span>
+<span class="px-2 py-0.5 bg-error-container text-on-error-container font-label-sm text-label-sm">CODE 2 (T-1 URGENT)</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Origin: Under 2nd floor bathroom fixture stack • Reported by Sarah Lindqvist</span>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+                  38m remaining SLA
+                </span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Ticket #WO-1048</span>
+</div>
+</div>
+<!-- AI Intervention & Governance Flag Ribbon -->
+<div class="w-full bg-surface-container-low p-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="px-2 py-1 bg-primary text-on-primary font-label-sm text-[9px] uppercase tracking-wider shrink-0">
+                  SCOUT AI
+                </div>
+<div class="flex flex-col text-on-surface">
+<span class="font-label-md text-label-md">Spend Policy Exception Detected</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Contractor quoted <strong>$420</strong>. Standard Property Cap is <strong>$350</strong>. Lead Director sign-off required.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<button class="px-space-sm py-1.5 bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-colors font-label-sm text-label-sm" type="button">
+                  Review Diagnostics
+                </button>
+<button class="px-space-sm py-1.5 bg-primary-container text-on-primary hover:bg-primary transition-colors font-label-sm text-label-sm font-semibold" type="button">
+                  Authorize $420
+                </button>
+</div>
+</div>
+<!-- Diagnostics Telematics Strip & Actions -->
+<div class="flex items-center justify-between pt-space-xs flex-wrap gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-space-md">
+<span>Contractor: <strong class="text-on-surface">Apex Plumbing (Dave M.)</strong></span>
+<span class="text-outline-variant">•</span>
+<span class="flex items-center gap-1 text-primary font-label-sm">
+<span class="material-symbols-outlined text-[16px]">key</span>
+                  SmartKey Provisioned
+                </span>
+</div>
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1" href="#">
+<span>Open Work Order #WO-1048</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 2: HVAC Blower Standard Work Order -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative flex flex-col gap-space-sm transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-space-sm flex-wrap">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 bg-secondary-fixed text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">mode_fan</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Unit 2C — HVAC Blower High-Pitch Whine</span>
+<span class="px-2 py-0.5 bg-secondary-fixed text-on-secondary-container font-label-sm text-label-sm">STANDARD DISPATCH</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tenant reported abnormal acoustic resonance in plenum cycle.</span>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-headline-md text-headline-md text-on-surface">$480.00</span>
+<span class="font-label-sm text-label-sm text-outline">Fixed Bid Quoted</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs flex-wrap gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-space-md">
+<span>Assigned: <strong class="text-on-surface">Apex Mechanical Group</strong></span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-outline">Target Arrival: 2:30 PM Today</span>
+</div>
+<button class="px-space-sm py-1 bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center gap-1" type="button">
+<span>View Ticket #WO-1039</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Kitchen Cartridge Completed & Verified -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative flex flex-col gap-space-sm opacity-90 transition-all hover:opacity-100">
+<div class="flex items-start justify-between gap-space-sm flex-wrap">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 bg-surface-container text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Unit 1A — Kitchen Sink Cartridge Dripping</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-primary font-label-sm text-label-sm">RESOLVED &amp; VERIFIED</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Closed out 2 hours ago • Moen cartridge replaced, pressure balanced at 54 PSI.</span>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+                  90-Day Warranty Active
+                </span>
+<span class="font-label-sm text-label-sm text-outline">Ticket #WO-1025</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Building Recent Activity & Telematics Feed -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm mt-space-sm">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">rss_feed</span>
+<span class="font-headline-md text-headline-md text-on-surface">Building Telematics &amp; Incident Log</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">LIVE NODE AUDIT</span>
+</div>
+<div class="flex flex-col gap-space-md pt-space-md">
+<!-- Feed Item 1 -->
+<div class="flex items-start gap-space-md">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+</div>
+<div class="w-0.5 h-12 bg-surface-container mt-1"></div>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface">Sarah Lindqvist (Unit 4B) logged water seepage</span>
+<span class="font-label-sm text-label-sm text-outline">10:14 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Scout AI parsed 2 telemetry photos, identifying 4mm drywall sagging under bath trap. Auto-escalated to Code 2.</p>
+</div>
+</div>
+<!-- Feed Item 2 -->
+<div class="flex items-start gap-space-md">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 bg-secondary-fixed text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">vpn_key</span>
+</div>
+<div class="w-0.5 h-12 bg-surface-container mt-1"></div>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface">Salto SmartAccess Token Generated</span>
+<span class="font-label-sm text-label-sm text-outline">09:30 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Expiring digital badge granted to Apex Plumbing tech Dave M. Valid for exterior lobby and Unit 4B until 2:00 PM.</p>
+</div>
+</div>
+<!-- Feed Item 3 -->
+<div class="flex items-start gap-space-md">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 bg-surface-container-high text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">meeting_room</span>
+</div>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface">Unit 3A Marked Vacant; Checklist Activated</span>
+<span class="font-label-sm text-label-sm text-outline">Yesterday</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Ray Chen initiated automated turnover inspection sequence. Deep clean and paint touch-up scheduled for 18th.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Occupancy Roster & Safety Ledger (35% -> 4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Module: Occupancy & Tenant Roster Summary -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between border-b border-surface-container pb-space-xs">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Tenant Roster</span>
+<span class="font-label-sm text-label-sm text-outline">Active Residential Leases</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">View All (15)</a>
+</div>
+<!-- Quick Stat Counters -->
+<div class="grid grid-cols-3 gap-space-xs bg-surface-container-low p-space-xs text-center">
+<div class="p-1">
+<span class="font-headline-md text-headline-md text-on-surface block">15</span>
+<span class="font-label-sm text-label-sm text-outline">Active</span>
+</div>
+<div class="p-1 border-x border-surface-container">
+<span class="font-headline-md text-headline-md text-primary block">1</span>
+<span class="font-label-sm text-label-sm text-outline">Move-In</span>
+</div>
+<div class="p-1">
+<span class="font-headline-md text-headline-md text-on-surface block">0</span>
+<span class="font-label-sm text-label-sm text-outline">Overdue</span>
+</div>
+</div>
+<!-- Tenant Item List -->
+<div class="flex flex-col gap-space-sm divide-y divide-surface-container">
+<!-- Tenant 1 (Unit 4B) -->
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error-container text-on-error-container font-label-md flex items-center justify-center font-bold">
+                  SL
+                </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Sarah Lindqvist</span>
+<span class="font-body-sm text-body-sm text-outline">Unit 4B • Active since Nov 2022</span>
+</div>
+</div>
+<span class="w-2 h-2 rounded-full bg-tertiary" title="Active maintenance ticket open"></span>
+</div>
+<!-- Tenant 2 (Unit 2A) -->
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant font-label-md flex items-center justify-center font-bold">
+                  ER
+                </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Elena Rostova</span>
+<span class="font-body-sm text-body-sm text-outline">Unit 2A • Active since Jan 2023</span>
+</div>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary" title="In Good Standing"></span>
+</div>
+<!-- Tenant 3 (Unit 3B) -->
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant font-label-md flex items-center justify-center font-bold">
+                  KN
+                </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Kevin Novak</span>
+<span class="font-body-sm text-body-sm text-outline">Unit 3B • Active since Jun 2021</span>
+</div>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary" title="In Good Standing"></span>
+</div>
+<!-- Tenant 4 (Unit 4A) -->
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant font-label-md flex items-center justify-center font-bold">
+                  JW
+                </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Jason Wu</span>
+<span class="font-body-sm text-body-sm text-outline">Unit 4A • Active since Aug 2023</span>
+</div>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary" title="In Good Standing"></span>
+</div>
+</div>
+</div>
+<!-- Module: Building Telematics & Safety Ledger -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between border-b border-surface-container pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">shield_with_heart</span>
+<span class="font-headline-md text-headline-md text-on-surface">Safety &amp; Telematics Ledger</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">VERIFIED</span>
+</div>
+<!-- Structured Ledger Data List -->
+<div class="flex flex-col gap-space-sm">
+<!-- Item 1: Water Shut-Off -->
+<div class="p-space-sm bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">valve</span>
+                  Water Main Shut-Off
+                </span>
+<span class="font-label-sm text-label-sm text-primary px-1.5 bg-primary-fixed/40">AUDITED</span>
+</div>
+<div class="flex justify-between items-center text-body-sm text-on-surface-variant">
+<span>Location: Sub-Basement Valve #B1</span>
+<span class="font-label-sm text-outline">Oct 14, 2024</span>
+</div>
+</div>
+<!-- Item 2: Fire Riser Pressure -->
+<div class="p-space-sm bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">speed</span>
+                  Fire Riser Pressure
+                </span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">142 PSI</span>
+</div>
+<div class="flex justify-between items-center text-body-sm text-on-surface-variant">
+<span>Normal operating range (130-155)</span>
+<span class="font-label-sm text-primary">STABLE</span>
+</div>
+</div>
+<!-- Item 3: Scout AI Predictive Stack Hotspot Alert -->
+<div class="p-space-sm bg-primary-fixed/20 border-l-2 border-primary flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+                  Scout AI Hotspot Alert
+                </span>
+<span class="font-label-sm text-[9px] px-1 bg-primary text-on-primary">PATTERNS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong>Stack B Plumbing Cluster:</strong> 3 minor pressure variations and 1 drip reported across Units 2B &amp; 4B within 30 days.
+              </p>
+<div class="pt-1 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Preventive line jetting suggested</span>
+<button class="text-primary font-label-sm text-label-sm font-semibold hover:underline" type="button">
+                  Schedule Stack Check
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Access Documentation Module -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface">Compliance &amp; Documents</span>
+<div class="flex flex-col gap-space-xs text-body-sm">
+<a class="p-space-xs bg-surface-container-low hover:bg-surface-container-high transition-colors flex items-center justify-between text-on-surface" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">description</span>
+<span>2024 Denver Fire Inspection Certificate</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline">download</span>
+</a>
+<a class="p-space-xs bg-surface-container-low hover:bg-surface-container-high transition-colors flex items-center justify-between text-on-surface" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">plumbing</span>
+<span>Sub-Basement Riser Schematic (CAD)</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline">download</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>
