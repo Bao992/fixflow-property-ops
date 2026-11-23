@@ -89,7 +89,8 @@ function App() {
   const [profileError, setProfileError] = useState("");
 
   useEffect(() => {
-    if (!supabase) { setLoading(false); return; }
+    const client = supabase;
+    if (!client) { setLoading(false); return; }
     let alive = true;
     const loadProfile = async (current: Session | null) => {
       if (!current) {
@@ -97,7 +98,7 @@ function App() {
         return;
       }
       if (alive) { setSession(current); setLoading(true); }
-      const { data, error } = await supabase.from("profiles").select("id, role, display_name").eq("id", current.user.id).single();
+      const { data, error } = await client.from("profiles").select("id, role, display_name").eq("id", current.user.id).single();
       if (!alive) return;
       if (error) {
         setProfile(null);
@@ -111,8 +112,8 @@ function App() {
       }
       setLoading(false);
     };
-    supabase.auth.getSession().then(({ data }) => { void loadProfile(data.session); });
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+    client.auth.getSession().then(({ data }) => { void loadProfile(data.session); });
+    const { data: listener } = client.auth.onAuthStateChange((_event, nextSession) => {
       void loadProfile(nextSession);
     });
     return () => { alive = false; listener.subscription.unsubscribe(); };
