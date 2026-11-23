@@ -13,6 +13,7 @@ FixFlow is a capstone project exploring how independent landlords and small resi
 - **Facilitator:** Mnelisi Maswanganyi
 - **GitHub profile:** [Bao992](https://github.com/Bao992)
 - **Project repository:** https://github.com/Bao992/fixflow-property-ops
+- **Google Stitch prototype:** https://stitch.google.com/projects/2412544707647263879
 
 ## The problem
 
@@ -38,7 +39,8 @@ Initial focus: independent landlords and small residential property managers man
 - [x] Business definition and PRD draft committed
 - [x] Stitch design brief committed
 - [x] Implementation plan committed
-- [ ] Stitch screens generated and exported
+- [x] Google Stitch prototype linked
+- [ ] Stitch screens exported into the repository
 - [ ] Application scaffold and CI
 - [ ] Authentication and role-based access
 - [ ] Property and unit management
@@ -81,4 +83,5 @@ The application code has not yet been scaffolded. The implementation plan define
 ## Project links
 
 - GitHub repository: https://github.com/Bao992/fixflow-property-ops
+- Google Stitch prototype: https://stitch.google.com/projects/2412544707647263879
 - GitHub profile: https://github.com/Bao992
