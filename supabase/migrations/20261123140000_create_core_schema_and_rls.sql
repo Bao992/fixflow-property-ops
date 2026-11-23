@@ -322,9 +322,14 @@ create policy "requests_tenant_insert_linked"
     and public.current_app_role() = 'tenant'
     and public.is_linked_tenant(unit_id)
     and status = 'Submitted'
+    and priority = 'Medium'
     and contractor_id is null
     and quote_amount is null
     and manager_notes is null
+    and tenant_completion_response is null
+    and tenant_completion_responded_at is null
+    and verified_by is null
+    and verified_at is null
   );
 -- Tenant completion response is intentionally handled by a narrow server-side
 -- API operation in a later migration; tenants receive no UPDATE policy here.
