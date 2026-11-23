@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta content="mobile_tab" name="shell-type"/>
+<title>FixFlow — Operations Manager Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: "#0f172a",
+              "navy-light": "#1e293b",
+              teal: "#0f766e",
+              "teal-light": "#14b8a6",
+              "teal-subtle": "#f0fdfa",
+              "teal-border": "#ccfbf1"
+            },
+            surface: {
+              DEFAULT: "#ffffff",
+              ground: "#f8fafc",
+              subtle: "#f1f5f9",
+              border: "#e2e8f0",
+              "border-strong": "#cbd5e1"
+            },
+            danger: {
+              DEFAULT: "#b91c1c",
+              surface: "#fef2f2",
+              border: "#fee2e2",
+              text: "#991b1b"
+            },
+            warning: {
+              DEFAULT: "#b45309",
+              surface: "#fffbeb",
+              border: "#fef3c7",
+              text: "#92400e"
+            },
+            info: {
+              DEFAULT: "#0369a1",
+              surface: "#f0f9ff",
+              border: "#e0f2fe",
+              text: "#075985"
+            },
+            success: {
+              DEFAULT: "#15803d",
+              surface: "#f0fdf4",
+              border: "#dcfce7",
+              text: "#166534"
+            }
+          },
+          fontFamily: {
+            sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+            display: ["Space Grotesk", "sans-serif"]
+          },
+          spacing: {
+            gutter: "1rem"
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background-color: #f8fafc;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 16px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-ground font-sans text-slate-900 antialiased flex flex-col min-h-screen selection:bg-brand-teal selection:text-white">
+<!-- Production App Header -->
+<header class="fixed top-0 w-full z-50 pt-safe bg-surface/95 backdrop-blur-md border-b border-surface-border">
+<div class="h-14 px-gutter flex items-center justify-between gap-3">
+<!-- Brand & Active Portfolio Switcher -->
+<div class="flex items-center gap-2.5 min-w-0 flex-1">
+<div class="w-8 h-8 rounded-lg bg-brand-navy flex items-center justify-center text-brand-teal-light shrink-0 font-display font-bold text-base shadow-sm">
+          F
+        </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-display font-bold text-slate-900 text-sm tracking-tight">FixFlow</span>
+<span class="text-[10px] font-semibold uppercase px-1 py-0.5 rounded bg-brand-teal-subtle text-brand-teal border border-brand-teal-border">OPS</span>
+</div>
+<button class="flex items-center gap-0.5 text-left group min-w-0" onclick="showToast('Portfolio Switcher: 4 Properties Selected')">
+<span class="text-[11px] font-medium text-slate-500 truncate group-hover:text-slate-800 transition-colors">All Properties (32 Units)</span>
+<span class="material-symbols-outlined text-[14px] text-slate-400 group-hover:text-slate-700 transition-colors shrink-0">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Action items: Notifications counter & Manager Avatar -->
+<div class="flex items-center gap-1.5 shrink-0">
+<button aria-label="Notifications (3 unread)" class="relative w-9 h-9 rounded-lg flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" onclick="showToast('3 Critical Alerts in Queue')">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 min-w-[15px] h-[15px] px-1 rounded-full bg-danger text-white text-[9px] font-bold flex items-center justify-center leading-none ring-2 ring-white">3</span>
+</button>
+<button aria-label="Manager Profile" class="w-8 h-8 rounded-lg bg-slate-900 text-slate-200 border border-slate-700 flex items-center justify-center text-xs font-semibold hover:ring-2 hover:ring-brand-teal/40 transition-all" onclick="showToast('Signed in as M. Vance (Lead Ops)')">
+          MV
+        </button>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Dashboard Content -->
+<main class="flex-1 flex flex-col relative w-full pt-[calc(3.5rem+env(safe-area-inset-top,0px))] pb-28">
+<div class="flex flex-col w-full px-gutter pt-3 space-y-3.5">
+<!-- Executive Metric Bar (Operational Capacity & CSAT) -->
+<div class="bg-surface rounded-xl border border-surface-border p-3.5 shadow-xs">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Live Operations Pulse</span>
+</div>
+<span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">94% Occupancy</span>
+</div>
+<div class="grid grid-cols-4 gap-2 pt-1 border-t border-slate-100 text-center">
+<div class="flex flex-col text-left">
+<span class="text-[10px] text-slate-500 font-medium truncate">Active Open</span>
+<div class="flex items-baseline gap-1">
+<span class="font-display text-lg font-bold text-slate-900">7</span>
+<span class="text-[10px] font-semibold text-danger">2 Urg</span>
+</div>
+</div>
+<div class="flex flex-col text-left">
+<span class="text-[10px] text-slate-500 font-medium truncate">Avg Dispatch</span>
+<div class="flex items-baseline gap-0.5">
+<span class="font-display text-lg font-bold text-brand-teal">18</span>
+<span class="text-[10px] text-slate-500 font-medium">m</span>
+</div>
+</div>
+<div class="flex flex-col text-left">
+<span class="text-[10px] text-slate-500 font-medium truncate">1st Fix Rate</span>
+<div class="flex items-baseline gap-0.5">
+<span class="font-display text-lg font-bold text-slate-900">91</span>
+<span class="text-[10px] text-slate-500 font-medium">%</span>
+</div>
+</div>
+<div class="flex flex-col text-left">
+<span class="text-[10px] text-slate-500 font-medium truncate">Tenant CSAT</span>
+<div class="flex items-baseline gap-1">
+<span class="font-display text-lg font-bold text-slate-900">4.8</span>
+<span class="material-symbols-outlined text-[13px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<!-- Micro status breakdown strip -->
+<div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-danger"></span> 2 Urgent / Safety
+          </span>
+<span class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> 2 Approaching SLA
+          </span>
+<span class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 3 On Track
+          </span>
+</div>
+</div>
+<!-- Critical Incident Alert: High-Contrast Operational Focus -->
+<section aria-labelledby="urgent-incident-heading" class="rounded-xl border-2 border-red-500/80 bg-surface shadow-sm overflow-hidden">
+<!-- Status & SLA Banner -->
+<div class="bg-danger px-3 py-2 flex items-center justify-between text-white">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[16px] text-red-200 animate-pulse">warning</span>
+<span class="font-display text-xs uppercase tracking-wider font-bold truncate" id="urgent-incident-heading">Immediate Operational Attention</span>
+</div>
+<span class="shrink-0 text-[11px] font-bold bg-white text-danger px-1.5 py-0.5 rounded font-mono shadow-xs">
+            SLA: 38m remaining
+          </span>
+</div>
+<div class="p-3.5 space-y-3">
+<!-- Incident Header & Badges -->
+<div>
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-display font-bold text-slate-900 text-base leading-tight">Unit 4B — Drain Backup &amp; Ceiling Seepage</h3>
+</div>
+<p class="text-xs text-slate-500 mt-0.5 font-medium">Oakridge Crest Highrise • Tenant: Sarah Lindqvist</p>
+</div>
+<span class="shrink-0 bg-red-50 text-danger border border-red-200 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wide">
+                Safety Hazard
+              </span>
+</div>
+</div>
+<!-- Structured Operational Context: Owner, Blocker, Next Action -->
+<div class="grid grid-cols-1 gap-2 bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs">
+<div class="flex items-center justify-between pb-1.5 border-b border-slate-200/80">
+<span class="text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-slate-400">person</span> Responsible Party:
+              </span>
+<span class="font-semibold text-slate-800">Manager: Marcus Vance</span>
+</div>
+<div class="flex items-start justify-between gap-2 pb-1.5 border-b border-slate-200/80">
+<span class="text-slate-500 font-medium shrink-0 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-amber-600">lock_clock</span> Blocker:
+              </span>
+<span class="font-semibold text-amber-900 text-right">Needs Landlord/Manager approval (&gt;$350 threshold)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-slate-500 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-brand-teal">task_alt</span> Next Action:
+              </span>
+<span class="font-bold text-brand-teal text-right">Review &amp; Approve Contractor Estimate</span>
+</div>
+</div>
+<!-- Telemetry & Diagnostic Verification Strip -->
+<div class="grid grid-cols-3 gap-2">
+<div class="relative rounded-md overflow-hidden border border-slate-200 aspect-[4/3] bg-slate-100 group">
+<img alt="Technical plumbing diagnostic photo showing localized overflow pipe under sink vanity" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUR95NRuHngfNLX8ahtPRhWbqZv5ezVc1PbHjjvk7KJfKa8GCP0KIuO5lgfYdZEIQiX-xAXZafSUSvefPvrgUOV6wvMPIT0u6eh6nP0nkNwHZrwVoSZE_DM98SVDujTMCYMrVGHHWCLJtZqjMRw-TfICVG8HeXtafDX221vCxBOEO7lDeAVkRN9KyW0qJaiEut093iAFoDOOU6OLzUk7xDgJAcNEnc_8gWjWQSL4A"/>
+<span class="absolute bottom-1 left-1 bg-slate-900/80 text-white font-mono text-[9px] px-1 rounded">DRAIN PIPE</span>
+</div>
+<div class="relative rounded-md overflow-hidden border border-slate-200 aspect-[4/3] bg-slate-100 group">
+<img alt="Water pressure gauge showing elevated meter reading in maintenance cabinet" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3XxXhjDa-6Pxp__aufjAoHqO2RbeRY817j1wdojF90F_koB5M7H-kJO6rx1AkO5PgqlEeB3pIp--E8GrUwNhT-58htxMT8G7NzN3f9cNIHgKGRXVK5H1zbSAgYYPeYz3gJFWb7CRhfocK1wKV7620wyfjNquXZhjb2TCjp8xrFJUG1-xBoaDjuvqUOO66myVP7mjTJyyYuEuZBm-XxOtACBud5Vck6J4FU--3wXo"/>
+<span class="absolute bottom-1 left-1 bg-slate-900/80 text-white font-mono text-[9px] px-1 rounded">RISER PSI</span>
+</div>
+<div class="rounded-md border border-slate-200 bg-brand-teal-subtle/50 p-2 flex flex-col justify-between">
+<div>
+<span class="text-[9px] font-bold text-brand-teal uppercase tracking-wider block">Apex Hydro</span>
+<span class="font-display font-bold text-slate-900 text-sm leading-tight">$420.00</span>
+</div>
+<span class="text-[10px] text-slate-500 font-medium">Auto-matched Tier-1 vendor</span>
+</div>
+</div>
+<!-- Fast Action Buttons -->
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 bg-brand-teal hover:bg-teal-700 active:scale-[0.99] text-white text-xs font-semibold py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-all shadow-xs" id="dispatchTrigger" onclick="handleUrgentApproval(this)">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Approve Estimate ($420) &amp; Dispatch</span>
+</button>
+<button class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold py-2.5 px-3 rounded-lg border border-slate-200 transition-colors" onclick="showToast('Ticket reassigned to building facilities lead')">
+              Reassign
+            </button>
+</div>
+</div>
+</section>
+<!-- Stalled & Approaching SLA Alert Strip -->
+<div class="bg-amber-50/90 border border-amber-200 rounded-xl p-3 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-amber-700 shrink-0 mt-0.5">timer_off</span>
+<div class="min-w-0 flex-1">
+<div class="flex items-center justify-between gap-1">
+<span class="text-xs font-bold text-amber-900 font-display">1 Ticket Stalled &gt; 48 Hours</span>
+<span class="text-[10px] font-bold text-amber-800 bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded font-mono">CRITICAL</span>
+</div>
+<p class="text-[11px] text-amber-800 mt-0.5 leading-snug">
+<strong>Unit 7D (HVAC Compressor):</strong> Awaiting parts verification from Apex Mechanical since Tuesday. Tenant follow-up overdue.
+          </p>
+<div class="flex items-center gap-2 mt-2">
+<button class="text-[11px] font-semibold text-amber-900 bg-amber-200/80 hover:bg-amber-200 px-2 py-1 rounded transition-colors flex items-center gap-1" onclick="showToast('Urgent reminder sent to Apex Mechanical vendor dispatcher')">
+<span class="material-symbols-outlined text-[12px]">send</span> Ping Contractor
+            </button>
+<button class="text-[11px] font-medium text-amber-800 hover:underline" onclick="showToast('Drafting courtesy SMS to tenant Mark Davis')">
+              Notify Tenant
+            </button>
+</div>
+</div>
+</div>
+<!-- Triage & Operational Stream Section -->
+<section aria-labelledby="triage-stream-heading" class="pt-1">
+<div class="flex items-center justify-between mb-2">
+<div>
+<h2 class="font-display font-bold text-slate-900 text-base" id="triage-stream-heading">Triage &amp; Operational Stream</h2>
+<p class="text-[11px] text-slate-500">Live ticket queue prioritized by SLA deadline</p>
+</div>
+<button class="text-xs font-semibold text-brand-teal hover:underline flex items-center gap-0.5" onclick="showToast('Batch selection mode active')">
+<span class="material-symbols-outlined text-[14px]">checklist</span> Select
+          </button>
+</div>
+<!-- Segmented Lifecycle Filter Tabs -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar" id="statusFilterTabs" role="tablist">
+<button aria-selected="true" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-brand-navy text-white shadow-xs" data-filter="all" role="tab">
+            All (7)
+          </button>
+<button aria-selected="false" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-surface text-slate-600 border border-surface-border hover:bg-slate-100" data-filter="urgent" role="tab">
+            Urgent SLA (2)
+          </button>
+<button aria-selected="false" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-surface text-slate-600 border border-surface-border hover:bg-slate-100" data-filter="approval" role="tab">
+            Awaiting Approval (2)
+          </button>
+<button aria-selected="false" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-surface text-slate-600 border border-surface-border hover:bg-slate-100" data-filter="progress" role="tab">
+            In Progress (3)
+          </button>
+</div>
+<!-- Ticket Card Queue -->
+<div class="flex flex-col gap-2.5 mt-2.5" id="ticketList">
+<!-- Card 1: Awaiting Approval (HVAC) -->
+<article class="ticket-card bg-surface rounded-xl border border-surface-border p-3 shadow-xs hover:border-slate-300 transition-all" data-category="approval">
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">AWAITING APPROVAL</span>
+<span class="text-[10px] font-mono font-medium text-slate-500">WO-4091</span>
+</div>
+<h4 class="font-display font-semibold text-sm text-slate-900 mt-1 truncate">Unit 12C — HVAC Compressor Bearing Failure</h4>
+<p class="text-xs text-slate-500 truncate">Highland Lofts • Tenant: Elena Ward</p>
+</div>
+<!-- SLA Badge -->
+<span class="shrink-0 text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-red-50 text-danger border border-red-100">
+                1h 14m left
+              </span>
+</div>
+<!-- Meta details row -->
+<div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+<div class="flex items-center gap-2 text-slate-600">
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 font-bold text-[9px] flex items-center justify-center">MV</span>
+<span class="text-[11px] text-slate-500">M. Vance</span>
+</div>
+<span class="text-slate-300">•</span>
+<span class="font-semibold text-slate-800">$480.00 (Apex)</span>
+</div>
+<button class="text-xs font-semibold text-brand-teal bg-brand-teal-subtle hover:bg-brand-teal hover:text-white border border-brand-teal-border px-2.5 py-1 rounded-md transition-colors" onclick="showToast('Quote WO-4091 approved for $480.00')">
+                Approve Estimate
+              </button>
+</div>
+</article>
+<!-- Card 2: In Progress (Lock) -->
+<article class="ticket-card bg-surface rounded-xl border border-surface-border p-3 shadow-xs hover:border-slate-300 transition-all" data-category="progress">
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">IN PROGRESS</span>
+<span class="text-[10px] font-mono font-medium text-slate-500">WO-4088</span>
+</div>
+<h4 class="font-display font-semibold text-sm text-slate-900 mt-1 truncate">Unit 08A — Smart Lock Tamper Sensor Offline</h4>
+<p class="text-xs text-slate-500 truncate">Bayview Terraces • Tenant: Julian Croft</p>
+</div>
+<!-- SLA Badge -->
+<span class="shrink-0 text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-100">
+                On Track (4h)
+              </span>
+</div>
+<!-- Meta details row -->
+<div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+<div class="flex items-center gap-2 text-slate-600">
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-blue-100 text-blue-800 font-bold text-[9px] flex items-center justify-center">TL</span>
+<span class="text-[11px] text-slate-500">Tech: Marcus J.</span>
+</div>
+<span class="text-slate-300">•</span>
+<span class="text-[11px] text-emerald-600 font-medium flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">navigation</span> En route (ETA 12m)
+                </span>
+</div>
+<button class="text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-2.5 py-1 rounded-md transition-colors" onclick="showToast('Opening live contractor tracking')">
+                Track
+              </button>
+</div>
+</article>
+<!-- Card 3: Urgent / Under Review (Water Heater) -->
+<article class="ticket-card bg-surface rounded-xl border border-surface-border p-3 shadow-xs hover:border-slate-300 transition-all" data-category="urgent">
+<div class="flex items-start justify-between gap-2">
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">UNDER REVIEW</span>
+<span class="text-[10px] font-mono font-medium text-slate-500">WO-4094</span>
+</div>
+<h4 class="font-display font-semibold text-sm text-slate-900 mt-1 truncate">Unit 03F — Water Heater Anode Rod Corroded</h4>
+<p class="text-xs text-slate-500 truncate">Oakridge Crest • Preventative Maintenance Cycle</p>
+</div>
+<!-- SLA Badge -->
+<span class="shrink-0 text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-100">
+                2h 45m left
+              </span>
+</div>
+<!-- Meta details row -->
+<div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+<div class="flex items-center gap-2 text-slate-600">
+<div class="flex items-center gap-1">
+<span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 font-bold text-[9px] flex items-center justify-center">?</span>
+<span class="text-[11px] text-slate-500">Unassigned Owner</span>
+</div>
+</div>
+<button class="text-xs font-semibold text-brand-teal bg-brand-teal-subtle hover:bg-brand-teal hover:text-white border border-brand-teal-border px-2.5 py-1 rounded-md transition-colors" onclick="showToast('Assigned to Marcus Vance for scoping')">
+                Assign &amp; Dispatch
+              </button>
+</div>
+</article>
+</div>
+</section>
+<!-- Real-Time Resolution Audit Ledger -->
+<section aria-labelledby="audit-ledger-heading" class="pt-2">
+<div class="flex items-center justify-between mb-2">
+<div>
+<h2 class="font-display font-bold text-slate-900 text-base" id="audit-ledger-heading">Resolution Audit Ledger</h2>
+<p class="text-[11px] text-slate-500">Immutable operational log &amp; sign-off verification</p>
+</div>
+<button class="text-xs font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-0.5" onclick="showToast('Compliance report CSV exported')">
+<span class="material-symbols-outlined text-[14px]">file_download</span> Export
+          </button>
+</div>
+<div class="bg-surface rounded-xl border border-surface-border p-3.5 shadow-xs">
+<ol class="relative pl-5 space-y-3.5 border-l border-slate-200">
+<!-- Event 1: Confirmed signoff -->
+<li class="relative">
+<span class="absolute -left-[27px] top-0.5 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center ring-4 ring-white">
+<span class="material-symbols-outlined text-[10px]">check</span>
+</span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-900">Tenant Sign-off Confirmed</span>
+<span class="text-[10px] font-mono text-slate-400">14m ago</span>
+</div>
+<p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                Unit 2A: Elena Rostova digitally verified faucet cartridge replacement. Rated resolution 5/5 stars.
+              </p>
+</li>
+<!-- Event 2: Contractor estimate auto-triaged -->
+<li class="relative">
+<span class="absolute -left-[27px] top-0.5 w-4 h-4 rounded-full bg-brand-teal text-white flex items-center justify-center ring-4 ring-white">
+<span class="material-symbols-outlined text-[10px]">request_quote</span>
+</span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-900">Tier-1 Estimate Received</span>
+<span class="text-[10px] font-mono text-slate-400">42m ago</span>
+</div>
+<p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                Apex Mechanical uploaded $480.00 quote for Unit 12C HVAC service. Pricing verified 8% below regional baseline.
+              </p>
+</li>
+<!-- Event 3: Smart keycode dispatched -->
+<li class="relative">
+<span class="absolute -left-[27px] top-0.5 w-4 h-4 rounded-full bg-slate-800 text-white flex items-center justify-center ring-4 ring-white">
+<span class="material-symbols-outlined text-[10px]">key</span>
+</span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-900">Access Keycode Issued</span>
+<span class="text-[10px] font-mono text-slate-400">1h 18m ago</span>
+</div>
+<p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                Metro Core Electrician granted 2-hour encrypted lock PIN for Unit 10C panel maintenance.
+              </p>
+</li>
+</ol>
+</div>
+</section>
+</div>
+<!-- Floating Operational Action Bar -->
+<aside aria-label="Quick Actions" class="fixed bottom-16 left-0 right-0 z-40 p-3 pointer-events-none flex justify-center">
+<div class="pointer-events-auto bg-brand-navy/95 backdrop-blur-md text-white rounded-xl shadow-xl p-1.5 flex items-center gap-1.5 border border-slate-700/60 w-full max-w-sm">
+<button class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors" onclick="triggerBatchTriage(this)">
+<span class="material-symbols-outlined text-[16px] text-brand-teal-light">auto_fix_high</span>
+<span>Batch Triage</span>
+</button>
+<button class="flex-1 bg-brand-teal hover:bg-teal-600 text-white text-xs font-semibold py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors shadow-xs" onclick="openNewRequestModal()">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>+ New Request</span>
+</button>
+</div>
+</aside>
+<!-- Toast Notification Banner -->
+<div class="fixed top-16 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-3.5 py-2 rounded-lg text-xs font-medium shadow-xl opacity-0 translate-y-1 transition-all duration-200 pointer-events-none z-50 flex items-center gap-2 border border-slate-700" id="toastNotification">
+<span class="material-symbols-outlined text-[16px] text-brand-teal-light">info</span>
+<span id="toastText">Action completed</span>
+</div>
+</main>
+<!-- Production App Shell Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-md border-t border-surface-border">
+<div class="h-14 px-gutter flex items-center justify-around">
+<a aria-current="page" class="relative flex flex-col items-center justify-center gap-0.5 min-w-[54px] text-brand-teal font-semibold" href="#">
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">inbox</span>
+<span class="absolute -top-1 -right-2 px-1 min-w-[13px] h-[13px] flex items-center justify-center rounded-full bg-danger text-white text-[8px] font-bold leading-none">4</span>
+</div>
+<span class="text-[10px] tracking-tight">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-0.5 min-w-[54px] text-slate-500 hover:text-slate-900 transition-colors" href="#" onclick="showToast('Properties module loaded')">
+<span class="material-symbols-outlined text-[20px]">apartment</span>
+<span class="text-[10px] tracking-tight">Properties</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-0.5 min-w-[54px] text-slate-500 hover:text-slate-900 transition-colors" href="#" onclick="showToast('Audit Activity Ledger loaded')">
+<span class="material-symbols-outlined text-[20px]">view_timeline</span>
+<span class="text-[10px] tracking-tight">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-0.5 min-w-[54px] text-slate-500 hover:text-slate-900 transition-colors" href="#" onclick="showToast('Flow AI Assistant online')">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="text-[10px] tracking-tight">Flow AI</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-0.5 min-w-[54px] text-slate-500 hover:text-slate-900 transition-colors" href="#" onclick="showToast('Analytics &amp; SLA metrics view')">
+<span class="material-symbols-outlined text-[20px]">query_stats</span>
+<span class="text-[10px] tracking-tight">Analytics</span>
+</a>
+</div>
+</nav>
+<!-- Interactive Dashboard Controller Script -->
+<script>
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastText');
+      if (!toast || !text) return;
+      text.textContent = message;
+      toast.classList.remove('opacity-0', 'translate-y-1');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      clearTimeout(window.__toastTimeout);
+      window.__toastTimeout = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-1');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2400);
+    }
+
+    function handleUrgentApproval(btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span> Dispatching Apex Hydro-Jet...`;
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[16px]">verified</span> Dispatched: ETA 28m`;
+        btn.classList.remove('bg-brand-teal', 'hover:bg-teal-700');
+        btn.classList.add('bg-emerald-700', 'text-white');
+        showToast('Work Order #WO-4095 approved: Apex Hydro en route');
+      }, 1000);
+    }
+
+    function triggerBatchTriage(btn) {
+      const original = btn.innerHTML;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[16px] animate-spin text-brand-teal-light">sync</span> Analyzing...`;
+      setTimeout(() => {
+        btn.innerHTML = original;
+        showToast('Batch Triage complete: 2 auto-verified, 0 conflicts');
+      }, 900);
+    }
+
+    function openNewRequestModal() {
+      showToast('Opening New Maintenance Request composer...');
+    }
+
+    // Interactive Tab Filtering
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Toggle tab styles
+        document.querySelectorAll('.filter-tab').forEach(t => {
+          t.classList.remove('bg-brand-navy', 'text-white', 'shadow-xs');
+          t.classList.add('bg-surface', 'text-slate-600', 'border', 'border-surface-border');
+          t.setAttribute('aria-selected', 'false');
+        });
+        this.classList.remove('bg-surface', 'text-slate-600', 'border', 'border-surface-border');
+        this.classList.add('bg-brand-navy', 'text-white', 'shadow-xs');
+        this.setAttribute('aria-selected', 'true');
+
+        const filter = this.getAttribute('data-filter');
+        const cards = document.querySelectorAll('.ticket-card');
+
+        cards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'block';
+          } else {
+            const cardCategory = card.getAttribute('data-category');
+            if (cardCategory === filter) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+
+        showToast(`Showing ${this.textContent.trim()}`);
+      });
+    });
+  </script>
+</body></html>

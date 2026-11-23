@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-highest": "#dae2fd", "on-primary-fixed-variant": "#00504a", "on-error-container": "#93000a", "surface-container-high": "#e2e7ff", "surface-container-low": "#f2f3ff", "tertiary": "#a6002f", "on-primary-fixed": "#00201d", "background": "#faf8ff", "on-tertiary-fixed-variant": "#920028", "surface-bright": "#faf8ff", "outline-variant": "#bdc9c6", "inverse-surface": "#283044", "on-tertiary": "#ffffff", "outline": "#6e7977", "tertiary-fixed": "#ffdada", "primary-container": "#0f766e", "on-secondary-container": "#00476e", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#004b73", "surface-dim": "#d2d9f4", "error": "#ba1a1a", "secondary-fixed-dim": "#93ccff", "secondary": "#006398", "inverse-on-surface": "#eef0ff", "on-surface-variant": "#3e4947", "primary": "#005c55", "secondary-container": "#5bb8fe", "tertiary-fixed-dim": "#ffb3b6", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-container": "#eaedff", "on-surface": "#131b2e", "surface-tint": "#006a63", "on-primary-container": "#a3faef", "primary-fixed-dim": "#80d5cb", "surface-variant": "#dae2fd", "on-tertiary-container": "#ffe4e4", "inverse-primary": "#80d5cb", "tertiary-container": "#d2093f", "on-background": "#131b2e", "error-container": "#ffdad6", "on-secondary-fixed": "#001d31", "secondary-fixed": "#cce5ff", "on-tertiary-fixed": "#40000c", "primary-fixed": "#9cf2e8", "on-error": "#ffffff", "surface-container-lowest": "#ffffff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "0.75rem", "margin-lg": "2rem", "space-sm": "0.5rem", "margin": "1rem", "space-lg": "1.25rem", "gutter-lg": "1.5rem", "space-xs": "0.25rem", "margin-md": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, fontFamily: { "headline-xl-mobile": ["Space Grotesk"], "label-md": ["Geist"], "headline-xl": ["Space Grotesk"], "label-sm": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "body-lg": ["Geist"], "label-lg": ["Geist"], "body-md": ["Geist"], "headline-lg": ["Space Grotesk"], "body-sm": ["Geist"] }, fontSize: { "headline-xl-mobile": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "38px", letterSpacing: "-0.03em", fontWeight: "600" }], "label-sm": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "600" }], "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "500" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-lg": ["14px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-lg": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs min-w-0 flex-1"><button aria-label="Go back" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container text-on-surface transition-colors shrink-0" onclick="history.back()"><span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span></button><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5"><span class="font-headline-md text-headline-md tracking-tight font-semibold text-on-surface">#WO-1048</span><span class="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 font-label-sm text-[10px] font-bold uppercase tracking-wider">AWAITING APPROVAL</span></div><span class="font-body-sm text-[11px] text-on-surface-variant truncate">Created 18m ago • Emergency Maintenance</span></div></div><div class="flex items-center gap-1.5 shrink-0"><button aria-label="More actions" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">more_vert</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-semibold text-xs shrink-0 shadow-xs" title="Marcus Vance (Manager)">MV</div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-background"><div class="flex flex-col w-full pb-12">
+<!-- PROMINENT ACCOUNTABILITY BANNER -->
+<section class="bg-gradient-to-b from-amber-500/10 via-surface-container-low to-background px-gutter pt-4 pb-3 border-b border-outline-variant/30">
+<div class="rounded-xl bg-surface-container-lowest border-2 border-amber-400/80 shadow-sm p-3.5 flex flex-col gap-2.5">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+<div class="flex items-center gap-2">
+<span class="flex h-2.5 w-2.5 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-600"></span>
+</span>
+<span class="font-label-sm text-amber-950 font-bold uppercase tracking-wider">Accountability &amp; SLA Block</span>
+</div>
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm font-bold text-[11px]">
+<span class="material-symbols-outlined text-[13px]">timer</span>
+<span>38m to SLA Breach (T-1 Urgent)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-body-sm">
+<div class="flex items-start gap-2 bg-surface-container-low/70 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">person_pin</span>
+<div class="min-w-0">
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider block font-semibold">Current Owner</span>
+<span class="font-label-md text-on-surface font-semibold truncate block">Marcus Vance <span class="text-on-surface-variant font-normal">(Property Manager)</span></span>
+</div>
+</div>
+<div class="flex items-start gap-2 bg-error-container/20 p-2 rounded-lg border border-error-container/40">
+<span class="material-symbols-outlined text-error text-[18px] shrink-0 mt-0.5">block</span>
+<div class="min-w-0">
+<span class="font-label-sm text-[10px] text-error uppercase tracking-wider block font-semibold">Current Blocker</span>
+<span class="font-body-sm text-[12px] text-on-surface leading-tight block">Estimate ($480.00) exceeds $350 auto-approval threshold</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-primary-fixed/30 px-2.5 py-1.5 rounded-lg border border-primary-fixed">
+<div class="flex items-center gap-1.5 text-on-primary-fixed-variant font-body-sm text-[12px]">
+<span class="material-symbols-outlined text-[16px] text-primary">arrow_forward</span>
+<span class="font-medium"><strong>Next Required Action:</strong> Manager must approve or counter contractor estimate</span>
+</div>
+</div>
+</div>
+</section>
+<!-- WORK ORDER SUMMARY HEADER & METADATA -->
+<section class="px-gutter pt-3 pb-2 flex flex-col gap-2">
+<div>
+<h2 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight font-bold">
+      Ceiling Water Leak Under 2nd Floor Bath
+    </h2>
+<div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-on-surface-variant font-body-sm text-body-sm mt-1">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">apartment</span>
+<span class="font-medium text-on-surface">Unit 4B • Elmwood Heights</span>
+<span class="text-on-surface-variant">(4 units multi-family)</span>
+</div>
+</div>
+</div>
+<!-- Tenant Reporter Badge -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-2.5 flex items-center justify-between shadow-xs">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-full bg-secondary-container/50 text-on-secondary-container flex items-center justify-center font-bold text-xs shrink-0">
+        SJ
+      </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md font-semibold text-on-surface truncate">Sarah Jenkins</span>
+<span class="inline-flex items-center px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 text-[10px] font-semibold">Lease Active</span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant truncate block">Verified Contact: +1 (555) 019-2834</span>
+</div>
+</div>
+<a aria-label="Call tenant" class="w-8 h-8 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors shrink-0" href="tel:+15550192834">
+<span class="material-symbols-outlined text-[16px]">call</span>
+</a>
+</div>
+</section>
+<!-- 7-STAGE LIFECYCLE STEPPER -->
+<section class="px-gutter py-2.5 bg-surface-container-low border-y border-outline-variant/20 overflow-x-auto no-scrollbar shadow-inner">
+<div class="min-w-[620px] flex items-center justify-between relative py-1">
+<!-- Step 1: Submitted (Done) -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-xs">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</div>
+<span class="font-label-sm text-[10px] text-primary font-semibold">Submitted</span>
+</div>
+<div class="flex-1 h-0.5 bg-primary -mx-1"></div>
+<!-- Step 2: Under Review (Done) -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-xs">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</div>
+<span class="font-label-sm text-[10px] text-primary font-semibold">Under Review</span>
+</div>
+<div class="flex-1 h-0.5 bg-primary -mx-1"></div>
+<!-- Step 3: Awaiting Contractor (Done) -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-xs">
+<span class="material-symbols-outlined text-[13px]">check</span>
+</div>
+<span class="font-label-sm text-[10px] text-primary font-semibold">Awaiting Contractor</span>
+</div>
+<div class="flex-1 h-0.5 bg-amber-500 -mx-1"></div>
+<!-- Step 4: Awaiting Approval (ACTIVE) -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md ring-4 ring-amber-300/40 animate-pulse">
+<span class="material-symbols-outlined text-[13px]">hourglass_top</span>
+</div>
+<span class="font-label-sm text-[10px] text-amber-900 font-bold">Awaiting Approval</span>
+</div>
+<div class="flex-1 h-0.5 bg-surface-dim -mx-1"></div>
+<!-- Step 5: In Progress -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[13px]">handyman</span>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">In Progress</span>
+</div>
+<div class="flex-1 h-0.5 bg-surface-dim -mx-1"></div>
+<!-- Step 6: Awaiting Verification -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Verification</span>
+</div>
+<div class="flex-1 h-0.5 bg-surface-dim -mx-1"></div>
+<!-- Step 7: Completed -->
+<div class="flex flex-col items-center gap-1 z-10">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[13px]">task_alt</span>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Completed</span>
+</div>
+</div>
+</section>
+<div class="px-gutter pt- space-lg flex flex-col gap-space-lg">
+<!-- SECTION 1: SCOUT AI ADVISORY CARD (Re-Engineered for Human Control & AI Distinction) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md border-2 border-primary/20 overflow-hidden transition-all duration-200" id="scout-card">
+<!-- Distinct AI Header with Disclaimer -->
+<div class="p-3.5 bg-gradient-to-r from-primary-container via-primary to-primary-container text-on-primary flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container animate-spin" style="animation-duration: 7s;">auto_awesome</span>
+<span class="font-headline-md text-headline-md tracking-tight font-semibold">Scout AI Advisory</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-[11px] font-bold tracking-tight shadow-xs">
+        94% Diagnostic Confidence
+      </span>
+</div>
+<div class="flex items-center gap-1 text-[11px] font-medium text-on-primary-container bg-black/20 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px] shrink-0">info</span>
+<span>Human Review Required — Advisory Only (Cannot auto-spend or auto-assign)</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-md">
+<!-- Critical Safety Flag -->
+<div class="p-2.5 bg-error-container/30 border border-error-container rounded-lg flex items-start gap-2.5">
+<div class="w-6 h-6 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+</div>
+<div class="min-w-0">
+<h4 class="font-label-sm text-error font-bold uppercase tracking-wider">Safety Assessment Flag</h4>
+<p class="font-body-sm text-[12px] text-on-error-container font-medium mt-0.5 leading-snug">
+          CRITICAL: Proximity to ceiling recessed light fixture circuit in ceiling sector B. Immediate circuit isolation advised.
+        </p>
+</div>
+</div>
+<!-- Structured Breakdown Grid -->
+<div class="flex flex-col gap-2.5 text-body-sm">
+<!-- Issue Summary -->
+<div class="bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/30">
+<span class="font-label-sm text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Issue Summary</span>
+<p class="text-on-surface font-medium text-[13px] mt-0.5 leading-relaxed">
+          Active vertical greywater penetration from Unit 4B upper seal into ceiling void.
+        </p>
+</div>
+<!-- Suggested Category & Trade -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<div class="bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/30 flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Suggested Category</span>
+<span class="font-label-md text-on-surface font-semibold" id="val-category">Plumbing • Active Leak</span>
+</div>
+<button aria-label="Edit category" class="w-7 h-7 rounded-full bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors shadow-2xs" onclick="editField('category')">
+<span class="material-symbols-outlined text-[14px]">edit</span>
+</button>
+</div>
+<div class="bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/30 flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Suggested Trade</span>
+<span class="font-label-md text-on-surface font-semibold" id="val-trade">Licensed Master Plumber (Emergency)</span>
+</div>
+<button aria-label="Edit trade" class="w-7 h-7 rounded-full bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors shadow-2xs" onclick="editField('trade')">
+<span class="material-symbols-outlined text-[14px]">edit</span>
+</button>
+</div>
+</div>
+<!-- Urgency Rationale -->
+<div class="bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px] text-error">priority_high</span>
+          Urgency Rationale
+        </div>
+<p class="text-on-surface text-[12px] mt-0.5 leading-relaxed">
+          High risk of drywall collapse and electrical conduit moisture contact in ceiling sector B. Immediate shut-off required.
+        </p>
+</div>
+<!-- Missing Information Identified -->
+<div class="bg-amber-500/10 border border-amber-300 rounded-lg p-2.5 flex items-start gap-2">
+<span class="material-symbols-outlined text-amber-700 text-[18px] shrink-0 mt-0.5">help</span>
+<div>
+<span class="font-label-sm text-[10px] text-amber-950 font-bold uppercase tracking-wider block">Missing Information Identified</span>
+<p class="font-body-sm text-[12px] text-amber-950 mt-0.5">
+            Tenant hasn't confirmed if isolation valve under sink was rotated clockwise.
+          </p>
+</div>
+</div>
+<!-- Recommended Next Action -->
+<div class="bg-primary/5 border border-primary/20 p-2.5 rounded-lg">
+<span class="font-label-sm text-[10px] text-primary font-bold uppercase tracking-wider block">Recommended Next Action</span>
+<p class="font-body-sm text-[12px] text-on-surface font-medium mt-0.5">
+          Approve Apex Plumbing estimate ($420-$480) for immediate valve seat rebuild and moisture extraction.
+        </p>
+</div>
+</div>
+<!-- Explicit Human Action Controls -->
+<div class="pt-1 flex flex-col gap-2">
+<!-- Primary: Accept Recommendation -->
+<button class="w-full py-3 px-space-md bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-xs transition-transform active:scale-[0.99] shadow-sm" id="btn-accept" onclick="openApprovalModal()">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+<span>Accept Recommendation</span>
+</button>
+<!-- Secondary & Ghost Actions -->
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2.5 px-space-sm bg-surface-container text-on-surface hover:bg-surface-container-high rounded-lg font-label-md text-label-md font-medium flex items-center justify-center gap-1.5 transition-colors border border-outline-variant/30" onclick="toggleModifyModal()">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Modify Scope</span>
+</button>
+<button class="py-2.5 px-space-sm bg-surface-container-lowest text-on-surface-variant hover:text-error hover:bg-error-container/20 rounded-lg font-label-md text-label-md font-medium flex items-center justify-center gap-1.5 transition-colors border border-outline-variant/30" onclick="dismissScoutCard()">
+<span class="material-symbols-outlined text-[16px]">close</span>
+<span>Dismiss Advisory</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2: CONTRACTOR ESTIMATE & SCOPE -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-md border border-outline-variant/30 flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold">Apex Plumbing Co.</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-[11px] font-bold">
+          Preferred Vendor
+        </span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-amber-500 text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">4.9</span>
+<span>(142 verified jobs) • 8 mins away</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-sm shrink-0 shadow-2xs">
+      AP
+    </div>
+</div>
+<!-- Binding Estimate & Scope Details -->
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-outline-variant/20 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider block font-bold">Binding Estimate</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">$380 – $480</span>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-semibold">Over $350 Limit</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Max cap: $480.00</span>
+</div>
+</div>
+<div class="border-t border-outline-variant/30 pt-2">
+<span class="font-label-sm text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Scope of Work</span>
+<p class="font-body-sm text-[12px] text-on-surface mt-0.5">
+        Diagnosis + Valve Replacement + Moisture Extraction (includes dry thermal scan verification).
+      </p>
+</div>
+</div>
+<!-- Explicit Human Approval Trigger -->
+<button class="w-full py-3.5 px-space-md bg-secondary hover:bg-on-secondary-container text-on-secondary rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-xs transition-colors shadow-sm" id="btn-approve-funds" onclick="approveFunds()">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Approve &amp; Release Work Order ($480 Max Cap)</span>
+</button>
+</div>
+<!-- SECTION 3: TENANT ATTACHMENTS & TELEMATICS -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Tenant Attachments &amp; Telematics (2)</span>
+<span class="font-label-sm text-label-sm text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+      Inspected by Scout AI
+    </span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-video shadow-xs group border border-outline-variant/30">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Close up photography of drywall ceiling showing deep water stain and bubbling paint around an illuminated modern recessed halogen pot light in a condominium hallway, moisture ripples visible under harsh warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKlQvir-M7Eh5YXr8gYpEJa7eCRH8S4Us7Ph5QmEcOW_0E7_x8G0gQDh-HMPrNiGJTFiMZs6glzz_KO-m30QXAJgd9N6mVKEmZPvV4AabYNEuTPVxHoUhA76JX6fqHTNPCXtBnjQpH1gR_il2_1cRGJ7YXTaQYvxms-lgd8jV82GjNQLBOQwlIzh5XyxfU4prqexlPG8nMnOMaUXn5LlVFdoDTne54WELfAk_jy4Y"/>
+<div class="absolute bottom-1.5 left-1.5 right-1.5 px-2 py-1 rounded bg-black/75 backdrop-blur-xs text-white font-label-sm text-[10px] flex items-center justify-between">
+<span class="flex items-center gap-1 truncate font-medium">
+<span class="material-symbols-outlined text-[11px] text-amber-300">warning</span>
+          Ceiling Can Light Discoloration
+        </span>
+</div>
+</div>
+<div class="relative rounded-lg overflow-hidden bg-surface-container aspect-video shadow-xs group border border-outline-variant/30">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High angle shot of ceramic tile flooring with water puddle reflecting ceiling light near a white bathroom vanity cabinet baseboard, showing small localized water flood damage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlU-jJzz4Xy-ZlnkaOT6h8RLA5fU4YO4tYbIEm480doJR2v5X5KmiIgQnVpKWJ3XlKmLPlewP6M2J5NCflFLTAa54rxq5gDVp8eYAVaCk_5Ywt2pqUvD-zXVKpAk8EuKgO0GCXHYf9t24Vzl1Gg17fzoBSnecqT4M7wTmowYxtQm-FYpETJCUBQl43RSmnZ_-V4Kh9UHMNt-DMzAkrDqOUAm8Gt7RhGx2v4X8XvYw"/>
+<div class="absolute bottom-1.5 left-1.5 right-1.5 px-2 py-1 rounded bg-black/75 backdrop-blur-xs text-white font-label-sm text-[10px] flex items-center justify-between">
+<span class="flex items-center gap-1 truncate font-medium">
+<span class="material-symbols-outlined text-[11px] text-secondary-fixed">water_drop</span>
+          Subfloor Puddle
+        </span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 4: COMPLETE CHRONOLOGICAL AUDIT TIMELINE -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-md border border-outline-variant/30 flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/20">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">history</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold leading-none">Chronological Audit Timeline</h3>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Immutable state &amp; actor trail</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary bg-secondary-fixed/30 px-2 py-0.5 rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+      Live Audit
+    </span>
+</div>
+<!-- Timeline Items -->
+<div class="flex flex-col gap-3 pl-1 relative before:content-[''] before:absolute before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high" id="timeline-container">
+<!-- Step 1 Event -->
+<div class="flex items-start gap-3 relative">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0 z-10 shadow-xs">
+<span class="material-symbols-outlined text-[13px]">person</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/20">
+<div class="flex items-center justify-between mb-0.5">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Sarah Jenkins (Tenant, 4B)</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">10:14 AM</span>
+</div>
+<span class="inline-block text-[10px] font-semibold text-primary uppercase mb-1">State Transition: Submitted</span>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
+          Submitted urgent report: "Significant dripping from kitchen ceiling immediately below the second-floor bath. Sounds like constant water pressure behind wall." Uploaded 2 inspection photos.
+        </p>
+</div>
+</div>
+<!-- Step 2 Event -->
+<div class="flex items-start gap-3 relative">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0 z-10 shadow-xs">
+<span class="material-symbols-outlined text-[13px]">auto_awesome</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/20">
+<div class="flex items-center justify-between mb-0.5">
+<span class="font-label-md text-label-md font-semibold text-secondary">Scout AI System Engine</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">10:15 AM</span>
+</div>
+<span class="inline-block text-[10px] font-semibold text-secondary uppercase mb-1">State Transition: Under Review</span>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
+          Diagnostic confidence calculated at 94%. Flagged electrical hazard in ceiling sector B. Suggested Licensed Master Plumber. Blocked automated dispatch due to $480 estimate exceeding $350 policy limit.
+        </p>
+</div>
+</div>
+<!-- Step 3 Event -->
+<div class="flex items-start gap-3 relative">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 z-10 shadow-xs">
+<span class="material-symbols-outlined text-[13px]">shield_person</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/20">
+<div class="flex items-center justify-between mb-0.5">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Marcus Vance (Property Manager)</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">10:22 AM</span>
+</div>
+<span class="inline-block text-[10px] font-semibold text-amber-800 uppercase mb-1">State Transition: Awaiting Approval</span>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
+          Acknowledged T-1 Priority ticket. Requested formal binding estimate from Apex Plumbing Co. Held for threshold sign-off.
+        </p>
+</div>
+</div>
+</div>
+<!-- Internal Note Composer -->
+<div class="pt-2 flex flex-col gap-1.5 border-t border-outline-variant/20">
+<label class="font-label-sm text-[11px] text-on-surface-variant font-bold uppercase tracking-wider" for="timeline-input">
+      Internal Operational Note
+    </label>
+<div class="flex flex-col gap-2">
+<textarea class="w-full p-2.5 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest border border-outline-variant/30 transition-colors shadow-inner resize-none" id="timeline-input" placeholder="Type internal operator notes, contractor logs, or verbal tenant confirmations..." rows="2"></textarea>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[10px] text-on-surface-variant">Pressing log will record an immutable entry to this work order.</span>
+<button class="py-2 px-3 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold flex items-center gap-1.5 transition-colors shadow-xs" onclick="addComment()">
+<span class="material-symbols-outlined text-[16px]">history_edu</span>
+<span>Log update to audit trail</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Dialog for Approval Confirmation -->
+<div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 hidden" id="modal-approval">
+<div class="bg-surface-container-lowest rounded-xl max-w-sm w-full p-space-md shadow-2xl flex flex-col gap-space-md border border-outline-variant/30">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Confirm Work Order Approval</h3>
+</div>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">
+      You are accepting Scout AI's advisory and approving the emergency plumbing ticket for <strong>Apex Plumbing Co.</strong> with a binding cap of <strong>$480.00</strong>.
+    </p>
+<div class="bg-surface-container p-2.5 rounded-lg text-body-sm text-on-surface">
+<div class="flex justify-between py-0.5">
+<span class="text-on-surface-variant">Vendor:</span>
+<span class="font-semibold">Apex Plumbing Co.</span>
+</div>
+<div class="flex justify-between py-0.5">
+<span class="text-on-surface-variant">Max Release:</span>
+<span class="font-semibold text-primary">$480.00</span>
+</div>
+<div class="flex justify-between py-0.5">
+<span class="text-on-surface-variant">Next Stage:</span>
+<span class="font-semibold text-secondary">In Progress (Dispatched)</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<button class="flex-1 py-2.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-md font-medium transition-colors" onclick="closeApprovalModal()">
+        Cancel
+      </button>
+<button class="flex-1 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md font-semibold transition-colors" onclick="confirmApproval()">
+        Confirm &amp; Release
+      </button>
+</div>
+</div>
+</div>
+<!-- Notification Toast Container -->
+<div class="fixed bottom-6 left-4 right-4 max-w-sm mx-auto bg-inverse-surface text-inverse-on-surface p-space-sm rounded-lg shadow-xl flex items-center gap-space-sm transition-all duration-300 opacity-0 pointer-events-none translate-y-3 z-50" id="toast">
+<span class="material-symbols-outlined text-primary-fixed-dim" id="toast-icon">check_circle</span>
+<span class="font-body-sm text-body-sm flex-1" id="toast-msg">Action processed successfully</span>
+</div>
+</div>
+</main>
+<script>
+  function showToast(msg, icon = 'check_circle') {
+    const toast = document.getElementById('toast');
+    const msgEl = document.getElementById('toast-msg');
+    const iconEl = document.getElementById('toast-icon');
+    msgEl.textContent = msg;
+    iconEl.textContent = icon;
+    toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }, 2800);
+  }
+
+  function openApprovalModal() {
+    document.getElementById('modal-approval').classList.remove('hidden');
+  }
+
+  function closeApprovalModal() {
+    document.getElementById('modal-approval').classList.add('hidden');
+  }
+
+  function confirmApproval() {
+    closeApprovalModal();
+    approveFunds();
+  }
+
+  function approveFunds() {
+    const btnFunds = document.getElementById('btn-approve-funds');
+    const btnAccept = document.getElementById('btn-accept');
+
+    btnFunds.innerHTML = '<span class="material-symbols-outlined text-[18px]">lock_clock</span> Approved & Released ($480 Held in Escrow)';
+    btnFunds.classList.remove('bg-secondary');
+    btnFunds.classList.add('bg-primary-container');
+    btnFunds.disabled = true;
+
+    btnAccept.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span> Recommendation Executed';
+    btnAccept.classList.remove('bg-primary');
+    btnAccept.classList.add('bg-secondary');
+    btnAccept.disabled = true;
+
+    showToast('Work order released. Apex Plumbing assigned with 10:45 AM ETA!', 'verified');
+    appendTimeline('Manager approved $480.00 max cap estimate. Dispatched Apex Plumbing Co. Work order advanced to [In Progress].', 'Marcus Vance (Property Manager)', 'gavel', 'State Transition: In Progress');
+  }
+
+  function dismissScoutCard() {
+    const card = document.getElementById('scout-card');
+    card.classList.add('opacity-30', 'scale-[0.98]');
+    setTimeout(() => {
+      card.style.display = 'none';
+      showToast('Scout AI Advisory card dismissed by operator.', 'info');
+      appendTimeline('Operator dismissed automated advisory suggestion.', 'Marcus Vance (Property Manager)', 'close', 'Advisory Overridden');
+    }, 250);
+  }
+
+  function editField(field) {
+    if (field === 'category') {
+      const current = document.getElementById('val-category').innerText;
+      const newVal = prompt('Edit Category Scope:', current);
+      if (newVal) {
+        document.getElementById('val-category').innerText = newVal;
+        showToast('Category updated.');
+        appendTimeline(`Category manually changed to: "${newVal}"`, 'Marcus Vance (Property Manager)', 'edit', 'Scope Edit');
+      }
+    } else if (field === 'trade') {
+      const current = document.getElementById('val-trade').innerText;
+      const newVal = prompt('Assign Specific Trade Specialization:', current);
+      if (newVal) {
+        document.getElementById('val-trade').innerText = newVal;
+        showToast('Trade assignment updated.');
+        appendTimeline(`Trade specification manually set to: "${newVal}"`, 'Marcus Vance (Property Manager)', 'edit', 'Trade Modification');
+      }
+    }
+  }
+
+  function toggleModifyModal() {
+    const promptVal = prompt('Enter manual scope adjustment or dispatch parameters:');
+    if (promptVal) {
+      showToast('Advisory scope adjusted.');
+      appendTimeline(`Manager modified triage scope: "${promptVal}"`, 'Marcus Vance (Property Manager)', 'tune', 'Scope Modification');
+    }
+  }
+
+  function addComment() {
+    const input = document.getElementById('timeline-input');
+    const val = input.value.trim();
+    if (!val) return;
+    appendTimeline(val, 'Marcus Vance (Property Manager)', 'history_edu', 'Internal Log');
+    input.value = '';
+    showToast('Note recorded in audit trail.');
+  }
+
+  function appendTimeline(text, author, icon, stateTransition = null) {
+    const container = document.getElementById('timeline-container');
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    const item = document.createElement('div');
+    item.className = 'flex items-start gap-3 relative animate-fadeIn';
+    item.innerHTML = `
+      <div class="w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0 z-10 shadow-xs">
+        <span class="material-symbols-outlined text-[13px]">${icon}</span>
+      </div>
+      <div class="flex-1 bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/20">
+        <div class="flex items-center justify-between mb-0.5">
+          <span class="font-label-md text-label-md font-semibold text-on-surface">${author}</span>
+          <span class="font-label-sm text-[11px] text-on-surface-variant">${timeStr}</span>
+        </div>
+        ${stateTransition ? `<span class="inline-block text-[10px] font-semibold text-primary uppercase mb-1">${stateTransition}</span>` : ''}
+        <p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">${text}</p>
+      </div>
+    `;
+    container.appendChild(item);
+  }
+</script>
+</body></html>

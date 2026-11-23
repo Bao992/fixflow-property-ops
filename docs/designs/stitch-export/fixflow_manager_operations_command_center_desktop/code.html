@@ -1,0 +1,304 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "tertiary-fixed": "#ffdada",
+          "on-secondary-fixed-variant": "#004b73",
+          "tertiary-fixed-dim": "#ffb3b6",
+          "secondary-container": "#5bb8fe",
+          "surface-container-low": "#f2f3ff",
+          "on-tertiary-fixed-variant": "#920028",
+          "on-secondary-container": "#00476e",
+          "inverse-on-surface": "#eef0ff",
+          "surface-bright": "#faf8ff",
+          "surface-container-highest": "#dae2fd",
+          "primary-fixed": "#9cf2e8",
+          "surface-container-lowest": "#ffffff",
+          "on-tertiary": "#ffffff",
+          "on-primary-fixed-variant": "#00504a",
+          "surface-dim": "#d2d9f4",
+          "inverse-surface": "#283044",
+          "on-surface-variant": "#3e4947",
+          "on-primary": "#ffffff",
+          "error-container": "#ffdad6",
+          "outline-variant": "#bdc9c6",
+          "on-secondary": "#ffffff",
+          "on-primary-fixed": "#00201d",
+          "primary-fixed-dim": "#80d5cb",
+          "secondary-fixed": "#cce5ff",
+          "error": "#ba1a1a",
+          "background": "#faf8ff",
+          "on-tertiary-container": "#ffe4e4",
+          "on-tertiary-fixed": "#40000c",
+          "surface-container": "#eaedff",
+          "inverse-primary": "#80d5cb",
+          "primary": "#005c55",
+          "surface-variant": "#dae2fd",
+          "tertiary": "#a6002f",
+          "secondary": "#006398",
+          "on-surface": "#131b2e",
+          "primary-container": "#0f766e",
+          "surface-tint": "#006a63",
+          "surface-container-high": "#e2e7ff",
+          "on-error": "#ffffff",
+          "on-error-container": "#93000a",
+          "on-secondary-fixed": "#001d31",
+          "tertiary-container": "#d2093f",
+          "outline": "#6e7977",
+          "secondary-fixed-dim": "#93ccff",
+          "on-background": "#131b2e",
+          "on-primary-container": "#a3faef",
+          "surface": "#faf8ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-md": "0.75rem",
+          "margin-lg": "2rem",
+          "margin-md": "1.5rem",
+          "margin": "1rem",
+          "space-xs": "0.25rem",
+          "space-xl": "2rem",
+          "space-sm": "0.5rem",
+          "gutter": "1rem",
+          "space-lg": "1.25rem",
+          "gutter-lg": "1.5rem"
+        },
+        "fontFamily": {
+          "label-sm": [
+            "Space Grotesk"
+          ],
+          "headline-md": [
+            "Space Grotesk"
+          ],
+          "label-md": [
+            "Geist"
+          ],
+          "body-sm": [
+            "Geist"
+          ],
+          "headline-lg": [
+            "Space Grotesk"
+          ],
+          "headline-xl": [
+            "Space Grotesk"
+          ],
+          "body-md": [
+            "Geist"
+          ],
+          "label-lg": [
+            "Geist"
+          ],
+          "headline-xl-mobile": [
+            "Space Grotesk"
+          ],
+          "body-lg": [
+            "Geist"
+          ]
+        },
+        "fontSize": {
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "12px",
+              "letterSpacing": "0.06em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-md": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-xl": [
+            "32px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.03em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-xl-mobile": [
+            "24px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface text-on-surface font-body-md text-body-md antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col justify-between border-r border-outline-variant/30"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm border-b border-outline-variant/20"><div class="w-8 h-8 rounded bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">flowsheet</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-on-surface">FixFlow</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Ops Telematics</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">System Navigation</div></div><nav class="flex flex-col px-space-sm gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg shadow-sm"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded transition-colors bg-primary-container text-on-primary font-label-lg shadow-sm" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="maintenance-requests" href="#"><span class="material-symbols-outlined text-[18px]">build_circle</span><span>Maintenance Requests</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="properties-and-units" href="#"><span class="material-symbols-outlined text-[18px]">domain</span><span>Properties &amp; Units</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="contractors" href="#"><span class="material-symbols-outlined text-[18px]">engineering</span><span>Contractors</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="ai-operations" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">neurology</span><span>AI Operations</span></div><span class="px-1.5 py-0.5 rounded-sm bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">LIVE</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="insights" href="#"><span class="material-symbols-outlined text-[18px]">query_stats</span><span>Insights</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-md border-t border-outline-variant/20 bg-surface-container-low"><div class="flex items-center justify-between px-space-sm py-space-xs"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Node 01: Active</span></div><span class="font-label-sm text-label-sm text-outline">v2.4.0</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md flex-1 max-w-2xl"><div class="flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-low border border-outline-variant/40 rounded cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-outline text-[18px]">apartment</span><span class="font-label-md text-label-md text-on-surface font-semibold">All Properties (32 Units)</span><span class="material-symbols-outlined text-outline text-[16px]">expand_more</span></div><div class="relative flex-1"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span><input class="w-full bg-surface-container-low pl-9 pr-14 py-1.5 rounded border border-outline-variant/40 text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:border-primary" placeholder="Search units, tickets, contractors..." type="text" fdprocessedid="43zgw"><div class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm border border-outline-variant/40">⌘K</div></div></div><div class="flex items-center gap-space-lg"><button class="relative p-1.5 text-on-surface-variant hover:text-on-surface transition-colors" type="button" fdprocessedid="so0f3"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-px bg-outline-variant/30"></div><div class="flex items-center gap-space-sm cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Marcus Vance</span><span class="font-body-sm text-body-sm text-outline leading-tight">Property Director</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter-lg py-margin"><div class="flex flex-col w-full space-y-space-lg">
+<!-- PAGE HEADER & TELEMETRY STRIP -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md pb-space-xs border-b border-outline-variant/30">
+<div class="flex flex-col space-y-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Operations Command &amp; Triage</h1>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-sm bg-primary-container/10 border border-primary/20 text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>Telemetry Active • Next automated sync in 4m</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Live resolution tracking across 32 units • Marcus Vance (Lead Property Manager)
+      </p>
+</div>
+<!-- Top-Right Actions -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors" type="button" fdprocessedid="hkbp7">
+<span class="material-symbols-outlined text-[16px] text-outline">download</span>
+<span>Export Ledger</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors" type="button" fdprocessedid="0r7u8h">
+<span class="material-symbols-outlined text-[16px] text-outline">tune</span>
+<span>Batch Triage</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" type="button" fdprocessedid="tewpjd">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ New Maintenance Order</span>
+</button>
+</div>
+</div>
+<!-- 5 KEY OPERATIONAL OVERVIEW TILES -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-sm"><div class="bg-surface-container-lowest p-space-md border border-outline-variant/40 flex flex-col justify-between shadow-sm rounded"><div class="flex items-center justify-between pb-space-xs"><span class="font-label-sm text-label-sm uppercase text-outline tracking-wider font-semibold">Active Requests</span><span class="material-symbols-outlined text-outline text-[20px]">pending_actions</span></div><div class="my-space-xs flex items-baseline gap-space-xs"><span class="font-headline-xl text-headline-xl text-on-surface font-bold text-[32px]">7</span><span class="font-label-md text-label-md text-outline font-medium">Open Orders</span></div><div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant pt-space-sm border-t border-outline-variant/20"><span>5 In Progress</span><span class="text-primary font-semibold flex items-center gap-0.5 bg-primary-fixed/20 px-2 py-0.5 rounded"><span class="material-symbols-outlined text-[14px]">arrow_downward</span> 2 In Triage</span></div></div><div class="bg-surface-container-lowest p-space-md border border-tertiary/40 bg-tertiary-fixed/10 flex flex-col justify-between shadow-sm rounded"><div class="flex items-center justify-between pb-space-xs"><span class="font-label-sm text-label-sm uppercase text-tertiary font-bold tracking-wider">Urgent / Safety</span><span class="w-2.5 h-2.5 rounded-full bg-tertiary animate-ping"></span></div><div class="my-space-xs flex items-baseline gap-space-xs"><span class="font-headline-xl text-headline-xl text-tertiary font-bold text-[32px]">2</span><span class="font-label-sm text-label-sm px-2 py-0.5 bg-tertiary text-on-tertiary font-bold rounded-sm">CRITICAL</span></div><div class="font-body-sm text-body-sm text-tertiary font-medium pt-space-sm border-t border-tertiary/20 truncate">Unit 4B (Drain) • Unit 12A (Range)</div></div><div class="bg-surface-container-lowest p-space-md border border-error/40 bg-error-container/10 flex flex-col justify-between shadow-sm rounded"><div class="flex items-center justify-between pb-space-xs"><span class="font-label-sm text-label-sm uppercase text-error font-bold tracking-wider">SLA Approaching</span><span class="material-symbols-outlined text-error text-[20px]">timer</span></div><div class="my-space-xs flex items-baseline gap-space-xs"><span class="font-headline-xl text-headline-xl text-error font-bold text-[32px]">1</span><span class="font-label-md text-label-md text-error font-bold bg-error/10 px-2 py-0.5 rounded">&lt;35m Breach Window</span></div><div class="font-body-sm text-body-sm text-error font-medium pt-space-sm border-t border-outline-variant/20 truncate">Unit 4B Habitability Window</div></div><div class="bg-surface-container-lowest p-space-md border border-outline-variant/40 flex flex-col justify-between shadow-sm rounded"><div class="flex items-center justify-between pb-space-xs"><span class="font-label-sm text-label-sm uppercase text-outline tracking-wider font-semibold">Pending Approvals</span><span class="material-symbols-outlined text-outline text-[20px]">gavel</span></div><div class="my-space-xs flex items-baseline gap-space-xs"><span class="font-headline-xl text-headline-xl text-on-surface font-bold text-[32px]">3</span><span class="font-label-sm text-label-sm bg-surface-container-high px-2 py-0.5 text-on-surface-variant font-semibold rounded">&gt; Policy Cap</span></div><div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant pt-space-sm border-t border-outline-variant/20"><span>Total Exposure:</span><span class="font-bold text-on-surface font-label-md">$1,630.00</span></div></div><div class="bg-surface-container-lowest p-space-md border border-outline-variant/40 flex flex-col justify-between shadow-sm rounded"><div class="flex items-center justify-between pb-space-xs"><span class="font-label-sm text-label-sm uppercase text-outline tracking-wider font-semibold">Awaiting Verification</span><span class="material-symbols-outlined text-outline text-[20px]">verified</span></div><div class="my-space-xs flex items-baseline gap-space-xs"><span class="font-headline-xl text-headline-xl text-on-surface font-bold text-[32px]">2</span><span class="font-label-sm text-label-sm px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-bold rounded">Repairs Done</span></div><div class="font-body-sm text-body-sm text-on-surface-variant pt-space-sm border-t border-outline-variant/20 flex items-center justify-between"><span>Tenant sign-off pending</span><span class="font-semibold text-primary font-label-sm">1 Ready</span></div></div></div>
+<!-- "NEEDS YOUR ATTENTION" OPERATIONAL BLOCKERS -->
+<div class="flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px]">warning</span>
+<span class="font-headline-md text-headline-md text-on-surface">Needs Your Attention: Operational Blockers</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Accountability Protocol Active</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md"><div class="bg-surface-container-lowest border-l-4 border-l-tertiary border-y border-r border-outline-variant/40 p-space-lg flex flex-col justify-between space-y-space-md shadow-sm rounded-r"><div class="space-y-space-sm"><div class="flex items-center justify-between flex-wrap gap-space-xs"><div class="flex items-center gap-space-xs"><span class="px-2.5 py-1 bg-tertiary text-on-tertiary font-label-sm text-label-sm uppercase font-bold tracking-wider rounded-sm flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">warning</span> Emergency Habitability</span><span class="px-2.5 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold border border-outline-variant/40 rounded-sm">OWNER: Marcus Vance</span></div><div class="flex items-center gap-1.5 px-3 py-1 bg-error-container text-error font-label-sm text-label-sm font-bold border border-error/30 rounded-sm shadow-sm"><span class="w-2 h-2 rounded-full bg-error animate-ping"></span><span>SLA: 38m to T-1 Statutory Breach</span></div></div><div><h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">Unit 4B — Main Drain Backup &amp; Ceiling Seepage</h3><p class="font-body-md text-body-md text-on-surface-variant mt-1"><strong class="text-on-surface font-semibold">Oakridge Crest Highrise</strong> • Tenant Sarah Lindqvist • Ingestion: 38m ago via Portal</p></div><div class="bg-surface-container-low p-space-md border border-outline-variant/30 space-y-space-xs rounded"><div class="flex items-center gap-1.5 font-label-sm text-label-sm uppercase text-tertiary font-bold"><span class="material-symbols-outlined text-[18px]">lock</span><span>CURRENT BLOCKER: MANAGER SPEND POLICY CAP EXCEEDED</span></div><p class="font-body-md text-body-md text-on-surface leading-relaxed">Apex Hydro submitted a binding dispatch quote of <strong class="font-bold text-on-surface">$420.00</strong>, exceeding manager auto-approval cap of <strong class="font-bold text-on-surface">$350.00</strong> by $70. Requires emergency override or landlord sign-off.</p></div><div class="bg-primary-fixed/10 p-space-sm border border-primary/20 rounded flex items-start gap-space-xs"><span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">recommend</span><div class="text-body-sm font-body-sm text-on-surface"><strong class="text-primary font-bold uppercase font-label-sm tracking-wider block">Next Required Action:</strong>Authorize Emergency Override ($420) to dispatch plumber immediately or trigger 1-tap SMS token to landlord David K.</div></div></div><div class="flex items-center gap-space-sm flex-wrap pt-space-md border-t border-outline-variant/30"><button class="px-4 py-2 bg-tertiary hover:bg-tertiary-container text-on-tertiary font-label-md text-label-md font-semibold rounded shadow-sm transition-colors" type="button">Approve Emergency Override ($420)</button><button class="px-3.5 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container-low font-medium rounded transition-colors" type="button">Send Landlord SMS Token</button><button class="px-3.5 py-2 text-primary font-label-md text-label-md font-semibold hover:underline ml-auto flex items-center gap-1" type="button"><span>Scout AI Diagnostic Workspace</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div><div class="bg-surface-container-lowest border-l-4 border-l-secondary border-y border-r border-outline-variant/40 p-space-lg flex flex-col justify-between space-y-space-md shadow-sm rounded-r"><div class="space-y-space-sm"><div class="flex items-center justify-between flex-wrap gap-space-xs"><div class="flex items-center gap-space-xs"><span class="px-2.5 py-1 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase font-bold tracking-wider rounded-sm flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">ac_unit</span> HVAC System Outage</span><span class="px-2.5 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold border border-outline-variant/40 rounded-sm">OWNER: Marcus Vance</span></div><div class="flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-bold border border-outline-variant/40 rounded-sm"><span class="material-symbols-outlined text-[16px] text-tertiary">schedule</span><span>SLA: Stalled 48h (Awaiting Landlord)</span></div></div><div><h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">Unit 7D — HVAC Compressor Bearing Seizure</h3><p class="font-body-md text-body-md text-on-surface-variant mt-1"><strong class="text-on-surface font-semibold">Highland Lofts</strong> • Unit 7D • Internal ambient temp: <span class="text-tertiary font-bold">78°F</span> • Occupant: D. Miller</p></div><div class="bg-surface-container-low p-space-md border border-outline-variant/30 space-y-space-xs rounded"><div class="flex items-center gap-1.5 font-label-sm text-label-sm uppercase text-secondary font-bold"><span class="material-symbols-outlined text-[18px]">hourglass_top</span><span>CURRENT BLOCKER: UNRESPONSIVE LANDLORD (ABOVE $500 THRESHOLD)</span></div><p class="font-body-md text-body-md text-on-surface leading-relaxed">CoolAir Pros quote of <strong class="font-bold text-on-surface">$1,150.00</strong> has stalled in landlord queue for 48h. Unit ambient temperature approaching hazardous heat stress threshold.</p></div><div class="bg-secondary-fixed/10 p-space-sm border border-secondary/20 rounded flex items-start gap-space-xs"><span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">recommend</span><div class="text-body-sm font-body-sm text-on-surface"><strong class="text-secondary font-bold uppercase font-label-sm tracking-wider block">Next Required Action:</strong>Apply statutory heat protocol cap ($1,500) to auto-dispatch or call owner David K. directly.</div></div></div><div class="flex items-center gap-space-sm flex-wrap pt-space-md border-t border-outline-variant/30"><button class="px-4 py-2 bg-secondary text-on-secondary font-label-md text-label-md font-semibold hover:bg-secondary/90 rounded shadow-sm transition-colors" type="button">Apply Heat Protocol ($1,150)</button><button class="px-3.5 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container-low font-medium rounded transition-colors" type="button">Call Landlord (David K.)</button><button class="px-3.5 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container-low font-medium rounded transition-colors" type="button">Re-assign Vendor</button></div></div></div>
+</div>
+<!-- TWO-COLUMN CENTRAL WORKSPACE -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT 60% (7 Cols): Triage & Work Order Stream Table -->
+<div class="xl:col-span-7 flex flex-col space-y-space-md">
+<div class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex flex-col">
+<!-- Table Toolbar & Tabs -->
+<div class="p-space-md border-b border-outline-variant/30 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">table_rows</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Triage &amp; Work Order Stream</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Real-Time Sync 0ms</span>
+</div>
+<!-- Tabs -->
+<div class="flex items-center gap-1 overflow-x-auto pb-1">
+<button class="px-3 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold border-b-2 border-primary whitespace-nowrap" fdprocessedid="ejhbva">
+              All Active (7)
+            </button>
+<button class="px-3 py-1 text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface hover:bg-surface-container-low whitespace-nowrap" fdprocessedid="et8brz9">
+              Urgent / Safety (2)
+            </button>
+<button class="px-3 py-1 text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface hover:bg-surface-container-low whitespace-nowrap" fdprocessedid="uvedsa">
+              Awaiting Approval (3)
+            </button>
+<button class="px-3 py-1 text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface hover:bg-surface-container-low whitespace-nowrap" fdprocessedid="zl6g5o">
+              Awaiting Verification (2)
+            </button>
+<button class="px-3 py-1 text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface hover:bg-surface-container-low whitespace-nowrap" fdprocessedid="bl4uo8">
+              Scheduled (4)
+            </button>
+</div>
+</div>
+<!-- Orders Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse"><thead><tr class="bg-surface-container-low border-b border-outline-variant/30 font-label-sm text-label-sm text-outline uppercase tracking-wider"><th class="p-space-md font-semibold">Issue &amp; Unit</th><th class="p-space-md font-semibold">Status &amp; Priority</th><th class="p-space-md font-semibold">Vendor &amp; Binding Quote</th><th class="p-space-md font-semibold">Owner</th><th class="p-space-md font-semibold">SLA Deadline</th><th class="p-space-md text-right font-semibold">Manager Action</th></tr></thead><tbody class="divide-y divide-outline-variant/20 font-body-md text-body-md"><tr class="hover:bg-surface-container-low/70 transition-colors"><td class="p-space-md"><div class="font-bold text-on-surface font-label-lg text-label-lg">Unit 4B — Ceiling Seepage &amp; Drain</div><div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Oakridge Crest Highrise</div></td><td class="p-space-md"><span class="inline-block px-2.5 py-1 font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed font-bold rounded-sm">CRITICAL • APPROVAL REQUIRED</span></td><td class="p-space-md"><div class="text-on-surface font-semibold">Apex Hydro Plumbing</div><div class="text-outline font-body-sm text-body-sm">$420.00 (Binding Bid)</div></td><td class="p-space-md text-on-surface-variant font-medium">Marcus Vance</td><td class="p-space-md"><span class="text-error font-bold font-label-sm text-label-sm flex items-center gap-1.5 bg-error-container/20 px-2 py-1 rounded w-fit"><span class="w-2 h-2 rounded-full bg-error animate-ping"></span> 38m remaining</span></td><td class="p-space-md text-right"><button class="px-3 py-1.5 bg-primary text-on-primary font-label-md text-label-md font-medium hover:bg-primary-container rounded shadow-sm" type="button">Review Quote</button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors"><td class="p-space-md"><div class="font-bold text-on-surface font-label-lg text-label-lg">Unit 12A — Electric Range Spark</div><div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Pinecrest Plaza</div></td><td class="p-space-md"><span class="inline-block px-2.5 py-1 font-label-sm text-label-sm bg-tertiary-fixed-dim text-on-tertiary-fixed-variant font-bold rounded-sm">HIGH • UNASSIGNED</span></td><td class="p-space-md"><span class="text-outline italic font-body-sm text-body-sm">Pending Contractor Match</span></td><td class="p-space-md text-on-surface-variant font-medium">Marcus Vance</td><td class="p-space-md"><span class="text-secondary font-bold font-label-sm text-label-sm">T-2h 15m target</span></td><td class="p-space-md text-right"><button class="px-3 py-1.5 bg-surface-container-highest border border-outline-variant text-on-surface font-label-md text-label-md font-medium hover:bg-surface-container-high rounded" type="button">Scout Match</button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors"><td class="p-space-md"><div class="font-bold text-on-surface font-label-lg text-label-lg">Unit 12C — HVAC Whine &amp; Low Flow</div><div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Oakridge Crest Highrise</div></td><td class="p-space-md"><span class="inline-block px-2.5 py-1 font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant font-semibold rounded-sm">MEDIUM • QUOTED</span></td><td class="p-space-md"><div class="text-on-surface font-semibold">Apex Mechanical</div><div class="text-outline font-body-sm text-body-sm">$480.00 (Standard)</div></td><td class="p-space-md text-on-surface-variant font-medium">Marcus Vance</td><td class="p-space-md font-label-sm text-label-sm text-on-surface-variant font-medium">1h 14m left</td><td class="p-space-md text-right"><button class="px-3 py-1.5 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md font-medium hover:bg-surface-container-low rounded" type="button">Approve $480</button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors"><td class="p-space-md"><div class="font-bold text-on-surface font-label-lg text-label-lg">Unit 08A — Smart Deadbolt Jam</div><div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Highland Lofts</div></td><td class="p-space-md"><span class="inline-block px-2.5 py-1 font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed font-bold rounded-sm">STANDARD • DISPATCHED</span></td><td class="p-space-md"><div class="text-on-surface font-semibold">Marcus J. (Internal Staff)</div><div class="text-primary font-label-sm text-label-sm font-semibold">En route (ETA 12m)</div></td><td class="p-space-md text-on-surface-variant font-medium">Self</td><td class="p-space-md font-label-sm text-label-sm text-primary font-bold">On Track</td><td class="p-space-md text-right"><button class="px-3 py-1.5 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md font-medium hover:bg-surface-container-low rounded" type="button">Track Tech</button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors"><td class="p-space-md"><div class="font-bold text-on-surface font-label-lg text-label-lg">Unit 03F — Water Heater Anode Rod</div><div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Pinecrest Plaza</div></td><td class="p-space-md"><span class="inline-block px-2.5 py-1 font-label-sm text-label-sm bg-surface-container text-outline font-semibold rounded-sm">LOW • PREVENTATIVE</span></td><td class="p-space-md"><span class="text-outline font-body-sm text-body-sm">Lifecycle Scheduling</span></td><td class="p-space-md text-on-surface-variant font-medium">Unassigned</td><td class="p-space-md font-label-sm text-label-sm text-outline font-medium">T-4d</td><td class="p-space-md text-right"><button class="px-3 py-1.5 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md font-medium hover:bg-surface-container-low rounded" type="button">Schedule</button></td></tr><tr class="hover:bg-surface-container-low/70 transition-colors bg-primary-fixed/5"><td class="p-space-md"><div class="font-bold text-on-surface font-label-lg text-label-lg">Unit 2A — Kitchen Cartridge Repair</div><div class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Oakridge Crest Highrise</div></td><td class="p-space-md"><span class="inline-block px-2.5 py-1 font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed font-bold rounded-sm">VERIFIED • PENDING CLOSE</span></td><td class="p-space-md"><div class="text-on-surface font-semibold">Bay Plumbing ($185)</div><div class="text-primary font-label-sm text-label-sm font-semibold">Elena Rostova: 5/5 ★</div></td><td class="p-space-md text-on-surface-variant font-medium">Marcus Vance</td><td class="p-space-md font-label-sm text-label-sm text-primary font-bold">Work Verified</td><td class="p-space-md text-right"><button class="px-3 py-1.5 bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container rounded shadow-sm" type="button">Close Ticket</button></td></tr></tbody></table>
+</div>
+<!-- Table Footer -->
+<div class="p-space-sm bg-surface-container-low border-t border-outline-variant/30 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Showing 6 of 7 active work orders</span>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm">
+<button class="px-2 py-1 bg-surface-container-lowest border border-outline-variant disabled:opacity-40" disabled="">← Prev</button>
+<span class="px-2 py-1 bg-primary text-on-primary">1</span>
+<button class="px-2 py-1 bg-surface-container-lowest border border-outline-variant" fdprocessedid="l3bhld">2</button>
+<button class="px-2 py-1 bg-surface-container-lowest border border-outline-variant" fdprocessedid="1t3k7h">Next →</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT 40% (5 Cols): AI Resolution Intelligence -->
+<div class="xl:col-span-5 flex flex-col space-y-space-md">
+<!-- FLOW AI — OPERATIONS COORDINATOR PANEL -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm p-space-md flex flex-col space-y-space-md"><div class="flex items-center justify-between border-b border-outline-variant/30 pb-space-sm"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[24px]">hub</span><div><h2 class="font-headline-md text-headline-md text-on-surface font-bold">Flow AI — Operations Coordinator</h2><p class="font-body-sm text-body-sm text-outline">Autonomous Dispatch Suggestions &amp; Flow Triggers</p></div></div><span class="px-2 py-0.5 rounded-sm bg-surface-container-high border border-outline-variant/40 text-on-surface-variant font-label-sm text-label-sm font-semibold uppercase">Flow AI Advisory • No autonomous actions • Managers decide</span></div><div class="space-y-space-md"><div class="p-space-md bg-surface-container-low border-l-4 border-l-secondary border border-outline-variant/30 space-y-space-xs rounded-r"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Stalled 48h — Awaiting Landlord Approval ($1,150 quote)</span><span class="font-label-sm text-label-sm text-outline font-semibold">Confidence: 98%</span></div><div class="text-body-sm font-body-sm text-on-surface-variant"><strong class="text-on-surface font-semibold">Responsible:</strong> Marcus Vance (Property Manager) • Unit 7D (Highland Lofts)</div><p class="font-body-md text-body-md text-on-surface leading-normal"><strong class="font-semibold">Blocker:</strong> Landlord quote approval above $500 policy threshold. Tenant at risk of heat stress non-compliance within 6 hours.</p><div class="pt-space-xs flex items-center justify-between gap-space-xs flex-wrap"><span class="font-body-sm text-body-sm text-outline">Manager Decision:</span><div class="flex items-center gap-space-xs"><button class="px-2.5 py-1 bg-surface-container-lowest border border-outline-variant hover:border-secondary text-on-surface font-label-sm text-label-sm font-medium rounded" type="button">Review Quote</button><button class="px-2.5 py-1 bg-secondary text-on-secondary font-label-sm text-label-sm font-medium hover:bg-secondary/90 rounded shadow-sm" type="button">Draft Landlord SMS</button><button class="px-2.5 py-1 bg-surface-container-lowest border border-outline-variant hover:border-tertiary text-tertiary font-label-sm text-label-sm font-medium rounded" type="button">Override Cap</button></div></div></div><div class="p-space-md bg-surface-container-low border-l-4 border-l-tertiary border border-outline-variant/30 space-y-space-xs rounded-r"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-bold">Stalled 24h — Contractor SLA Non-Response</span><span class="font-label-sm text-label-sm text-outline font-semibold">SLA Window Lapsed</span></div><div class="text-body-sm font-body-sm text-on-surface-variant"><strong class="text-on-surface font-semibold">Responsible:</strong> Marcus Vance • Unit 2C (Glazing)</div><p class="font-body-md text-body-md text-on-surface leading-normal"><strong class="font-semibold">Blocker:</strong> Metro Glaziers hasn't acknowledged dispatched work ticket. Pre-vetted trade ready: <strong class="font-semibold">Precision Glass</strong> (4.8★, 0.8 mi away, SLA 2h).</p><div class="pt-space-xs flex items-center justify-between gap-space-xs flex-wrap"><span class="font-body-sm text-body-sm text-outline">Manager Decision:</span><div class="flex items-center gap-space-xs"><button class="px-2.5 py-1 bg-surface-container-lowest border border-outline-variant hover:border-secondary text-on-surface font-label-sm text-label-sm font-medium rounded" type="button">Ping Contractor</button><button class="px-2.5 py-1 bg-primary text-on-primary font-label-sm text-label-sm font-medium hover:bg-primary-container rounded shadow-sm" type="button">Re-route to Precision Glass</button></div></div></div><div class="p-space-md bg-surface-container-low border-l-4 border-l-primary border border-outline-variant/30 space-y-space-xs rounded-r"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Predictive Cluster Telemetry — Stack B</span><span class="font-label-sm text-label-sm text-outline font-semibold">Cost Savings: ~$920</span></div><div class="text-body-sm font-body-sm text-on-surface-variant"><strong class="text-on-surface font-semibold">Responsible:</strong> Asset Lifecycle Team • Oakridge Crest</div><p class="font-body-md text-body-md text-on-surface leading-normal"><strong class="font-semibold">Blocker:</strong> 3 plumbing incidents logged across Stack B (Units 3B &amp; 4B) in 60 days. Suggest preventative hydro-jetting ($280) vs repeated emergency calls.</p><div class="pt-space-xs flex items-center justify-between gap-space-xs flex-wrap"><span class="font-body-sm text-body-sm text-outline">Manager Decision:</span><button class="px-3 py-1 bg-primary text-on-primary font-label-sm text-label-sm font-medium hover:bg-primary-container rounded shadow-sm" type="button">View Asset Hotspot</button></div></div></div></div>
+<!-- SCOUT AI — DIAGNOSTIC & TRADE INTELLIGENCE PANEL -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm p-space-md flex flex-col space-y-space-md"><div class="flex items-center justify-between border-b border-outline-variant/30 pb-space-sm"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[24px]">neurology</span><div><h2 class="font-headline-md text-headline-md text-on-surface font-bold">Scout AI — Diagnostic Intelligence</h2><p class="font-body-sm text-body-sm text-outline">Multimodal Photo Triage &amp; Trade Matching</p></div></div><span class="px-2 py-0.5 rounded-sm bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">94.2% Diagnostic Confidence</span></div><div class="border border-outline-variant/40 bg-surface-container-low p-space-md space-y-space-md rounded"><div class="flex items-start justify-between flex-wrap gap-space-xs"><div><div class="font-label-lg text-label-lg text-on-surface font-bold">Unit 4B Leak Multimodal Inspection</div><div class="font-body-sm text-body-sm text-outline mt-0.5">Tenant Sarah Lindqvist • 2 photos uploaded 38m ago</div></div><span class="px-2.5 py-1 bg-tertiary text-on-tertiary font-label-sm text-label-sm uppercase font-bold rounded-sm">Hazard: Electrical Proximity</span></div><div class="grid grid-cols-2 gap-space-sm"><div class="relative bg-surface-container-highest h-28 overflow-hidden border border-outline-variant/30 flex items-center justify-center rounded"><img class="w-full h-full object-cover" data-alt="A focused high-angle inspection photo showing residential drywall ceiling with heavy water staining, brown ring contouring, and moisture pooling near a junction box in an apartment bathroom with muted cool technical lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrEdw8KF3t-HeGaSgl0jYz0hAoWk82NvfIXNRTwG9n_ApqHl1FFX1XOv3KLKKBgRLmXeIeYHyg9f5dIR2vQ3KL1gZN7vGX6rFZNaIsq4VGm9nB7jcimk34QQLliW0opvYlD6XFPB3e82hdQwtpW83gAlsT5I0kBvVD0cUI16Kxym_iK7NRYHcdSXaE32ix2ilZKvSVf7p946Wnpydd3FGTgmCQnKwKt310btuzXa8"><div class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 bg-surface-container-lowest/95 font-label-sm text-label-sm text-on-surface font-medium rounded-sm shadow-sm">Ceiling Sector B (Moisture)</div></div><div class="relative bg-surface-container-highest h-28 overflow-hidden border border-outline-variant/30 flex items-center justify-center rounded"><img class="w-full h-full object-cover" data-alt="A diagnostic close-up of a residential plumbing drain pipe under a bathroom floorboard displaying active moisture seepage and rusted fitting collar in a clinical macro architectural inspection style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzWDAzQN6z1pzSwhee_JJW8KtE9lDXp9vOGT2rVAc9CkIOCSYdqOzuy2aWQRtlNsECRC4T2nCz2qbSgBHeuXucW6WQwg9XXuIUPQxURZPedt_5LJUt7l0TLfOWxvBVMd-k3H6GHcJcWFjE5XbGZseUsiojyN8sAquw1rsjQ6hvEgTKVFgYfTf0iT86HHii2tyc_4HJkR1pZSxxtS9jVJgERoeracYIUyiLw1MbS38"><div class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 bg-surface-container-lowest/95 font-label-sm text-label-sm text-on-surface font-medium rounded-sm shadow-sm">Drain Riser Collar (Corrosion)</div></div></div><div class="grid grid-cols-2 gap-space-xs text-body-sm font-body-sm"><div class="bg-surface-container-lowest p-space-xs border border-outline-variant/30 rounded"><span class="text-outline font-label-sm block">Suggested Trade:</span><span class="text-on-surface font-semibold">Licensed Master Plumber (Emergency)</span></div><div class="bg-surface-container-lowest p-space-xs border border-outline-variant/30 rounded"><span class="text-outline font-label-sm block">Category:</span><span class="text-on-surface font-semibold">Plumbing • Active Waste Leak</span></div></div><div class="bg-tertiary-fixed/15 border border-tertiary/30 p-space-sm rounded space-y-0.5"><div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm font-bold uppercase"><span class="material-symbols-outlined text-[16px]">crisis_alert</span><span>Potential Safety Concern (Unverified Flag: Electrical conduit proximity)</span></div><p class="font-body-sm text-body-sm text-on-surface">Water contouring directly intersects ceiling junction conduit. Auto-dispatch suppressed pending human manager inspection.</p></div><div class="flex items-center gap-space-sm pt-space-xs"><button class="px-3.5 py-2 bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container flex-1 rounded shadow-sm" type="button">Open Scout Diagnostic Card</button><button class="px-3.5 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md font-medium hover:bg-surface-container-low rounded" type="button">Dismiss Advisory</button></div></div></div>
+</div>
+</div>
+<!-- BOTTOM FULL-WIDTH SECTION: IMMUTABLE AUDIT LEDGER & RESOLUTION TIMELINE -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm p-space-md space-y-space-md">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-outline text-[20px]">history_edu</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Immutable Resolution Ledger &amp; Real-Time Audit Log</h2>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low" type="button" fdprocessedid="8qa6lh">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Download CSV Audit Log (SOC-2 Compliant)</span>
+</button>
+</div>
+<!-- Timeline Grid / Feed -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md"><div class="p-space-md bg-surface-container-low border border-outline-variant/30 flex flex-col justify-between space-y-space-sm rounded shadow-sm"><div class="space-y-space-xs"><div class="flex items-center justify-between text-outline font-label-sm text-label-sm"><span>14m ago</span><span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed font-bold rounded-sm">Tenant Verification</span></div><div class="font-label-lg text-label-lg text-on-surface font-bold mt-1">Unit 2A — Repair Certified</div><p class="font-body-md text-body-md text-on-surface-variant">Elena Rostova verified complete kitchen cartridge fix. Rated 5/5 stars with photo proof. Ready for manager close.</p></div><div class="font-label-sm text-label-sm text-outline pt-space-xs border-t border-outline-variant/20 flex items-center justify-between"><span>Actor: Tenant Elena R.</span><span class="text-primary font-semibold">AuthID: #9921</span></div></div><div class="p-space-md bg-surface-container-low border border-outline-variant/30 flex flex-col justify-between space-y-space-sm rounded shadow-sm"><div class="space-y-space-xs"><div class="flex items-center justify-between text-outline font-label-sm text-label-sm"><span>42m ago</span><span class="px-2 py-0.5 bg-secondary-fixed text-on-secondary-fixed font-bold rounded-sm">Quote Uploaded</span></div><div class="font-label-lg text-label-lg text-on-surface font-bold mt-1">Unit 4B — Apex Binding Bid</div><p class="font-body-md text-body-md text-on-surface-variant">Apex Hydro submitted $420 binding estimate. Automated rate validation: -8% below regional commercial median.</p></div><div class="font-label-sm text-label-sm text-outline pt-space-xs border-t border-outline-variant/20 flex items-center justify-between"><span>Actor: Contractor (Apex)</span><span class="text-secondary font-semibold">REST Webhook</span></div></div><div class="p-space-md bg-surface-container-low border border-outline-variant/30 flex flex-col justify-between space-y-space-sm rounded shadow-sm"><div class="space-y-space-xs"><div class="flex items-center justify-between text-outline font-label-sm text-label-sm"><span>1h 15m ago</span><span class="px-2 py-0.5 bg-surface-container-high text-on-surface font-bold rounded-sm border border-outline-variant/30">Access Code Issued</span></div><div class="font-label-lg text-label-lg text-on-surface font-bold mt-1">Unit 10C — Encrypted PIN</div><p class="font-body-md text-body-md text-on-surface-variant">Time-restricted 2-hour smart lock token generated for Metro Core Electrician. Audit tracking activated.</p></div><div class="font-label-sm text-label-sm text-outline pt-space-xs border-t border-outline-variant/20 flex items-center justify-between"><span>Actor: SmartLock Gateway</span><span class="font-medium">v2.4 Audit Log</span></div></div><div class="p-space-md bg-surface-container-low border border-outline-variant/30 flex flex-col justify-between space-y-space-sm rounded shadow-sm"><div class="space-y-space-xs"><div class="flex items-center justify-between text-outline font-label-sm text-label-sm"><span>3h 10m ago</span><span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed font-bold rounded-sm">Status Transition</span></div><div class="font-label-lg text-label-lg text-on-surface font-bold mt-1">Unit 12A — Electric Range Flag</div><p class="font-body-md text-body-md text-on-surface-variant">Scout AI triaged tenant range video, flagged safety circuit isolation advisory, sent push notification to occupant.</p></div><div class="font-label-sm text-label-sm text-outline pt-space-xs border-t border-outline-variant/20 flex items-center justify-between"><span>Actor: Scout AI Engine</span><span class="text-tertiary font-semibold">Model 4.1</span></div></div></div>
+</div>
+</div></main></div>
+
+</body></html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-highest": "#dae2fd", "on-primary-fixed-variant": "#00504a", "on-error-container": "#93000a", "surface-container-high": "#e2e7ff", "surface-container-low": "#f2f3ff", "tertiary": "#a6002f", "on-primary-fixed": "#00201d", "background": "#faf8ff", "on-tertiary-fixed-variant": "#920028", "surface-bright": "#faf8ff", "outline-variant": "#bdc9c6", "inverse-surface": "#283044", "on-tertiary": "#ffffff", "outline": "#6e7977", "tertiary-fixed": "#ffdada", "primary-container": "#0f766e", "on-secondary-container": "#00476e", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#004b73", "surface-dim": "#d2d9f4", "error": "#ba1a1a", "secondary-fixed-dim": "#93ccff", "secondary": "#006398", "inverse-on-surface": "#eef0ff", "on-surface-variant": "#3e4947", "primary": "#005c55", "secondary-container": "#5bb8fe", "tertiary-fixed-dim": "#ffb3b6", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-container": "#eaedff", "on-surface": "#131b2e", "surface-tint": "#006a63", "on-primary-container": "#a3faef", "primary-fixed-dim": "#80d5cb", "surface-variant": "#dae2fd", "on-tertiary-container": "#ffe4e4", "inverse-primary": "#80d5cb", "tertiary-container": "#d2093f", "on-background": "#131b2e", "error-container": "#ffdad6", "on-secondary-fixed": "#001d31", "secondary-fixed": "#cce5ff", "on-tertiary-fixed": "#40000c", "primary-fixed": "#9cf2e8", "on-error": "#ffffff", "surface-container-lowest": "#ffffff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "0.75rem", "margin-lg": "2rem", "space-sm": "0.5rem", "margin": "1rem", "space-lg": "1.25rem", "gutter-lg": "1.5rem", "space-xs": "0.25rem", "margin-md": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, fontFamily: { "headline-xl-mobile": ["Space Grotesk"], "label-md": ["Geist"], "headline-xl": ["Space Grotesk"], "label-sm": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "body-lg": ["Geist"], "label-lg": ["Geist"], "body-md": ["Geist"], "headline-lg": ["Space Grotesk"], "body-sm": ["Geist"] }, fontSize: { "headline-xl-mobile": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "38px", letterSpacing: "-0.03em", fontWeight: "600" }], "label-sm": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "600" }], "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "500" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-lg": ["14px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-lg": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="FixFlow Brand Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrA7neyvcwVRl6BEuIYY-mMeiwsGo4WgciMq8wQIFOvbZN13qvog8zWXTD9A5kCPd0UqqZj-v0rAWfC_ihCuwI-pN-ru8YpzdMa6-P7qqnrrCh9aXLOXdXYDsqxXHm3vNUytncbHkfOKjL7JcvB2kOcRKoZMD-DnooIj3B9DBdPT_o3z5W6fWDo0f2O5UdTNdjfx3nI2xLrI9OzJQUFHXSJ6gBeGbUo-liTNKq7b4I-2"/><div class="flex flex-col min-w-0"><span class="font-headline-md text-headline-md tracking-tight text-on-surface truncate leading-tight">FixFlow</span><button class="flex items-center gap-space-xs text-left group min-w-0"><span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold truncate">All Portfolios (28 units)</span><span class="material-symbols-outlined text-[14px] text-primary shrink-0">arrow_drop_down</span></button></div></div><div class="flex items-center gap-space-sm shrink-0"><button aria-label="Notifications" class="relative w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-tertiary ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-background"><div class="flex flex-col w-full px-gutter pb-space-xl">
+<!-- Portfolio Health Ribbon (Moments of Delight: Live telemetry pulse) -->
+<div class="mt-space-md bg-surface-container-lowest p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex h-2 w-2 bg-primary"></span>
+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Live Portfolio Telemetry</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold px-space-xs py-0.5 bg-surface-container">SYSTEM OPTIMAL</span>
+</div>
+<div class="flex items-baseline justify-between mt-1">
+<div>
+<p class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight">94<span class="text-primary text-[18px] font-normal">%</span></p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Occupancy Rate</p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-on-surface font-semibold">32 Units</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">4 Active Properties</p>
+</div>
+</div>
+<!-- Micro Health Sparkline Strip -->
+<div class="mt-space-md pt-space-xs flex items-center justify-between gap-1">
+<div class="flex-1 bg-primary h-1.5" title="Occupied: 30 Units"></div>
+<div class="flex-1 bg-primary h-1.5" title="Occupied: 30 Units"></div>
+<div class="flex-1 bg-primary h-1.5" title="Occupied: 30 Units"></div>
+<div class="w-4 bg-tertiary h-1.5" title="Turnover Prep: 2 Units"></div>
+<span class="ml-space-xs font-label-sm text-label-sm text-on-surface-variant shrink-0">30/32 Leased</span>
+</div>
+</div>
+<!-- KPI Metric Grid (2x2 architectural cards) -->
+<div class="grid grid-cols-2 gap-space-sm mt-space-md">
+<!-- 1. Active Tickets -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Active Tickets</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary">warning</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">7</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold bg-tertiary-fixed px-1">2 URGENT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Safety protocols active</p>
+<div class="absolute bottom-0 left-0 h-0.5 w-full bg-tertiary"></div>
+</div>
+<!-- 2. Resolution Time -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Resolution</span>
+<span class="material-symbols-outlined text-[18px] text-primary">bolt</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">36h</span>
+<span class="font-label-sm text-label-sm text-primary font-bold bg-surface-container px-1">↓ 18%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">MoM Velocity gain</p>
+<div class="absolute bottom-0 left-0 h-0.5 w-full bg-primary"></div>
+</div>
+<!-- 3. Awaiting Approval -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Pending Quotes</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">request_quote</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">3</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">$1,420 sum</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Apex &amp; Delta pending</p>
+<div class="absolute bottom-0 left-0 h-0.5 w-full bg-secondary"></div>
+</div>
+<!-- 4. Tenant Satisfaction -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Tenant CSAT</span>
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface">4.9</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/ 5.0</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary mt-space-xs flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">sentiment_very_satisfied</span> Top 3% percentile
+      </p>
+<div class="absolute bottom-0 left-0 h-0.5 w-full bg-primary-container"></div>
+</div>
+</div>
+<!-- Priority Attention Banner: Human-in-the-Loop Scout AI Module -->
+<div class="mt-space-md bg-surface-container-lowest shadow-sm overflow-hidden">
+<!-- Architectural Header Ribbon -->
+<div class="bg-tertiary px-space-md py-space-xs flex items-center justify-between text-on-tertiary">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] animate-pulse">priority_high</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Immediate Attention Required</span>
+</div>
+<span class="font-label-sm text-label-sm bg-tertiary-container text-on-tertiary-container px-1.5 py-0.5">SLA: 48m left</span>
+</div>
+<div class="p-space-md">
+<!-- Unit & Issue Details -->
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold truncate">Unit 4B — Main Drain Backup</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Oakridge Crest Highrise • Tenant: Marcus Vance</p>
+</div>
+<span class="shrink-0 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-2 py-0.5 uppercase font-bold tracking-wider">
+          Safety Hazard
+        </span>
+</div>
+<!-- Live Telemetry / Diagnostics Photo Container -->
+<div class="grid grid-cols-3 gap-space-xs mb-space-sm">
+<div class="relative bg-surface-container aspect-video overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="Technical plumbing diagnostic photo showing high-definition close-up of residential copper and PVC drain pipe with localized overflow leak under bathroom sink vanity, clear lighting, realistic operations log style, teal and cool gray accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUR95NRuHngfNLX8ahtPRhWbqZv5ezVc1PbHjjvk7KJfKa8GCP0KIuO5lgfYdZEIQiX-xAXZafSUSvefPvrgUOV6wvMPIT0u6eh6nP0nkNwHZrwVoSZE_DM98SVDujTMCYMrVGHHWCLJtZqjMRw-TfICVG8HeXtafDX221vCxBOEO7lDeAVkRN9KyW0qJaiEut093iAFoDOOU6OLzUk7xDgJAcNEnc_8gWjWQSL4A"/>
+<span class="absolute bottom-1 left-1 bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-[9px] px-1">CAM 01</span>
+</div>
+<div class="relative bg-surface-container aspect-video overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="Plumbing water pressure sensor gauge showing elevated psi meter reading in utility cabinet, crisp industrial lighting, architectural inspection photography, technical maintenance log visual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3XxXhjDa-6Pxp__aufjAoHqO2RbeRY817j1wdojF90F_koB5M7H-kJO6rx1AkO5PgqlEeB3pIp--E8GrUwNhT-58htxMT8G7NzN3f9cNIHgKGRXVK5H1zbSAgYYPeYz3gJFWb7CRhfocK1wKV7620wyfjNquXZhjb2TCjp8xrFJUG1-xBoaDjuvqUOO66myVP7mjTJyyYuEuZBm-XxOtACBud5Vck6J4FU--3wXo"/>
+<span class="absolute bottom-1 left-1 bg-inverse-surface/80 text-inverse-on-surface font-label-sm text-[9px] px-1">PSI GAUGING</span>
+</div>
+<div class="bg-surface-container p-space-xs flex flex-col justify-center text-center">
+<span class="font-label-sm text-label-sm text-tertiary font-bold">DETECTED</span>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">12.4 gal/hr</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant">Flow rate dev.</span>
+</div>
+</div>
+<!-- Scout AI Verification Box -->
+<div class="bg-surface-container-low p-space-sm mb-space-sm">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[16px]">smart_toy</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">Scout AI Diagnostics</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Confidence: 98.4%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+          Diagnostic telemetry indicates high-volume greywater stall in vertical riser. Immediate Tier-1 licensed hydro-jet trade dispatch required to prevent sub-floor egress.
+        </p>
+</div>
+<!-- Interactive Triage Buttons -->
+<div class="flex items-center gap-space-xs">
+<button class="flex-1 bg-primary text-on-primary font-label-lg text-label-lg py-2.5 px-space-sm flex items-center justify-center gap-space-xs hover:bg-primary-container transition-colors" id="dispatchTrigger" onclick="handleDispatch(this)">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Approve Auto-Dispatch</span>
+</button>
+<button class="bg-surface-container text-on-surface font-label-lg text-label-lg py-2.5 px-space-md hover:bg-surface-container-high transition-colors">
+          Override
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive Triage Workspace -->
+<div class="mt-space-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Triage Stream</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Real-time sync</span>
+</div>
+<!-- Filter Chips with tactile active states -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs no-scrollbar" id="filterBar">
+<button class="filter-chip px-space-sm py-1 bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm font-medium whitespace-nowrap active" data-category="all">
+        All (7)
+      </button>
+<button class="filter-chip px-space-sm py-1 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-medium whitespace-nowrap hover:bg-surface-container" data-category="unassigned">
+        Unassigned (2)
+      </button>
+<button class="filter-chip px-space-sm py-1 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-medium whitespace-nowrap hover:bg-surface-container" data-category="quoted">
+        Quoted (3)
+      </button>
+<button class="filter-chip px-space-sm py-1 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-medium whitespace-nowrap hover:bg-surface-container" data-category="in-progress">
+        In Progress (2)
+      </button>
+</div>
+<!-- Active Ticket List Items -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<!-- Item 1: Quoted -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm bg-surface-container text-secondary font-semibold px-1.5 py-0.5">QUOTED</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Unit 12C — HVAC Compressor Whine</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 truncate">Highland Lofts • Apex Mechanical: $480.00</p>
+</div>
+<button class="shrink-0 font-label-sm text-label-sm bg-primary text-on-primary px-space-sm py-1.5 font-medium hover:bg-primary-container">
+          Review
+        </button>
+</div>
+<!-- Item 2: In Progress -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm bg-surface-container text-primary font-semibold px-1.5 py-0.5">ON SITE</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Unit 08A — Smart Lock Offline</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 truncate">Bayview Terraces • Tech: Marcus J. (ETA 14m)</p>
+</div>
+<span class="shrink-0 material-symbols-outlined text-[20px] text-primary">directions_run</span>
+</div>
+<!-- Item 3: Unassigned -->
+<div class="bg-surface-container-lowest p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed font-semibold px-1.5 py-0.5">UNASSIGNED</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">Unit 03F — Water Heater Anode Rod</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 truncate">Oakridge Crest • Scheduled lifecycle maintenance</p>
+</div>
+<button class="shrink-0 font-label-sm text-label-sm bg-surface-container text-on-surface px-space-sm py-1.5 font-medium hover:bg-surface-container-high">
+          Assign
+        </button>
+</div>
+</div>
+</div>
+<!-- Recent Operational Activity Ledger -->
+<div class="mt-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Audit Ledger</h2>
+<button class="font-label-sm text-label-sm text-primary font-medium hover:underline flex items-center gap-0.5">
+        Export Log <span class="material-symbols-outlined text-[14px]">download</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest p-space-md shadow-sm">
+<div class="relative pl-space-lg flex flex-col gap-space-md">
+<!-- Vertical timeline spine -->
+<div class="absolute top-2 bottom-2 left-2.5 w-0.5 bg-surface-container-highest"></div>
+<!-- Ledger 1: Tenant Verification Complete -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-space-lg w-5 h-5 bg-primary text-on-primary flex items-center justify-center rounded-full mt-0.5">
+<span class="material-symbols-outlined text-[12px]">done_all</span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Unit 2A Completion Confirmed</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">12m ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Tenant Elena Rostova signed off on kitchen faucet cartridge replacement. Rated 5/5 stars.
+            </p>
+</div>
+</div>
+<!-- Ledger 2: Quote Submission -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-space-lg w-5 h-5 bg-secondary text-on-secondary flex items-center justify-center rounded-full mt-0.5">
+<span class="material-symbols-outlined text-[12px]">receipt_long</span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Quote Received • Apex Plumbing</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">42m ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              $480.00 for HVAC secondary drain pan line flush. Automated price verification verified below median cost.
+            </p>
+</div>
+</div>
+<!-- Ledger 3: Dispatch Activated -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-space-lg w-5 h-5 bg-inverse-surface text-inverse-on-surface flex items-center justify-center rounded-full mt-0.5">
+<span class="material-symbols-outlined text-[12px]">send</span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Contractor Dispatched</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1h 15m ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Metro Core Electrician assigned to Unit 10C panel load trip. Keycode generated with 2h expiration.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Delighter Floating Tactical Action Bar -->
+<div class="mt-space-lg sticky bottom-2 z-40 bg-surface-container-lowest/95 backdrop-blur-md p-space-xs shadow-xl flex items-center gap-space-xs">
+<button class="flex-1 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md py-3 px-space-sm flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" onclick="triggerScoutSweep(this)">
+<span class="material-symbols-outlined text-[18px] text-primary">auto_fix_high</span>
+<span>Run Scout AI Triage</span>
+</button>
+<button class="flex-1 bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-3 px-space-sm flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]" onclick="createNewOrderModal()">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ New Work Order</span>
+</button>
+</div>
+<!-- Subtle Micro-Feedback Toast (Triggered by interactions) -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-space-md py-space-xs font-label-sm text-label-sm shadow-xl transition-all duration-300 pointer-events-none opacity-0 translate-y-2 z-50 flex items-center gap-2" id="toastFeedback">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">check_circle</span>
+<span id="toastMessage">Scout AI telemetry audit completed</span>
+</div>
+</div>
+<script>
+  function showToast(msg) {
+    const toast = document.getElementById('toastFeedback');
+    const label = document.getElementById('toastMessage');
+    if (!toast || !label) return;
+    label.textContent = msg;
+    toast.classList.remove('opacity-0', 'translate-y-2');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'translate-y-2');
+      toast.classList.remove('opacity-100', 'translate-y-0');
+    }, 2400);
+  }
+
+  function handleDispatch(btn) {
+    btn.disabled = true;
+    btn.classList.add('opacity-75');
+    btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> <span>Dispatching Prime Hydro-Jet...</span>`;
+    setTimeout(() => {
+      btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">done</span> <span>Dispatched: Metro Drain Co.</span>`;
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-surface-container', 'text-on-surface');
+      showToast('Work order #WO-4819 created & vendor en route');
+    }, 1200);
+  }
+
+  function triggerScoutSweep(btn) {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin text-primary">sync</span> <span>Analyzing 32 Telemetry Nodes...</span>`;
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      showToast('All 4 properties synchronized. No new anomalies.');
+    }, 1400);
+  }
+
+  function createNewOrderModal() {
+    showToast('Work Order Composer initialized');
+  }
+
+  // Filter chips micro-interaction
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      document.querySelectorAll('.filter-chip').forEach(c => {
+        c.classList.remove('bg-inverse-surface', 'text-inverse-on-surface');
+        c.classList.add('bg-surface-container-lowest', 'text-on-surface');
+      });
+      this.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+      this.classList.add('bg-inverse-surface', 'text-inverse-on-surface');
+      showToast('Filter adjusted to ' + this.textContent.trim());
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_10px_rgba(0,0,0,0.03)]" data-active-classes="text-primary font-semibold"><div class="h-16 px-gutter flex items-center justify-around"><a aria-current="page" class="relative flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-primary font-semibold" data-path="inbox" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">inbox</span><span class="absolute -top-1 -right-2.5 px-1 min-w-[14px] h-3.5 flex items-center justify-center rounded-full bg-tertiary text-on-tertiary font-label-sm text-[9px] leading-none font-bold">4</span></div><span class="font-label-sm text-label-sm tracking-tight">Inbox</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="properties" href="#"><span class="material-symbols-outlined text-[22px]">apartment</span><span class="font-label-sm text-label-sm tracking-tight">Properties</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="timeline" href="#"><span class="material-symbols-outlined text-[22px]">view_timeline</span><span class="font-label-sm text-label-sm tracking-tight">Timeline</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="flow-ai" href="#"><span class="material-symbols-outlined text-[22px]">smart_toy</span><span class="font-label-sm text-label-sm tracking-tight">Flow AI</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="analytics" href="#"><span class="material-symbols-outlined text-[22px]">query_stats</span><span class="font-label-sm text-label-sm tracking-tight">Analytics</span></a></div></nav></body></html>

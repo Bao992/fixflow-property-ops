@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-highest": "#dae2fd", "on-primary-fixed-variant": "#00504a", "on-error-container": "#93000a", "surface-container-high": "#e2e7ff", "surface-container-low": "#f2f3ff", "tertiary": "#a6002f", "on-primary-fixed": "#00201d", "background": "#faf8ff", "on-tertiary-fixed-variant": "#920028", "surface-bright": "#faf8ff", "outline-variant": "#bdc9c6", "inverse-surface": "#283044", "on-tertiary": "#ffffff", "outline": "#6e7977", "tertiary-fixed": "#ffdada", "primary-container": "#0f766e", "on-secondary-container": "#00476e", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#004b73", "surface-dim": "#d2d9f4", "error": "#ba1a1a", "secondary-fixed-dim": "#93ccff", "secondary": "#006398", "inverse-on-surface": "#eef0ff", "on-surface-variant": "#3e4947", "primary": "#005c55", "secondary-container": "#5bb8fe", "tertiary-fixed-dim": "#ffb3b6", "surface": "#faf8ff", "on-secondary": "#ffffff", "surface-container": "#eaedff", "on-surface": "#131b2e", "surface-tint": "#006a63", "on-primary-container": "#a3faef", "primary-fixed-dim": "#80d5cb", "surface-variant": "#dae2fd", "on-tertiary-container": "#ffe4e4", "inverse-primary": "#80d5cb", "tertiary-container": "#d2093f", "on-background": "#131b2e", "error-container": "#ffdad6", "on-secondary-fixed": "#001d31", "secondary-fixed": "#cce5ff", "on-tertiary-fixed": "#40000c", "primary-fixed": "#9cf2e8", "on-error": "#ffffff", "surface-container-lowest": "#ffffff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-md": "0.75rem", "margin-lg": "2rem", "space-sm": "0.5rem", "margin": "1rem", "space-lg": "1.25rem", "gutter-lg": "1.5rem", "space-xs": "0.25rem", "margin-md": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, fontFamily: { "headline-xl-mobile": ["Space Grotesk"], "label-md": ["Geist"], "headline-xl": ["Space Grotesk"], "label-sm": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "body-lg": ["Geist"], "label-lg": ["Geist"], "body-md": ["Geist"], "headline-lg": ["Space Grotesk"], "body-sm": ["Geist"] }, fontSize: { "headline-xl-mobile": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "headline-xl": ["32px", { lineHeight: "38px", letterSpacing: "-0.03em", fontWeight: "600" }], "label-sm": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "600" }], "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "500" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }], "label-lg": ["14px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-lg": ["24px", { lineHeight: "30px", letterSpacing: "-0.02em", fontWeight: "600" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><img alt="FixFlow Brand Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/ALJJyrA7neyvcwVRl6BEuIYY-mMeiwsGo4WgciMq8wQIFOvbZN13qvog8zWXTD9A5kCPd0UqqZj-v0rAWfC_ihCuwI-pN-ru8YpzdMa6-P7qqnrrCh9aXLOXdXYDsqxXHm3vNUytncbHkfOKjL7JcvB2kOcRKoZMD-DnooIj3B9DBdPT_o3z5W6fWDo0f2O5UdTNdjfx3nI2xLrI9OzJQUFHXSJ6gBeGbUo-liTNKq7b4I-2"/><div class="flex flex-col min-w-0"><span class="font-headline-md text-headline-md tracking-tight text-on-surface truncate leading-tight">FixFlow</span><button class="flex items-center gap-space-xs text-left group min-w-0"><span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold truncate">All Portfolios (28 units)</span><span class="material-symbols-outlined text-[14px] text-primary shrink-0">arrow_drop_down</span></button></div></div><div class="flex items-center gap-space-sm shrink-0"><button aria-label="Notifications" class="relative w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-tertiary ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-background"><div class="flex flex-col w-full pb-6">
+<!-- Command Sticky Sub-Header -->
+<div class="px-gutter pt-space-md pb-space-sm bg-surface flex flex-col gap-space-sm shadow-sm">
+<div class="flex items-baseline justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-on-surface tracking-tight">Maintenance Inbox</h1>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mt-0.5">
+          7 Active • <span class="text-tertiary font-bold">2 Unread Incidents</span>
+</p>
+</div>
+<button class="px-space-sm py-1 bg-surface-container hover:bg-surface-container-high transition-colors rounded text-primary font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1" id="batch-triage-toggle">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>Filter Grid</span>
+</button>
+</div>
+<!-- Search Input Command Box -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full h-11 pl-10 pr-10 bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/70 font-body-md text-body-md rounded focus:outline-none focus:bg-surface-container-lowest focus:ring-0 focus:shadow-[0_0_0_2px_rgba(0,92,85,0.2)] transition-all" id="inbox-search" placeholder="Search unit, tenant, issue or vendor..." type="text"/>
+<button class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] hover:text-on-surface">qr_code_scanner</button>
+</div>
+<!-- Horizontal Scrollable Segment Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar -mx-gutter px-gutter py-1">
+<button class="filter-pill shrink-0 h-8 px-3 rounded bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm" data-filter="all">
+<span>All</span>
+<span class="px-1.5 py-0.2 rounded-full bg-primary-container text-on-primary-container font-label-sm text-[10px]">7</span>
+</button>
+<button class="filter-pill shrink-0 h-8 px-3 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors" data-filter="safety">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>High Priority / Safety</span>
+<span class="px-1.5 py-0.2 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[10px]">2</span>
+</button>
+<button class="filter-pill shrink-0 h-8 px-3 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors" data-filter="triage">
+<span>Needs Triage</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface font-label-sm text-[10px]">2</span>
+</button>
+<button class="filter-pill shrink-0 h-8 px-3 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors" data-filter="quote">
+<span>Awaiting Quote</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface font-label-sm text-[10px]">2</span>
+</button>
+<button class="filter-pill shrink-0 h-8 px-3 rounded bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center gap-1.5 transition-colors" data-filter="scheduled">
+<span>Scheduled</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface font-label-sm text-[10px]">1</span>
+</button>
+</div>
+</div>
+<!-- Operational Diagnostics Status Banner -->
+<div class="px-gutter pt-space-sm pb-space-xs">
+<div class="bg-surface-container-low p-2.5 rounded flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">bolt</span>
+<span class="font-label-md text-label-md text-on-surface">Auto-Triage Active</span>
+</div>
+<div class="flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant">
+<span>Avg. Dispatch: <strong class="text-primary font-semibold">14m</strong></span>
+<span>•</span>
+<span>Resolution Rate: <strong class="text-on-surface font-semibold">96.2%</strong></span>
+</div>
+</div>
+</div>
+<!-- Request Cards Matrix -->
+<div class="px-gutter flex flex-col gap-space-md mt-space-xs">
+<!-- Card 1 (CRITICAL URGENT): Water Leak -->
+<article class="ticket-card bg-surface-container-lowest rounded shadow-md overflow-hidden relative" data-category="safety">
+<!-- Urgent Accent Edge Stripe -->
+<div class="absolute top-0 left-0 bottom-0 w-1.5 bg-tertiary"></div>
+<div class="pl-4 pr-3.5 py-3.5 flex flex-col gap-space-sm">
+<!-- Top Metadata Row: Status Dot, SLA, Unit Tag, Timestamp -->
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary shrink-0 animate-ping"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold bg-tertiary text-on-tertiary px-1.5 py-0.5 rounded shrink-0">
+              URGENT T-1
+            </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface truncate">
+              Unit 4B
+            </span>
+</div>
+<!-- Strict SLA Countdown Badge -->
+<div class="flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded font-label-sm text-label-sm shrink-0 shadow-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">timer</span>
+<span>38m SLA BREACH</span>
+</div>
+</div>
+<!-- Issue Title -->
+<div class="flex flex-col gap-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold leading-snug">
+            Water leaking through ceiling under bathroom fixture
+          </p>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<div class="w-5 h-5 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[10px]">
+              SJ
+            </div>
+<span>Sarah Jenkins</span>
+<span>•</span>
+<span class="text-tertiary font-medium">Reported 22m ago</span>
+</div>
+</div>
+<!-- Diagnostic Photo Mini-Tape -->
+<div class="grid grid-cols-3 gap-2 py-1">
+<div class="relative h-16 bg-surface-container-high rounded overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="Close up detailed photo of water stains and ceiling drywall bubbling under a bathroom pipe in an apartment ceiling, clean realistic architectural maintenance photography, natural ambient light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp0WC-0CTagHKNIarragXoqagJKPa2ZVC9rwxg9UAcxL02kLs7QYy-5iZsjIIGOLnP_jMqtrHInF1-s4W-D2TPuwDJLuUZ15G3musOQONUYEKg1gYh2sFsHHPxAior5iguBrRLqnL5uPge7-LD6IyEBiJUmVIBUfUsoe9xNJIf_ng6AkpIt3LkefOmkGrUmjWbIYE4W9MCYPaP_BTM8z3RheKKcUxfUlP00H32QFA"/>
+<span class="absolute bottom-1 right-1 bg-on-surface/80 text-surface font-label-sm text-[9px] px-1 rounded">Ceiling</span>
+</div>
+<div class="relative h-16 bg-surface-container-high rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Photo of master bathroom plumbing trap under the sink with visible water condensation and drips in an upscale residential apartment unit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2_ITa5dpDgt-ajFILfnYYIm8TWQmLOAynbvYYu3Vqny5_Je6v_H8cWRWhlH8wxQAPF13whkVSX77tI_vt9zn4rESkP29FNbs1vAWNJC6VfOfg5bSPLBOPrkHuc-RQ5Lf4AisBYn3a7HocLi4zCxsvOykMWnBm_h47jShF-O2zPwGnJcK7qTrcA3V9B_V8ewLCZGp55iy54FYSLqsNlmRLrzBjJJZ8Ac4wX3KNWPs"/>
+<span class="absolute bottom-1 right-1 bg-on-surface/80 text-surface font-label-sm text-[9px] px-1 rounded">Fixture</span>
+</div>
+<div class="h-16 bg-surface-container-low rounded flex flex-col items-center justify-center text-primary hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">smart_display</span>
+<span class="font-label-sm text-[9px] uppercase font-bold mt-0.5">Tenant Audio</span>
+</div>
+</div>
+<!-- Structural Tag Cluster -->
+<div class="flex flex-wrap gap-1.5 items-center">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container font-label-sm text-label-sm rounded uppercase tracking-wide font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+            Safety Risk • Water
+          </span>
+<span class="px-2 py-0.5 bg-surface-container text-on-surface-variant font-label-sm text-label-sm rounded uppercase tracking-wide">
+            Plumbing
+          </span>
+<span class="px-2 py-0.5 bg-surface-container text-on-surface-variant font-label-sm text-label-sm rounded uppercase tracking-wide">
+            Level 4 Asset Risk
+          </span>
+</div>
+<!-- AI Human-in-the-Loop Diagnostic Ribbon -->
+<div class="bg-primary-fixed/20 p-2.5 rounded flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">Flow AI Recommendation</span>
+</div>
+<span class="font-label-sm text-[10px] text-primary bg-primary/10 px-1.5 py-0.2 rounded font-bold">98% Match</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+            Immediate water isolation required. Dispatched preferred vendor <strong class="text-primary">AquaPro Emergency</strong> (ETA 24 mins).
+          </p>
+<div class="flex items-center gap-2 mt-1">
+<button class="flex-1 h-8 bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md rounded flex items-center justify-center gap-1 shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Confirm &amp; Dispatch</span>
+</button>
+<button class="h-8 px-3 bg-surface-container text-on-surface font-label-md text-label-md rounded hover:bg-surface-container-high transition-colors">
+              Override
+            </button>
+</div>
+</div>
+<!-- Card Footprint Quick Actions -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded bg-surface-container-low text-on-surface flex items-center justify-center hover:bg-surface-container transition-colors" title="Direct Tenant Message">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="w-8 h-8 rounded bg-surface-container-low text-on-surface flex items-center justify-center hover:bg-surface-container transition-colors" title="Call Sarah">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</button>
+<button class="w-8 h-8 rounded bg-surface-container-low text-on-surface flex items-center justify-center hover:bg-surface-container transition-colors" title="Incident Log">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold tracking-tight">Active Leak Protocol</span>
+</div>
+</div>
+</article>
+<!-- Card 2: Electric Range Sparking -->
+<article class="ticket-card bg-surface-container-lowest rounded shadow-md overflow-hidden relative" data-category="triage">
+<div class="absolute top-0 left-0 bottom-0 w-1.5 bg-secondary"></div>
+<div class="pl-4 pr-3.5 py-3.5 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shrink-0"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded shrink-0">
+              High
+            </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface truncate">
+              Unit 12A
+            </span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high text-on-surface px-2 py-0.5 rounded font-label-sm text-label-sm shrink-0">
+<span class="material-symbols-outlined text-[13px]">timer</span>
+<span>2h 15m remaining</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold leading-snug">
+            Electric range burner sparking violently when toggled to high setting
+          </p>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<div class="w-5 h-5 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-bold text-[10px]">
+              DC
+            </div>
+<span>David Chen</span>
+<span>•</span>
+<span>Reported 2h ago</span>
+</div>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 items-center">
+<span class="px-2 py-0.5 bg-surface-container text-on-surface font-label-sm text-label-sm rounded uppercase tracking-wide">
+            Electrical Appliance
+          </span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm rounded uppercase tracking-wide font-medium">
+            Awaiting Contractor Selection
+          </span>
+</div>
+<!-- Action Row -->
+<div class="flex items-center justify-between pt-1 gap-2">
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded bg-surface-container-low text-on-surface flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="w-8 h-8 rounded bg-surface-container-low text-on-surface flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-8 px-3 bg-surface-container text-on-surface font-label-md text-label-md rounded hover:bg-surface-container-high transition-colors">
+              Self-Resolve Guide
+            </button>
+<button class="h-8 px-4 bg-primary text-on-primary font-label-md text-label-md rounded hover:bg-primary-container transition-colors shadow-sm font-medium">
+              Select Electrician
+            </button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3: HVAC Heat Pump -->
+<article class="ticket-card bg-surface-container-lowest rounded shadow-md overflow-hidden relative" data-category="quote">
+<div class="absolute top-0 left-0 bottom-0 w-1.5 bg-primary"></div>
+<div class="pl-4 pr-3.5 py-3.5 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-primary shrink-0"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold bg-surface-container text-on-surface px-1.5 py-0.5 rounded shrink-0">
+              Standard
+            </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface truncate">
+              Unit 1A
+            </span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-label-sm text-label-sm shrink-0">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+<span>Within SLA</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold leading-snug">
+            HVAC heat pump blowing cool air during night cycle
+          </p>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<div class="w-5 h-5 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-[10px]">
+              ER
+            </div>
+<span>Elena Rostova</span>
+<span>•</span>
+<span>Reported 5h ago</span>
+</div>
+</div>
+<!-- Tags & Quote Highlight -->
+<div class="flex flex-wrap gap-1.5 items-center">
+<span class="px-2 py-0.5 bg-surface-container text-on-surface font-label-sm text-label-sm rounded uppercase tracking-wide">
+            HVAC / Climate
+          </span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface font-label-sm text-label-sm rounded uppercase tracking-wide font-semibold">
+            Quote Received: $320
+          </span>
+<span class="px-2 py-0.5 bg-error-container text-on-error-container font-label-sm text-label-sm rounded uppercase tracking-wide">
+            Needs Owner Approval
+          </span>
+</div>
+<!-- Vendor Quotation Box -->
+<div class="bg-surface-container-low p-2.5 rounded flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">receipt_long</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Apex Air Services LLC</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Capacitor replacement + checkup</span>
+</div>
+</div>
+<button class="h-7 px-2.5 bg-primary text-on-primary font-label-sm text-label-sm rounded uppercase font-semibold">
+            1-Tap Approve
+          </button>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded bg-surface-container-low text-on-surface flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+<button class="w-8 h-8 rounded bg-surface-container-low text-on-surface flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+</button>
+</div>
+<button class="font-label-md text-label-md text-primary font-semibold hover:underline">
+            Request Second Estimate →
+          </button>
+</div>
+</div>
+</article>
+<!-- Card 4: Front Entrance Deadbolt -->
+<article class="ticket-card bg-surface-container-lowest rounded shadow-md overflow-hidden relative" data-category="scheduled">
+<div class="absolute top-0 left-0 bottom-0 w-1.5 bg-surface-container-highest"></div>
+<div class="pl-4 pr-3.5 py-3.5 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant shrink-0"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold bg-surface-container-low text-on-surface-variant px-1.5 py-0.5 rounded shrink-0">
+              Low Priority
+            </span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface truncate">
+              Unit 8C
+            </span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container text-on-surface px-2 py-0.5 rounded font-label-sm text-label-sm shrink-0">
+<span class="material-symbols-outlined text-[13px]">event_available</span>
+<span>Booked Tomorrow</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold leading-snug">
+            Front entrance heavy deadbolt sticking, key hard to turn
+          </p>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<div class="w-5 h-5 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-[10px]">
+              MK
+            </div>
+<span>Marcus Kane</span>
+<span>•</span>
+<span>Reported Yesterday</span>
+</div>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap gap-1.5 items-center">
+<span class="px-2 py-0.5 bg-surface-container text-on-surface font-label-sm text-label-sm rounded uppercase tracking-wide">
+            Carpentry / Locksmith
+          </span>
+<span class="px-2 py-0.5 bg-primary-fixed/30 text-primary font-label-sm text-label-sm rounded uppercase tracking-wide font-bold">
+            Vendor Scheduled: Tomorrow 10:00 AM
+          </span>
+</div>
+<!-- Scheduled Dispatch Bar -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Bay Lock &amp; Key</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Tech: Ronald Cooper</span>
+</div>
+</div>
+<button class="h-8 px-3 bg-surface-container text-on-surface font-label-md text-label-md rounded hover:bg-surface-container-high transition-colors">
+            Reschedule
+          </button>
+</div>
+</div>
+</article>
+<!-- Empty/End of Stream Feedback Pill -->
+<div class="py-space-md flex flex-col items-center justify-center text-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[24px]">task_alt</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">All 28 Portfolio Units Synced</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant/70">Scout AI running passive sensory telemetry</span>
+</div>
+</div>
+<!-- Interactive Script for Filtering and Triage Simulation -->
+<script>
+    (function initInboxInteractivity() {
+      const pills = document.querySelectorAll('.filter-pill');
+      const cards = document.querySelectorAll('.ticket-card');
+      const searchInput = document.getElementById('inbox-search');
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => {
+            p.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+            p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          });
+          pill.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+          pill.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+
+          const filterValue = pill.getAttribute('data-filter');
+          cards.forEach(card => {
+            if (filterValue === 'all') {
+              card.style.display = 'block';
+            } else {
+              const cat = card.getAttribute('data-category');
+              card.style.display = (cat === filterValue) ? 'block' : 'none';
+            }
+          });
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase();
+          cards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            card.style.display = text.includes(query) ? 'block' : 'none';
+          });
+        });
+      }
+    })();
+  </script>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_10px_rgba(0,0,0,0.03)]" data-active-classes="text-primary font-semibold"><div class="h-16 px-gutter flex items-center justify-around"><a aria-current="page" class="relative flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-primary font-semibold" data-path="inbox" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">inbox</span><span class="absolute -top-1 -right-2.5 px-1 min-w-[14px] h-3.5 flex items-center justify-center rounded-full bg-tertiary text-on-tertiary font-label-sm text-[9px] leading-none font-bold">4</span></div><span class="font-label-sm text-label-sm tracking-tight">Inbox</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="properties" href="#"><span class="material-symbols-outlined text-[22px]">apartment</span><span class="font-label-sm text-label-sm tracking-tight">Properties</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="timeline" href="#"><span class="material-symbols-outlined text-[22px]">view_timeline</span><span class="font-label-sm text-label-sm tracking-tight">Timeline</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="flow-ai" href="#"><span class="material-symbols-outlined text-[22px]">smart_toy</span><span class="font-label-sm text-label-sm tracking-tight">Flow AI</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="analytics" href="#"><span class="material-symbols-outlined text-[22px]">query_stats</span><span class="font-label-sm text-label-sm tracking-tight">Analytics</span></a></div></nav></body></html>
