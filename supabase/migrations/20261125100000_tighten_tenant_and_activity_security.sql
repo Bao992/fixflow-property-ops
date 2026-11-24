@@ -188,6 +188,13 @@ begin
     end if;
   end if;
 
+  -- Reopening a completed request clears its previous verification fields.
+  -- A later completion must be verified again by the authenticated manager.
+  if old.status = 'Completed' and new.status <> 'Completed' then
+    new.verified_by := null;
+    new.verified_at := null;
+  end if;
+
   if new.status = 'Completed' then
     if old.status = 'Completed' then
       -- Preserve the original verification record when editing an already
