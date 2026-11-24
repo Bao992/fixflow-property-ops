@@ -1,35 +1,135 @@
-import { useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import type { Session } from "@supabase/supabase-js";
+import { isSupabaseConfigured, supabase } from "./lib/supabase";
+import { ManagerDashboard } from "./ManagerDashboard";
 
-const navItems = ["Overview", "Maintenance Requests", "Properties & Units", "Contractors", "AI Operations", "Insights", "Settings"];
-const workOrders = [
-  { unit: "Unit 4B — Active Water Ingress & Drain Surge", property: "Oakridge Crest Highrise", tenant: "Sarah Lindqvist", priority: "Critical", owner: "Marcus Vance", next: "Review & approve contractor estimate", tone: "red" },
-  { unit: "Unit 7D — HVAC Compressor Failure / Heat Stress", property: "Highland Lofts", tenant: "Elena Ward", priority: "High", owner: "Marcus Vance", next: "Review landlord approval", tone: "amber" },
-  { unit: "Unit 12C — HVAC Compressor Noise", property: "Oakridge Crest", tenant: "Alicia Reed", priority: "Medium", owner: "M. Vance", next: "Track contractor visit", tone: "blue" }
-];
+type AppRole = "manager" | "tenant";
+type Profile = { id: string; role: AppRole; display_name: string | null };
+
+function AuthScreen() {
+  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState("");
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!supabase) return;
+    setBusy(true);
+    setMessage("");
+    try {
+      if (mode === "signup") {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: { data: { display_name: name.trim() } },
+        });
+        if (error) throw error;
+        setMessage(data.session
+          ? "Your account has been created. Your access is set to Tenant until a manager links your account to a unit."
+          : "Check your email to confirm your account. Your access will be Tenant by default until a manager links you to a unit.");
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      }
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "We could not complete that request. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return <main className="auth-layout">
+    <section className="auth-story">
+      <div className="auth-brand"><span className="brand-mark">F</span><span><b>FixFlow</b><small>PROPERTY OPERATIONS</small></span></div>
+      <div className="auth-story-copy">
+        <span className="eyebrow">PROPERTY CARE, IN MOTION</span>
+        <h1>Every issue has an owner.<br/><em>Every resolution has a record.</em></h1>
+        <p>One calm, accountable workspace for maintenance requests, people and properties.</p>
+        <div className="auth-proof"><span>01</span><div><b>Clear ownership</b><small>Know who is responsible and what happens next.</small></div></div>
+        <div className="auth-proof"><span>02</span><div><b>Human-led decisions</b><small>AI assists. Property managers stay in control.</small></div></div>
+      </div>
+      <div className="auth-story-foot">FIXFLOW · HUMAN-LED PROPERTY OPERATIONS</div>
+    </section>
+    <section className="auth-panel-wrap">
+      <div className="auth-panel">
+        <div className="mobile-auth-brand"><span className="brand-mark">F</span><b>FixFlow</b></div>
+        <span className="eyebrow">{mode === "signin" ? "WELCOME BACK" : "GET STARTED"}</span>
+        <h2>{mode === "signin" ? "Sign in to FixFlow" : "Create your account"}</h2>
+        <p className="auth-subtitle">{mode === "signin" ? "Continue to your property operations workspace." : "Create a resident account to report and follow maintenance."}</p>
+        <form onSubmit={submit} className="auth-form">
+          {mode === "signup" && <label>Full name<input autoComplete="name" value={name} onChange={e => setName(e.target.value)} placeholder="Your name" required minLength={2}/></label>}
+          <label>Email address<input type="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" required/></label>
+          <label>Password<input type="password" autoComplete={mode === "signin" ? "current-password" : "new-password"} value={password} onChange={e => setPassword(e.target.value)} placeholder="At least 8 characters" required minLength={8}/></label>
+          <button className="auth-submit" type="submit" disabled={busy}>{busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Create tenant account"}<span>→</span></button>
+        </form>
+        {message && <div className="auth-message" role="status">{message}</div>}
+        <p className="auth-switch">{mode === "signin" ? "New to FixFlow?" : "Already have an account?"} <button type="button" onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setMessage(""); }}>{mode === "signin" ? "Create an account" : "Sign in"}</button></p>
+        <div className="auth-security"><span>⌑</span> Your account and property access are protected by role-based security.</div>
+      </div>
+    </section>
+  </main>;
+}
+
+function TenantWorkspace({ profile, onSignOut }: { profile: Profile; onSignOut: () => void }) {
+  return <main className="tenant-shell">
+    <header className="tenant-topbar"><div className="auth-brand"><span className="brand-mark">F</span><span><b>FixFlow</b><small>RESIDENT PORTAL</small></span></div><div className="tenant-user"><span>{profile.display_name || "Resident"}</span><button onClick={onSignOut}>Sign out</button></div></header>
+    <section className="tenant-welcome"><span className="eyebrow">YOUR HOME, YOUR UPDATES</span><h1>Hello{profile.display_name ? `, ${profile.display_name.split(" ")[0]}` : ""}.</h1><p>Report a maintenance issue and stay informed as it moves towards resolution.</p></section>
+    <section className="tenant-empty"><div className="tenant-empty-icon">⌂</div><h2>Your resident workspace is ready</h2><p>Your property manager must link your account to a unit before your maintenance requests and property details appear here.</p><span className="tenant-role">TENANT ACCESS · VERIFIED BY YOUR ACCOUNT PROFILE</span></section>
+    <footer className="tenant-footer">FIXFLOW · Your maintenance journey, clearly tracked.</footer>
+  </main>;
+}
 
 function App() {
-  const [active, setActive] = useState("Overview");
-  const [showNew, setShowNew] = useState(false);
-  return <div className="app-shell">
-    <aside className="sidebar">
-      <div className="brand"><span className="brand-mark">F</span><span><b>FixFlow</b><small>OPS TELEMATICS</small></span><span className="pro">PRO</span></div>
-      <p className="nav-label">SYSTEM NAVIGATION</p>
-      <nav>{navItems.map((item, index) => <button key={item} className={active === item ? "nav-item selected" : "nav-item"} onClick={() => setActive(item)}><span>{["▦","◷","▤","♧","✣","⌁","⚙"][index]}</span>{item}{item === "AI Operations" && <em>LIVE</em>}{item === "Maintenance Requests" && <strong>7</strong>}</button>)}</nav>
-      <div className="sidebar-foot"><span className="online-dot"/> System operational <b>v0.1.0</b></div>
-    </aside>
-    <main className="main">
-      <header className="topbar"><div className="property-select">▦ &nbsp; All Properties (32 Units)⌄</div><input aria-label="Search" placeholder="Search units, work orders, contractors, serials..." /><button className="icon-button" aria-label="Notifications">♧</button><div className="profile"><span className="avatar">MV</span><span><b>Marcus Vance</b><small>Property Manager</small></span></div></header>
-      <section className="page-heading"><div><h1>{active === "Overview" ? "Operations Command & Triage" : active}</h1><p>Live resolution tracking across 32 units · Marcus Vance (Lead Property Manager)</p><span className="live-pill"><i/> Telemetry Active · Automated Sync in 4m</span></div><div className="heading-actions"><button className="secondary">⇩ Export Ledger</button><button className="secondary">☷ Batch Triage</button><button className="primary" onClick={() => setShowNew(true)}>＋ New Maintenance Order</button></div></section>
-      <section className="metrics">
-        {[["ACTIVE WORK ORDERS","7","5 In Progress","2 In Triage","normal"],["IMMINENT SLA RISKS","2","NEARING BREACH","Unit 4B (<38m) · Unit 7D","red"],["PENDING APPROVALS","3","Total Over-Cap","$1,630.00","amber"],["AWAITING VERIFICATION","2","Tenant sign-off pending","1 Ready for Close","green"],["PORTFOLIO VELOCITY","34.2h","91% 1st-Fix","-4.1h vs resolution goal","normal"]].map(([label,value,a,b,tone]) => <article className="metric-card" key={label}><div className="metric-label">{label}</div><div className={"metric-value "+tone}>{value}</div><div className="metric-foot"><span>{a}</span><b>{b}</b></div></article>)}
-      </section>
-      <div className="section-title"><h2>⚠ Needs Your Attention: Operational Blockers</h2><span>2 Critical Overrides Required</span></div>
-      <section className="blockers">{workOrders.slice(0,2).map(order => <article className={"blocker "+order.tone} key={order.unit}><div className="chips"><span>{order.priority.toUpperCase()} PRIORITY</span><span>OWNER: {order.owner}</span></div><h3>{order.unit}</h3><p>{order.property} · Tenant {order.tenant}</p><div className="blocker-note"><b>CURRENT BLOCKER</b><p>{order.tone === "red" ? "Contractor estimate exceeds the manager's automatic approval threshold. Manager review is required before dispatch." : "Landlord approval is pending. Follow-up is required before the contractor can proceed."}</p><b>NEXT REQUIRED ACTION</b><p>{order.next}</p></div><div className="card-actions"><button className="primary">{order.tone === "red" ? "Review Approval" : "Review Quote"}</button><button className="secondary">Open Workspace →</button></div></article>)}</section>
-      <section className="lower-grid"><article className="panel"><div className="panel-heading"><h2>▤ Triage & Work Order Stream</h2><span>Real-time sync <i className="online-dot"/></span></div><div className="tabs"><button className="tab-active">All Active (7)</button><button>Urgent / SLA (2)</button><button>Awaiting Approval (3)</button><button>Awaiting Verification (2)</button></div><div className="orders">{workOrders.map(order =><div className="order-row" key={order.unit}><div><b>{order.unit}</b><small>{order.property}</small></div><span className={"status "+order.tone}>{order.priority}</span><span>{order.owner}</span><button className="text-button">Open →</button></div>)}</div></article><aside className="panel ai-panel"><div className="panel-heading"><h2>✣ Flow AI — Operations Coordinator</h2><span className="ai-tag">ADVISORY</span></div><p>Flow monitors and advises. Managers decide.</p><div className="ai-suggestion"><b>STALLED WORK · REVIEW REQUIRED</b><p>Unit 7D HVAC Compressor: landlord approval has been pending for 48 hours.</p><button className="secondary">Review recommendation</button></div><div className="ai-suggestion scout"><b>SCOUT AI — DIAGNOSTIC INTELLIGENCE</b><p>Unit 4B leak report suggests an urgent plumbing assessment. Human review required.</p><button className="secondary">Open Scout analysis</button></div></aside></section>
-      <footer>FIXFLOW · HUMAN-LED OPERATIONS · AI RECOMMENDATIONS REQUIRE MANAGER REVIEW</footer>
-    </main>
-    {showNew && <div className="modal-backdrop" role="presentation"><section className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button className="close" onClick={() => setShowNew(false)}>×</button><h2 id="modal-title">New Maintenance Order</h2><p>Start a maintenance request for a managed unit.</p><label>Unit reference<input placeholder="e.g. Oakridge Crest · Unit 4B"/></label><label>Issue summary<input placeholder="Describe the maintenance issue"/></label><div className="modal-actions"><button className="secondary" onClick={() => setShowNew(false)}>Cancel</button><button className="primary" onClick={() => setShowNew(false)}>Save draft</button></div></section></div>}
-  </div>;
+  const [session, setSession] = useState<Session | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [profileError, setProfileError] = useState("");
+
+  useEffect(() => {
+    const client = supabase;
+    if (!client) { setLoading(false); return; }
+    let alive = true;
+    const loadProfile = async (current: Session | null) => {
+      if (!current) {
+        if (alive) { setSession(null); setProfile(null); setProfileError(""); setLoading(false); }
+        return;
+      }
+      if (alive) { setSession(current); setLoading(true); }
+      const { data, error } = await client.from("profiles").select("id, role, display_name").eq("id", current.user.id).single();
+      if (!alive) return;
+      if (error) {
+        setProfile(null);
+        setProfileError("We could not load your access profile. Please contact your property manager or try again.");
+      } else if (data.role !== "manager" && data.role !== "tenant") {
+        setProfile(null);
+        setProfileError("Your account has an unsupported access role.");
+      } else {
+        setProfile(data as Profile);
+        setProfileError("");
+      }
+      setLoading(false);
+    };
+    client.auth.getSession().then(({ data }) => { void loadProfile(data.session); });
+    const { data: listener } = client.auth.onAuthStateChange((_event, nextSession) => {
+      void loadProfile(nextSession);
+    });
+    return () => { alive = false; listener.subscription.unsubscribe(); };
+  }, []);
+
+  async function signOut() {
+    if (supabase) await supabase.auth.signOut();
+  }
+
+  if (!isSupabaseConfigured) return <main className="config-screen"><div className="config-card"><span className="brand-mark">F</span><h1>One quick setup step</h1><p>FixFlow needs its Supabase project settings before authentication can start.</p><code>client/.env.local</code><p>Add your project URL and publishable key, then restart the development server.</p></div></main>;
+  if (loading) return <main className="loading-screen"><span className="brand-mark">F</span><p>Preparing your secure workspace…</p></main>;
+  if (!session) return <AuthScreen />;
+  if (profileError || !profile) return <main className="config-screen"><div className="config-card"><span className="brand-mark">F</span><h1>Access setup required</h1><p>{profileError || "Your profile is not available yet."}</p><p>New accounts are created with Tenant access. A trusted administrator must provision Manager access.</p><button className="auth-submit" onClick={() => void signOut()}>Sign out</button></div></main>;
+  return profile.role === "manager"
+    ? <><div className="authenticated-banner"><span>Signed in as {profile.display_name || "Manager"}</span><button onClick={() => void signOut()}>Sign out</button></div><ManagerDashboard /></>
+    : <TenantWorkspace profile={profile} onSignOut={() => void signOut()} />;
 }
 
 export default App;
