@@ -24,6 +24,54 @@ function jsonResponse(body: unknown, status = 200) {
   });
 }
 
+const TRANSIENT_PROVIDER_STATUSES = new Set([429, 500, 502, 503, 504]);
+
+async function generateWithModel(
+  model: string,
+  apiKey: string,
+  prompt: string,
+  maxAttempts: number,
+): Promise<Response> {
+  let lastResponse: Response | null = null;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: "application/json", temperature: 0.2 },
+          }),
+        },
+      );
+
+      if (response.ok || !TRANSIENT_PROVIDER_STATUSES.has(response.status) || attempt === maxAttempts - 1) {
+        return response;
+      }
+
+      lastResponse = response;
+      const retryAfter = Number(response.headers.get("Retry-After"));
+      const delayMs = Number.isFinite(retryAfter) && retryAfter > 0
+        ? Math.min(retryAfter * 1000, 5000)
+        : 700 * (2 ** attempt);
+      await response.body?.cancel();
+      console.warn(`Scout model ${model} returned HTTP ${response.status}; retrying in ${delayMs}ms (attempt ${attempt + 1}/${maxAttempts}).`);
+      await new Promise(resolve => setTimeout(resolve, delayMs));
+    } catch (error) {
+      console.error(`Scout network error for model ${model}`, error);
+      if (attempt === maxAttempts - 1) {
+        throw error;
+      }
+      await new Promise(resolve => setTimeout(resolve, 700 * (2 ** attempt)));
+    }
+  }
+
+  return lastResponse ?? new Response("Provider request failed", { status: 503 });
+}
+
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   if (request.method !== "POST") return jsonResponse({ error: "Method not allowed" }, 405);
@@ -34,7 +82,8 @@ Deno.serve(async (request) => {
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
   const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
   const geminiKey = Deno.env.get("GEMINI_API_KEY");
-  const model = Deno.env.get("GEMINI_MODEL") ?? "gemini-2.5-flash";
+  const model = Deno.env.get("GEMINI_MODEL") ?? "gemini-3.5-flash-lite";
+  const fallbackModel = Deno.env.get("GEMINI_FALLBACK_MODEL") ?? "gemini-3.1-flash-lite";
   if (!supabaseUrl || !anonKey || !geminiKey) {
     return jsonResponse({ error: "Scout is not configured. Ask the administrator to check its server secrets." }, 503);
   }
@@ -91,18 +140,27 @@ Resident description: ${maintenance.description}
 Existing category: ${maintenance.category ?? "Not set"}
 Existing priority: ${maintenance.priority}`;
 
-    const modelResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(geminiKey)}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        generationConfig: { responseMimeType: "application/json", temperature: 0.2 },
-      }),
-    });
+    let modelUsed = model;
+    let modelResponse = await generateWithModel(model, geminiKey, prompt, 3);
+
+    if (!modelResponse.ok && TRANSIENT_PROVIDER_STATUSES.has(modelResponse.status) && fallbackModel && fallbackModel !== model) {
+      const primaryStatus = modelResponse.status;
+      const providerError = await modelResponse.text();
+      console.error("Scout primary model remained unavailable after retries", primaryStatus, providerError.slice(0, 500));
+      console.warn(`Scout switching to configured fallback model ${fallbackModel}.`);
+      modelUsed = fallbackModel;
+      modelResponse = await generateWithModel(fallbackModel, geminiKey, prompt, 2);
+    }
+
     if (!modelResponse.ok) {
       const providerError = await modelResponse.text();
-      console.error("Scout provider error", modelResponse.status, providerError.slice(0, 500));
-      return jsonResponse({ error: "Scout could not complete the analysis. Please try again later." }, 502);
+      console.error("Scout provider error", modelUsed, modelResponse.status, providerError.slice(0, 500));
+      const isTransient = TRANSIENT_PROVIDER_STATUSES.has(modelResponse.status);
+      return jsonResponse({
+        error: isTransient
+          ? "Scout is temporarily busy. Your request is safe; please try again in a few moments."
+          : "Scout could not complete the analysis. Please check the model configuration and try again.",
+      }, isTransient ? 503 : 502);
     }
 
     const modelPayload = await modelResponse.json();
@@ -136,7 +194,7 @@ Existing priority: ${maintenance.priority}`;
       request_id: maintenance.id,
       agent: "scout",
       provider: "google",
-      model,
+      model: modelUsed,
       input_summary: `${maintenance.title}: ${maintenance.description.slice(0, 1500)}`,
       structured_output: structuredOutput,
     }).select("id,created_at").single();
@@ -145,7 +203,7 @@ Existing priority: ${maintenance.priority}`;
       return jsonResponse({ error: "Analysis completed but could not be saved. Please check database permissions." }, 500);
     }
 
-    return jsonResponse({ analysis: structuredOutput, saved_at: saved.created_at });
+    return jsonResponse({ analysis: structuredOutput, saved_at: saved.created_at, model: modelUsed });
   } catch (error) {
     console.error("Scout unexpected error", error);
     return jsonResponse({ error: "Scout encountered an unexpected error." }, 500);
