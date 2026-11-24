@@ -151,12 +151,19 @@ begin
   end if;
 
   if new.status = 'Completed' then
-    if new.verified_by is distinct from (select auth.uid())
+    if old.status = 'Completed' then
+      -- Preserve the original verification record when editing an already
+      -- completed request; do not silently replace who verified it or when.
+      if new.verified_by is distinct from old.verified_by
+         or new.verified_at is distinct from old.verified_at then
+        raise exception 'Completion verification cannot be altered after completion';
+      end if;
+    elsif new.verified_by is distinct from (select auth.uid())
        or new.verified_at is null then
       raise exception 'Completion must be verified by the authenticated manager';
     end if;
   elsif new.verified_by is not null or new.verified_at is not null then
-    raise exception 'Verification fields may only be set when completing a request';
+    raise exception 'Clear completion verification when reopening a request';
   end if;
 
   return new;
