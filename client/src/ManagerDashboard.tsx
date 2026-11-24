@@ -122,7 +122,7 @@ export function ManagerDashboard() {
     const { data: userData } = await supabase.auth.getUser();
     const update: Record<string, string | null> = { status: nextStatus, updated_at: new Date().toISOString() };
     if (note) update.manager_notes = note;
-    if (nextStatus === "Completed") {
+    if (nextStatus === "Completed" && request.status !== "Completed") {
       if (!userData.user) { setNotice("Your manager session could not be verified."); setBusy(false); return; }
       update.verified_by = userData.user.id;
       update.verified_at = new Date().toISOString();
