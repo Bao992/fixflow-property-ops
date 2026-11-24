@@ -19,5 +19,7 @@ jobs:
         run: npm install
       - name: Typecheck
         run: npm run typecheck
+      - name: Install Rollup Linux native binary
+        run: npm install --no-save --package-lock=false @rollup/rollup-linux-x64-gnu@4.68.8
       - name: Build
         run: npm run build
