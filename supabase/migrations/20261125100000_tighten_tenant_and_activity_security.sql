@@ -71,7 +71,7 @@ returns trigger
 language plpgsql
 security invoker
 set search_path = ''
-as $
+as $$
 begin
   if new.unit_id is distinct from old.unit_id
      or new.tenant_id is distinct from old.tenant_id
