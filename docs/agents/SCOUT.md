@@ -4,21 +4,21 @@ Scout is an advisory-only maintenance triage assistant for FixFlow managers.
 
 ## Behaviour
 - Analyses one existing maintenance request at a time.
-- Suggests a category and priority, explains urgency, flags possible safety concerns, and proposes manager actions/questions.
+- Suggests a category and urgency, summarizes the report, flags possible safety concerns, and proposes manager actions and questions.
 - Treats resident descriptions as unverified reports and communicates uncertainty.
-- Never changes request status, dispatches contractors, contacts tenants, or approves spending.
+- Never changes request status or priority, dispatches contractors, contacts tenants, or approves spending.
 - Persists each result in `public.ai_analyses` with agent `scout`.
 
 ## Security
-The Edge Function validates the caller's Supabase access token, checks that the caller's profile role is `manager`, and verifies ownership of the property's maintenance request before sending any report to Gemini. The Gemini key and Supabase service-role key remain server-side secrets. The browser never receives either key.
+The deployed Edge Function is `scout-analyze`. It validates the caller's Supabase access token, checks that the caller's profile role is `manager`, and verifies that the caller manages the property associated with the request before sending report details to Gemini. It uses the caller's JWT and RLS for database access; it does not require or use a service-role key. The Gemini API key remains server-side.
 
 ## Deployment
 1. Set the Edge Function secret `GEMINI_API_KEY` in Supabase project secrets. Never commit it.
-2. Deploy the function named `scout` from `supabase/functions/scout`.
-3. Configure the function to verify JWTs (the handler also validates the user token).
-4. The frontend calls `supabase.functions.invoke("scout", { body: { request_id } })`.
+2. Deploy `supabase/functions/scout-analyze` with `supabase functions deploy scout-analyze`.
+3. Optionally set `GEMINI_MODEL` (default `gemini-2.5-flash`) and `SCOUT_ALLOWED_ORIGIN` to the exact deployed FixFlow origin.
+4. The manager frontend calls `supabase.functions.invoke("scout-analyze", { body: { request_id } })`.
 
-Supabase provides `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` to Edge Functions. Confirm these are present in the deployed function environment.
+Supabase provides `SUPABASE_URL` and `SUPABASE_ANON_KEY` to the Edge Function. No service-role secret is required.
 
 ## Limitations
 Scout output is AI-generated decision support, not a professional inspection, emergency service, diagnosis, or substitute for manager judgement. The manager must verify the report and decide what to do.
