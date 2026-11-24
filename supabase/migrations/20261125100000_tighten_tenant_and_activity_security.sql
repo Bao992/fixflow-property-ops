@@ -64,6 +64,44 @@ create policy "unit_tenants_manager_update"
   );
 -- No manager DELETE policy: retain tenancy history instead of erasing it.
 
+-- Tenancy links are historical records. A manager may end an active link,
+-- but cannot rewrite its parties/start date or reactivate an ended record.
+create or replace function public.guard_unit_tenant_link_update()
+returns trigger
+language plpgsql
+security invoker
+set search_path = ''
+as $
+begin
+  if new.unit_id is distinct from old.unit_id
+     or new.tenant_id is distinct from old.tenant_id
+     or new.start_at is distinct from old.start_at
+     or new.created_at is distinct from old.created_at then
+    raise exception 'Tenancy link identity and start date cannot be changed';
+  end if;
+
+  if (not old.active or old.end_at is not null)
+     and (new.active or new.end_at is null) then
+    raise exception 'An ended tenancy link cannot be reactivated; create a new link';
+  end if;
+
+  if not new.active and new.end_at is null then
+    new.end_at := now();
+  end if;
+
+  if new.active and new.end_at is not null then
+    raise exception 'An active tenancy link cannot have an end date';
+  end if;
+
+  return new;
+end;
+$;
+
+drop trigger if exists guard_unit_tenant_link_update on public.unit_tenants;
+create trigger guard_unit_tenant_link_update
+  before update on public.unit_tenants
+  for each row execute function public.guard_unit_tenant_link_update();
+
 -- Request activity is an audit trail. Managers can read and append events;
 -- neither managers nor tenants can rewrite or delete existing events.
 drop policy if exists "activity_manager_all" on public.request_activity;
