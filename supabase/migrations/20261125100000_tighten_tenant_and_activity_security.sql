@@ -35,18 +35,9 @@ create policy "unit_tenants_manager_select"
     public.current_app_role() = 'manager'
     and public.manages_unit(unit_id)
   );
-create policy "unit_tenants_manager_insert"
-  on public.unit_tenants for insert to authenticated
-  with check (
-    public.current_app_role() = 'manager'
-    and public.manages_unit(unit_id)
-    and exists (
-      select 1 from public.profiles p
-      where p.id = tenant_id and p.role = 'tenant'
-    )
-    and active = true
-    and end_at is null
-  );
+-- New tenancy links are created only through the SECURITY DEFINER
+-- manager_link_tenant_by_email() RPC, which validates the target role.
+-- No direct INSERT policy is granted to manager clients.
 create policy "unit_tenants_manager_update"
   on public.unit_tenants for update to authenticated
   using (
@@ -56,10 +47,6 @@ create policy "unit_tenants_manager_update"
   with check (
     public.current_app_role() = 'manager'
     and public.manages_unit(unit_id)
-    and exists (
-      select 1 from public.profiles p
-      where p.id = tenant_id and p.role = 'tenant'
-    )
     and (active = false or end_at is null)
   );
 -- No manager DELETE policy: retain tenancy history instead of erasing it.
