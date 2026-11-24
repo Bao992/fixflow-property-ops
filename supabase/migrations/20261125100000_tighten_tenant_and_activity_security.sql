@@ -95,7 +95,7 @@ begin
 
   return new;
 end;
-$;
+$$;
 
 drop trigger if exists guard_unit_tenant_link_update on public.unit_tenants;
 create trigger guard_unit_tenant_link_update
