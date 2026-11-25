@@ -149,22 +149,16 @@ select throws_ok(
   'manager cannot rewrite the identity of a tenancy link'
 );
 
-select is(
-  (with changed as (
-     update public.request_activity
-     set summary = 'tampered'
-     where id = '60000000-0000-4000-8000-000000000001'
-     returning 1
-   ) select count(*)::integer from changed),
+select row_count(
+  $update public.request_activity
+    set summary = 'tampered'
+    where id = '60000000-0000-4000-8000-000000000001'$,
   0,
   'manager cannot update an existing activity record'
 );
-select is(
-  (with removed as (
-     delete from public.request_activity
-     where id = '60000000-0000-4000-8000-000000000001'
-     returning 1
-   ) select count(*)::integer from removed),
+select row_count(
+  $delete from public.request_activity
+    where id = '60000000-0000-4000-8000-000000000001'$,
   0,
   'manager cannot delete an existing activity record'
 );
