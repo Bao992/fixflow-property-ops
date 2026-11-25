@@ -150,15 +150,15 @@ select throws_ok(
 );
 
 select row_count(
-  $update public.request_activity
+  $$update public.request_activity
     set summary = 'tampered'
-    where id = '60000000-0000-4000-8000-000000000001'$,
+    where id = '60000000-0000-4000-8000-000000000001'$$,
   0,
   'manager cannot update an existing activity record'
 );
 select row_count(
-  $delete from public.request_activity
-    where id = '60000000-0000-4000-8000-000000000001'$,
+  $$delete from public.request_activity
+    where id = '60000000-0000-4000-8000-000000000001'$$,
   0,
   'manager cannot delete an existing activity record'
 );
