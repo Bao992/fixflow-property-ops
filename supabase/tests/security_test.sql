@@ -6,7 +6,7 @@ begin;
 
 set local search_path = public, extensions;
 
-select plan(18);
+select plan(19);
 
 -- Deterministic fixture identities. The auth trigger creates tenant profiles.
 insert into auth.users (
