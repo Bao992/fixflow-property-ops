@@ -6,7 +6,7 @@ begin;
 
 set local search_path = public, extensions;
 
-select plan(12);
+select plan(16);
 
 -- Deterministic fixture identities. The auth trigger creates tenant profiles.
 insert into auth.users (
@@ -103,6 +103,16 @@ select is(
   'tenant cannot read another tenant request'
 );
 
+select is(
+  (select count(*)::integer from public.request_activity
+   where request_id = '50000000-0000-4000-8000-000000000001'
+     and event_type = 'request_created'
+     and tenant_visible = true
+     and actor_id = '10000000-0000-4000-8000-000000000003'),
+  1,
+  'tenant can see the automatically recorded request submission event'
+);
+
 reset role;
 
 -- End tenant one's link as the trusted database owner, then verify access ends.
@@ -119,6 +129,14 @@ select is(
    where id = '50000000-0000-4000-8000-000000000001'),
   0,
   'former tenant loses access to their previous request'
+);
+
+select is(
+  (select count(*)::integer from public.request_activity
+   where request_id = '50000000-0000-4000-8000-000000000001'
+     and tenant_visible = true),
+  0,
+  'former tenant loses access to the request timeline'
 );
 
 -- Manager one sees their own request but not manager two's request.
@@ -212,6 +230,28 @@ select is(
      and verified_at is null),
   1,
   'manager can reopen a completed request and verification is cleared'
+);
+
+select is(
+  (select count(*)::integer
+   from public.request_activity
+   where request_id = '50000000-0000-4000-8000-000000000003'
+     and event_type = 'status_changed'
+     and from_status = 'Completed'
+     and to_status = 'In Progress'
+     and actor_id = '10000000-0000-4000-8000-000000000001'
+     and tenant_visible = true),
+  1,
+  'status change automatically records the manager and transition for the tenant'
+);
+
+select is(
+  (select count(*)::integer
+   from public.request_activity
+   where request_id = '50000000-0000-4000-8000-000000000001'
+     and event_type = 'request_created'),
+  1,
+  'request submission creates exactly one automatic timeline event'
 );
 
 select * from finish();
