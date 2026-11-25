@@ -273,7 +273,7 @@ select is(
 reset role;
 alter table public.request_activity
   add constraint request_activity_test_force_failure
-  check (event_type <> 'status_changed');
+  check (summary <> 'Request status changed from Submitted to Under Review');
 
 set local role authenticated;
 select set_config('request.jwt.claim.sub', '10000000-0000-4000-8000-000000000001', true);
