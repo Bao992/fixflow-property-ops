@@ -280,9 +280,9 @@ select set_config('request.jwt.claim.sub', '10000000-0000-4000-8000-000000000001
 select set_config('request.jwt.claim.role', 'authenticated', true);
 
 select throws_ok(
-  $update public.maintenance_requests
+  $$update public.maintenance_requests
     set status = 'Under Review'
-    where id = '50000000-0000-4000-8000-000000000001'$,
+    where id = '50000000-0000-4000-8000-000000000001'$$,
   '23514',
   null,
   'status update fails when its audit event cannot be inserted'
