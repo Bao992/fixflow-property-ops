@@ -6,7 +6,7 @@ begin;
 
 set local search_path = public, extensions;
 
-select plan(16);
+select plan(18);
 
 -- Deterministic fixture identities. The auth trigger creates tenant profiles.
 insert into auth.users (
@@ -252,6 +252,43 @@ select is(
      and event_type = 'request_created'),
   1,
   'request submission creates exactly one automatic timeline event'
+);
+
+-- A no-op status update must not create another timeline event.
+update public.maintenance_requests
+set status = status
+where id = '50000000-0000-4000-8000-000000000001';
+
+select is(
+  (select count(*)::integer
+   from public.request_activity
+   where request_id = '50000000-0000-4000-8000-000000000001'
+     and event_type = 'status_changed'),
+  0,
+  'updating a request without changing its status creates no activity event'
+);
+
+-- Trigger failure must abort the parent request update as part of the same transaction.
+alter table public.request_activity
+  add constraint request_activity_test_force_failure
+  check (event_type <> 'status_changed');
+
+select throws_ok(
+  $update public.maintenance_requests
+    set status = 'Under Review'
+    where id = '50000000-0000-4000-8000-000000000001'$,
+  '23514',
+  null,
+  'status update fails when its audit event cannot be inserted'
+);
+
+select is(
+  (select count(*)::integer
+   from public.maintenance_requests
+   where id = '50000000-0000-4000-8000-000000000001'
+     and status = 'Submitted'),
+  1,
+  'failed activity insertion rolls back the maintenance request status update'
 );
 
 select * from finish();
