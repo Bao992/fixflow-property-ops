@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { isSupabaseConfigured, supabase } from "./lib/supabase";
 import { ManagerDashboard } from "./ManagerDashboard";
+import { TenantWorkspace } from "./TenantWorkspace";
 
 type AppRole = "manager" | "tenant";
 type Profile = { id: string; role: AppRole; display_name: string | null };
@@ -47,72 +48,6 @@ function AuthScreen() {
   </main>;
 }
 
-function TenantWorkspace({ profile, onSignOut }: { profile: Profile; onSignOut: () => void }) {
-  const [units, setUnits] = useState<TenantUnit[]>([]);
-  const [properties, setProperties] = useState<TenantProperty[]>([]);
-  const [requests, setRequests] = useState<TenantRequest[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [busy, setBusy] = useState(false);
-  const [notice, setNotice] = useState("");
-  const [unitId, setUnitId] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
-  async function loadWorkspace() {
-    if (!supabase) return;
-    setLoading(true);
-    const { data: links, error: linkError } = await supabase.from("unit_tenants").select("unit_id").eq("tenant_id", profile.id).eq("active", true).is("end_at", null);
-    if (linkError) { setNotice(linkError.message); setLoading(false); return; }
-    const linkedUnitIds = (links || []).map(link => link.unit_id as string);
-    if (linkedUnitIds.length === 0) { setUnits([]); setProperties([]); setRequests([]); setLoading(false); return; }
-    const { data: unitData, error: unitError } = await supabase.from("units").select("id,property_id,unit_label,description").in("id", linkedUnitIds);
-    if (unitError) setNotice(unitError.message);
-    const loadedUnits = (unitData || []) as TenantUnit[];
-    setUnits(loadedUnits);
-    if (!unitId && loadedUnits[0]) setUnitId(loadedUnits[0].id);
-    const propertyIds = [...new Set(loadedUnits.map(unit => unit.property_id))];
-    const [propertyResult, requestResult] = await Promise.all([
-      supabase.from("properties").select("id,name,address_line_1,locality,region").in("id", propertyIds),
-      supabase.from("maintenance_requests").select("id,title,description,status,priority,created_at,unit_id").eq("created_by", profile.id).order("created_at", { ascending: false }),
-    ]);
-    if (propertyResult.error) setNotice(propertyResult.error.message);
-    if (requestResult.error) setNotice(requestResult.error.message);
-    setProperties((propertyResult.data || []) as TenantProperty[]);
-    setRequests((requestResult.data || []) as TenantRequest[]);
-    setLoading(false);
-  }
-
-  useEffect(() => { void loadWorkspace(); }, [profile.id]);
-
-  async function submitRequest(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!supabase || !unitId) return;
-    setBusy(true); setNotice("");
-    const { error } = await supabase.from("maintenance_requests").insert({
-      unit_id: unitId,
-      created_by: profile.id,
-      title: title.trim(),
-      description: description.trim(),
-    });
-    if (error) setNotice(error.message);
-    else { setTitle(""); setDescription(""); setNotice("Your maintenance request has been submitted."); await loadWorkspace(); }
-    setBusy(false);
-  }
-
-  const propertyById = new Map(properties.map(property => [property.id, property]));
-  const unitById = new Map(units.map(unit => [unit.id, unit]));
-  return <main className="tenant-shell">
-    <header className="tenant-topbar"><div className="auth-brand"><span className="brand-mark">F</span><span><b>FixFlow</b><small>RESIDENT PORTAL</small></span></div><div className="tenant-user"><span>{profile.display_name || "Resident"}</span><button onClick={onSignOut}>Sign out</button></div></header>
-    <section className="tenant-welcome"><span className="eyebrow">YOUR HOME, YOUR UPDATES</span><h1>Hello{profile.display_name ? `, ${profile.display_name.split(" ")[0]}` : ""}.</h1><p>Report a maintenance issue and stay informed as it moves towards resolution.</p></section>
-    {notice && <div className="workflow-notice tenant-notice" role="status">{notice}</div>}
-    {loading ? <div className="tenant-empty"><h2>Loading your resident workspace…</h2></div> : units.length === 0 ? <section className="tenant-empty"><div className="tenant-empty-icon">⌂</div><h2>Your resident workspace is ready</h2><p>Your property manager must link your account to a unit before your maintenance requests and property details appear here.</p><span className="tenant-role">TENANT ACCESS · VERIFIED BY YOUR ACCOUNT PROFILE</span></section> : <section className="tenant-workspace-content">
-      <article className="tenant-property-card"><span className="eyebrow">YOUR PROPERTY</span>{units.map(unit => { const property = propertyById.get(unit.property_id); return <div className="tenant-unit-row" key={unit.id}><div><h2>{property?.name || "Your property"}</h2><p>{[property?.address_line_1, property?.locality, property?.region].filter(Boolean).join(", ")}</p><span>{unit.unit_label}</span></div></div>; })}</article>
-      <div className="tenant-request-layout"><article className="tenant-property-card"><h2>Report a maintenance issue</h2><p>Describe the problem clearly. Your property manager will review the request.</p><form className="workflow-form" onSubmit={submitRequest}><label>Unit<select value={unitId} onChange={event => setUnitId(event.target.value)} required>{units.map(unit => <option key={unit.id} value={unit.id}>{propertyById.get(unit.property_id)?.name || "Property"} · {unit.unit_label}</option>)}</select></label><label>Issue title<input value={title} onChange={event => setTitle(event.target.value)} placeholder="e.g. Leaking kitchen tap" required maxLength={160}/></label><label>Description<textarea value={description} onChange={event => setDescription(event.target.value)} placeholder="Tell us what happened and where…" required minLength={5} maxLength={10000}/></label><button className="primary" disabled={busy}>{busy ? "Submitting…" : "Submit maintenance request"}</button></form></article>
-        <article className="tenant-property-card"><h2>Your maintenance requests</h2>{requests.length === 0 ? <p>You haven't submitted any maintenance requests yet.</p> : requests.map(request => <div className="tenant-request-card" key={request.id}><div><span className="workflow-status">{request.status}</span><small>{unitById.get(request.unit_id)?.unit_label || "Unit"} · {request.priority} priority</small></div><h3>{request.title}</h3><p>{request.description}</p><small>Submitted {new Date(request.created_at).toLocaleString()}</small></div>)}</article></div>
-    </section>}
-    <footer className="tenant-footer">FIXFLOW · Your maintenance journey, clearly tracked.</footer>
-  </main>;
-}
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
