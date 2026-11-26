@@ -94,9 +94,17 @@ export function TenantWorkspace({ profile, onSignOut }: { profile: Profile; onSi
       setTitle(""); setDescription(""); setEvidence([]);
       setNotice(submittedWithPhotos ? "Your maintenance request and photos were submitted. Scout is analysing the report…" : "Your maintenance request was submitted. Scout is analysing the report…");
       const { error: scoutError } = await supabase.functions.invoke("scout-analyze", { body: { request_id: requestId } });
-      setNotice(scoutError
-        ? "Your maintenance request is safe and submitted. Scout analysis could not run yet; your property manager can retry it from the dashboard."
-        : "Your maintenance request was submitted and Scout has completed its initial analysis for the property manager.");
+      const { data: notificationResult, error: notificationError } = await supabase.functions.invoke("notify-manager-whatsapp", { body: { request_id: requestId } });
+      const notificationMessage = notificationError
+        ? "WhatsApp alert is not configured or could not be delivered yet."
+        : notificationResult?.delivered
+          ? "The property manager was notified on WhatsApp."
+          : notificationResult?.message || "WhatsApp notification is not enabled for this property manager.";
+      setNotice([
+        "Your maintenance request has been saved.",
+        scoutError ? "Scout analysis could not run yet; the manager can retry it from the dashboard." : "Scout has analysed the report for the property manager.",
+        notificationMessage,
+      ].join(" "));
       await loadWorkspace();
     } catch (error) {
       setNotice(error instanceof Error ? error.message : "We could not submit your request. Please try again.");
