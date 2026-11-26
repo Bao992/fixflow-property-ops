@@ -60,3 +60,17 @@ using (
       and r.created_by = (select auth.uid())
   )
 );
+
+-- Keep attachment metadata aligned with the same tenant ownership boundary.
+drop policy if exists "attachments_tenant_insert_own" on public.request_attachments;
+create policy "attachments_tenant_insert_own"
+on public.request_attachments for insert to authenticated
+with check (
+  uploader_id = (select auth.uid())
+  and exists (
+    select 1 from public.maintenance_requests r
+    where r.id = request_id
+      and r.created_by = (select auth.uid())
+      and public.is_linked_tenant(r.unit_id)
+  )
+);
