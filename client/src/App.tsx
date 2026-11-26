@@ -6,9 +6,6 @@ import { TenantWorkspace } from "./TenantWorkspace";
 
 type AppRole = "manager" | "tenant";
 type Profile = { id: string; role: AppRole; display_name: string | null };
-type TenantUnit = { id: string; property_id: string; unit_label: string; description: string | null };
-type TenantProperty = { id: string; name: string; address_line_1: string; locality: string | null; region: string | null };
-type TenantRequest = { id: string; title: string; description: string; status: string; priority: string; created_at: string; unit_id: string };
 
 function AuthScreen() {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
