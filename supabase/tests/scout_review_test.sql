@@ -1,7 +1,7 @@
 -- Scout manager review regression tests. Run with: npx supabase test db
 begin;
 set local search_path=public,extensions;
-select plan(9);
+select plan(10);
 insert into auth.users(id,aud,role,email,encrypted_password,email_confirmed_at,raw_app_meta_data,raw_user_meta_data,created_at,updated_at) values
 ('10000000-0000-4000-8000-000000000001','authenticated','authenticated','scout-mgr1@test.invalid','',now(),'{"provider":"email","providers":["email"]}'::jsonb,'{}'::jsonb,now(),now()),
 ('10000000-0000-4000-8000-000000000002','authenticated','authenticated','scout-mgr2@test.invalid','',now(),'{"provider":"email","providers":["email"]}'::jsonb,'{}'::jsonb,now(),now()),
@@ -31,7 +31,8 @@ update public.ai_analyses set reviewed_by=auth.uid(),review_outcome='edited',rev
 select is((select reviewed_output->>'urgency' from public.ai_analyses where id='70000000-0000-4000-8000-000000000002'),'High','manager can save edited output');
 update public.ai_analyses set reviewed_by=auth.uid(),review_outcome='dismissed',reviewed_output=null,review_note='Not applicable.' where id='70000000-0000-4000-8000-000000000003';
 select is((select review_outcome from public.ai_analyses where id='70000000-0000-4000-8000-000000000003'),'dismissed'::text,'manager can dismiss an analysis');
-select throws_ok($$update public.ai_analyses set reviewed_by=auth.uid(),review_outcome='accepted',reviewed_output='{"category":"changed"}'::jsonb where id='70000000-0000-4000-8000-000000000004'$$,'P0001','Accepted output must preserve the original Scout analysis','accepted review cannot alter original output');
+select throws_ok($update public.ai_analyses set reviewed_by=auth.uid(),review_outcome='accepted',reviewed_output='{"category":"changed"}'::jsonb where id='70000000-0000-4000-8000-000000000004'$,'P0001','Accepted output must preserve the original Scout analysis','accepted review cannot alter original output');
+select throws_ok($update public.ai_analyses set reviewed_by=auth.uid(),review_outcome='dismissed',reviewed_output=null,review_note='   ' where id='70000000-0000-4000-8000-000000000004'$,'P0001','A manager note is required to dismiss an analysis','dismissal requires a meaningful manager note');
 select throws_ok($$update public.ai_analyses set reviewed_by=auth.uid(),review_outcome='edited',reviewed_output='{"category":"plumbing","urgency":"Medium"}'::jsonb where id='70000000-0000-4000-8000-000000000004'$$,'P0001','Scout analysis must contain all required fields','edited review requires all Scout fields');
 select throws_ok($$update public.ai_analyses set reviewed_by=auth.uid(),review_outcome='edited',reviewed_output='{"category":"plumbing","urgency":"Urgent","summary":"Leak.","safety_flags":[],"recommended_actions":[],"questions_for_manager":[],"reasoning":"Leak.","confidence":"medium"}'::jsonb where id='70000000-0000-4000-8000-000000000004'$$,'P0001','Scout urgency must be Low, Medium, High, or Critical','edited review rejects invalid urgency');
 select throws_ok($$update public.ai_analyses set reviewed_by=auth.uid(),review_outcome='edited',reviewed_output='{"category":"plumbing","urgency":"Medium","summary":"Leak.","safety_flags":[42],"recommended_actions":[],"questions_for_manager":[],"reasoning":"Leak.","confidence":"medium"}'::jsonb where id='70000000-0000-4000-8000-000000000004'$$,'P0001','Scout analysis arrays must contain only non-empty strings','edited review rejects non-string array values');
