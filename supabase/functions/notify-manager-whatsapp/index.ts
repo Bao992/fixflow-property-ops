@@ -24,7 +24,7 @@ Deno.serve(async (request) => {
   const templateName = Deno.env.get("WHATSAPP_TEMPLATE_NAME");
   const graphVersion = Deno.env.get("WHATSAPP_GRAPH_API_VERSION") ?? "v22.0";
   const language = Deno.env.get("WHATSAPP_TEMPLATE_LANGUAGE") ?? "en";
-  const appBaseUrl = Deno.env.get("APP_BASE_URL") ?? "https://fixflow.app";
+  const appBaseUrl = Deno.env.get("APP_BASE_URL") ?? "https://fixflow-property-ops-git-feat-tena-d7f6be-bao-kekana-s-projects.vercel.app";
   if (!url || !anonKey || !serviceKey || !token || !phoneNumberId || !templateName) {
     return response({ delivered: false, configured: false, message: "WhatsApp notifications are not configured yet." }, 503);
   }
