@@ -17,6 +17,16 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 3.4.0
+      - name: Validate Supabase configuration
+        run: supabase config validate
+      - name: Start local Supabase stack
+        run: supabase start
+      - name: Run database regression tests
+        run: supabase test db
       - name: Typecheck
         run: npm run typecheck
       - name: Install Rollup Linux native binary

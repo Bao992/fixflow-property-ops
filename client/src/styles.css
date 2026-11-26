@@ -62,3 +62,55 @@
 .tenant-request-card p{font-size:10px;color:#68788d;line-height:1.6;margin:0 0 8px}
 @media(max-width:900px){.workflow-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.workflow-columns,.tenant-request-layout{grid-template-columns:1fr}.workflow-intro,.workflow-metrics>.workflow-panel:last-child{grid-column:span 2}}
 @media(max-width:600px){.workflow-metrics{grid-template-columns:1fr 1fr}.workflow-inline-form{grid-template-columns:1fr}.property-card{display:block}.unit-chips{justify-content:flex-start;margin-top:10px}.request-manager-card .workflow-inline-form{grid-template-columns:1fr}.workflow-panel{padding:15px}}
+
+
+/* Scout maintenance intelligence panel */
+.scout-panel{display:grid;gap:16px}
+.scout-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.scout-heading h2{font:800 19px Manrope;margin:6px 0}
+.scout-heading p{font-size:11px;color:#718096;margin:0}
+.scout-kicker{font-size:9px;letter-spacing:1.5px;font-weight:800;color:#087f76}
+.scout-avatar{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:#102a3a;color:#71d8c8;font:800 19px Manrope}
+.scout-callout{padding:11px 13px;background:#f1f7f8;border:1px solid #dcebed;border-radius:7px;color:#536b78;font-size:10px;line-height:1.6}
+.scout-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:12px}
+.scout-controls label{display:grid;gap:6px;font-size:10px;font-weight:700;color:#42536a}
+.scout-controls select{width:100%;padding:11px 12px;border:1px solid #dce4ec;border-radius:6px;background:#fbfcfe;font:11px 'DM Sans';color:#26384e}
+.scout-result{border:1px solid #dcebe8;border-radius:9px;padding:17px;background:#fcfefd}
+.scout-result-top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.scout-result-top small{font-size:8px;letter-spacing:1.2px;font-weight:800;color:#087f76}
+.scout-result-top h3{font:700 16px Manrope;margin:5px 0}
+.scout-urgency{font-size:9px;font-weight:800;border-radius:20px;padding:7px 10px;background:#edf2fa;color:#53647a}
+.scout-urgency.high,.scout-urgency.critical{background:#ffe8eb;color:#b51d3d}
+.scout-urgency.medium{background:#fff4df;color:#9b650c}
+.scout-summary{font-size:12px;line-height:1.7;color:#40546a}
+.scout-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scout-result-grid article{padding:12px;background:white;border:1px solid #e8edf2;border-radius:7px}
+.scout-result-grid h4{font:700 11px Manrope;margin:0 0 8px}
+.scout-result-grid p,.scout-result-grid li{font-size:10px;line-height:1.65;color:#627287}
+.scout-result-grid ul{padding-left:17px;margin:0}
+.scout-confidence,.scout-saved{font-size:9px;color:#087f76;font-weight:700}
+.scout-error{margin:0;background:#fff3f3;border-color:#f1d5d5;color:#a83232}
+.scout-saved{display:block;margin-top:12px}
+@media(max-width:650px){.scout-controls,.scout-result-grid{grid-template-columns:1fr}.scout-result-top{align-items:flex-start;flex-direction:column}}
+
+/* Scout saved analysis history */
+.scout-history{border:1px solid #e5eaf1;border-radius:8px;padding:14px;background:#fff}
+.scout-history-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.scout-history-heading h3{font:700 12px Manrope;margin:0}
+.scout-history-heading p{font-size:9px;color:#7b8797;margin:4px 0 0}
+.scout-history-heading>span{font-size:9px;color:#087f76;background:#eaf7f3;padding:5px 8px;border-radius:20px}
+.scout-history-list{display:grid;gap:6px;max-height:230px;overflow:auto}
+.scout-history-item{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 11px;border:1px solid #e8edf2;border-radius:6px;background:#fbfcfe;color:#26384e;cursor:pointer}
+.scout-history-item:hover,.scout-history-item.selected{border-color:#78bdb2;background:#f0f8f6}
+.scout-history-item b,.scout-history-item small{display:block}
+.scout-history-item b{font:700 10px Manrope}
+.scout-history-item small{font-size:9px;color:#8190a1;margin-top:4px}
+.scout-history-urgency{font-size:9px;font-weight:800;padding:5px 7px;border-radius:5px;background:#edf2fa;color:#53647a;white-space:nowrap}
+.scout-history-urgency.high,.scout-history-urgency.critical{background:#ffe8eb;color:#b51d3d}
+.scout-history-urgency.medium{background:#fff4df;color:#9b650c}
+.scout-history-state{font-size:10px;line-height:1.6;color:#718096;margin:8px 0 2px}
+.scout-history-error{color:#a83232}
+.scout-history-meta{display:block;margin-top:5px;font-size:9px;color:#7b8797}
+
+/* Scout manager review workflow */
+.scout-review{margin-top:18px;padding-top:16px;border-top:1px solid #e6edf0;display:grid;gap:12px}.scout-review>.scout-history-heading>strong{font-size:9px;color:#087f76;background:#eaf7f3;padding:6px 8px;border-radius:5px}.scout-review label{display:grid;gap:7px;font-size:10px;font-weight:700;color:#42536a}.scout-review textarea{width:100%;max-width:100%;border:1px solid #dce4ec;border-radius:6px;padding:11px 12px;background:#fbfcfe;color:#26384e;font:11px/1.6 'DM Sans',sans-serif;resize:vertical}.scout-review-actions{display:flex;gap:8px;flex-wrap:wrap}.scout-review-actions button,.scout-review-editor button,.scout-review>button{border:1px solid #dce4ec;border-radius:6px;padding:9px 11px;background:#fff;color:#42536a;font:600 10px 'DM Sans';cursor:pointer}.scout-review-actions button:first-child,.scout-review-editor button{background:#087f76;border-color:#087f76;color:white}.scout-review button:disabled{opacity:.55;cursor:not-allowed}.scout-review-editor{display:grid;gap:9px;padding:13px;background:#f7fafb;border:1px solid #e4ecef;border-radius:7px}.scout-review-editor p,.scout-review .workflow-notice p{font-size:10px;line-height:1.6;color:#627287;margin:0}.scout-review-editor textarea{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:10px}.scout-history-item:disabled{cursor:default;opacity:.8}
