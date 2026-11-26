@@ -1,154 +1,63 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "./lib/supabase";
-
-type RequestOption = { id: string; title: string; description: string; status: string; priority: string };
-type ScoutAnalysis = {
-  category: string;
-  urgency: "Low" | "Medium" | "High" | "Critical";
-  summary: string;
-  safety_flags: string[];
-  recommended_actions: string[];
-  questions_for_manager: string[];
-  reasoning: string;
-  confidence: "low" | "medium" | "high";
-};
-type ScoutHistoryItem = {
-  id: string;
-  agent: string;
-  provider: string | null;
-  model: string | null;
-  structured_output: ScoutAnalysis;
-  created_at: string;
-  review_outcome: "accepted" | "edited" | "dismissed" | null;
-};
-
-export function ScoutPanel({ requests }: { requests: RequestOption[] }) {
-  const [requestId, setRequestId] = useState("");
-  const [analysis, setAnalysis] = useState<ScoutAnalysis | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const [savedAt, setSavedAt] = useState("");
-  const [history, setHistory] = useState<ScoutHistoryItem[]>([]);
-  const [historyLoading, setHistoryLoading] = useState(false);
-  const [historyError, setHistoryError] = useState("");
-  const [selectedHistoryId, setSelectedHistoryId] = useState("");
-
-  useEffect(() => {
-    let cancelled = false;
-    async function loadHistory() {
-      if (!supabase || !requestId) {
-        setHistory([]);
-        setHistoryLoading(false);
-        setHistoryError("");
-        setSelectedHistoryId("");
-        return;
-      }
-      setHistoryLoading(true);
-      setHistoryError("");
-      const { data, error: queryError } = await supabase
-        .from("ai_analyses")
-        .select("id, agent, provider, model, structured_output, created_at, review_outcome")
-        .eq("request_id", requestId)
-        .order("created_at", { ascending: false })
-        .limit(20);
-      if (cancelled) return;
-      if (queryError) {
-        setHistory([]);
-        setHistoryError("Could not load analysis history. Check your manager access and try again.");
-      } else {
-        const items = (data ?? []) as ScoutHistoryItem[];
-        setHistory(items);
-        if (items.length > 0) {
-          setSelectedHistoryId(items[0].id);
-          setAnalysis(items[0].structured_output);
-          setSavedAt(items[0].created_at);
-        } else {
-          setSelectedHistoryId("");
-          setAnalysis(null);
-          setSavedAt("");
-        }
-      }
-      setHistoryLoading(false);
-    }
-    void loadHistory();
-    return () => { cancelled = true; };
-  }, [requestId]);
-
-  async function runScout() {
-    if (!supabase || !requestId) return;
-    setBusy(true);
-    setError("");
-    const { data, error: invokeError } = await supabase.functions.invoke("scout-analyze", { body: { request_id: requestId } });
-    if (invokeError) {
-      setError(invokeError.message || "Scout could not analyse this request.");
-      setBusy(false);
-      return;
-    }
-    if (data?.error) {
-      setError(data.error);
-      setBusy(false);
-      return;
-    }
-    if (!data?.analysis) {
-      setError("Scout returned an unexpected response.");
-      setBusy(false);
-      return;
-    }
-    setAnalysis(data.analysis as ScoutAnalysis);
-    setSavedAt(data.saved_at || "");
-    const { data: rows, error: queryError } = await supabase
-      .from("ai_analyses")
-      .select("id, agent, provider, model, structured_output, created_at, review_outcome")
-      .eq("request_id", requestId)
-      .order("created_at", { ascending: false })
-      .limit(20);
-    if (queryError) {
-      setHistoryError("The analysis was saved, but history could not be refreshed.");
-    } else {
-      const items = (rows ?? []) as ScoutHistoryItem[];
-      setHistory(items);
-      if (items.length > 0) setSelectedHistoryId(items[0].id);
-    }
-    setBusy(false);
-  }
-
-  function selectHistory(id: string) {
-    setSelectedHistoryId(id);
-    const item = history.find(entry => entry.id === id);
-    if (item) {
-      setAnalysis(item.structured_output);
-      setSavedAt(item.created_at);
-      setError("");
-    }
-  }
-
-  const selectedHistory = history.find(item => item.id === selectedHistoryId);
-
-  return <section className="workflow-panel scout-panel">
-    <div className="scout-heading"><div><span className="scout-kicker">FIXFLOW INTELLIGENCE</span><h2>Scout · Maintenance triage</h2><p>Turn a resident's report into a clear, reviewable maintenance assessment.</p></div><span className="scout-avatar">S</span></div>
-    <div className="scout-callout">Scout is advisory only. It will not change request status, priority, approvals or contractor assignments.</div>
-    {requests.length === 0 ? <p>No maintenance requests are available to analyse yet.</p> : <div className="scout-controls"><label>Choose a maintenance request<select value={requestId} onChange={event => { setRequestId(event.target.value); setAnalysis(null); setSavedAt(""); setError(""); }}><option value="">Select a request</option>{requests.map(request => <option key={request.id} value={request.id}>{request.title} · {request.status}</option>)}</select></label><button className="primary" disabled={!requestId || busy} onClick={() => void runScout()}>{busy ? "Scout is analysing…" : "✦ Analyse with Scout"}</button></div>}
-    {error && <div className="workflow-notice scout-error" role="alert">{error}</div>}
-    {requestId && <div className="scout-history">
-      <div className="scout-history-heading"><div><h3>Analysis history</h3><p>Previous Scout assessments for this request</p></div><span>{history.length} / 20</span></div>
-      {historyLoading ? <p className="scout-history-state">Loading saved analyses…</p> : historyError ? <p className="scout-history-state scout-history-error" role="alert">{historyError}</p> : history.length === 0 ? <p className="scout-history-state">No saved analyses yet. Run Scout to create the first assessment.</p> : <div className="scout-history-list">
-        {history.map(item => <button type="button" key={item.id} className={item.id === selectedHistoryId ? "scout-history-item selected" : "scout-history-item"} onClick={() => selectHistory(item.id)}>
-          <span><b>{item.structured_output?.category || "Maintenance assessment"}</b><small>{new Date(item.created_at).toLocaleString()}</small></span>
-          <span className={"scout-history-urgency " + (item.structured_output?.urgency || "low").toLowerCase()}>{item.structured_output?.urgency || "Unknown"}</span>
-        </button>)}
-      </div>}
-    </div>}
-    {analysis && <div className="scout-result" aria-live="polite">
-      <div className="scout-result-top"><div><small>{selectedHistory ? "SAVED ANALYSIS" : "ANALYSIS COMPLETE"}</small><h3>{analysis.category}</h3></div><span className={`scout-urgency ${analysis.urgency.toLowerCase()}`}>{analysis.urgency} suggested urgency</span></div>
-      <p className="scout-summary">{analysis.summary}</p>
-      <div className="scout-result-grid">
-        <article><h4>Safety flags</h4>{analysis.safety_flags.length ? <ul>{analysis.safety_flags.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p>No specific safety flags identified in the supplied report.</p>}</article>
-        <article><h4>Recommended actions</h4>{analysis.recommended_actions.length ? <ul>{analysis.recommended_actions.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p>No actions returned.</p>}</article>
-        <article><h4>Questions to confirm</h4>{analysis.questions_for_manager.length ? <ul>{analysis.questions_for_manager.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p>No additional questions returned.</p>}</article>
-        <article><h4>Why Scout suggests this</h4><p>{analysis.reasoning}</p><span className="scout-confidence">Confidence: {analysis.confidence}</span></article>
-      </div>
-      {savedAt && <small className="scout-saved">Saved to the request's AI analysis history · {new Date(savedAt).toLocaleString()}</small>}
-      {selectedHistory?.provider && <small className="scout-history-meta">Provider: {selectedHistory.provider}{selectedHistory.model ? ` · Model: ${selectedHistory.model}` : ""}</small>}
-    </div>}
-  </section>;
+type RequestOption={id:string;title:string;description:string;status:string;priority:string};
+type Analysis={category:string;urgency:"Low"|"Medium"|"High"|"Critical";summary:string;safety_flags:string[];recommended_actions:string[];questions_for_manager:string[];reasoning:string;confidence:"low"|"medium"|"high"};
+type Outcome="accepted"|"edited"|"dismissed";
+type Item={id:string;agent:string;provider:string|null;model:string|null;structured_output:Analysis;reviewed_output:Analysis|null;review_note:string|null;reviewed_by:string|null;reviewed_at:string|null;created_at:string;review_outcome:Outcome|null};
+const json=(x:Analysis)=>JSON.stringify(x,null,2);
+const textOk=(x:unknown,n:number):x is string=>typeof x==="string"&&x.trim().length>0&&x.trim().length<=n;
+function validate(x:unknown):Analysis{
+ if(!x||typeof x!=="object"||Array.isArray(x))throw new Error("Edited analysis must be a JSON object.");
+ const v=x as Record<string,unknown>;
+ if(!textOk(v.category,150))throw new Error("Category must be 1–150 characters.");
+ if(!["Low","Medium","High","Critical"].includes(String(v.urgency)))throw new Error("Invalid urgency.");
+ if(!textOk(v.summary,2000)||!textOk(v.reasoning,2000))throw new Error("Summary and reasoning must be 1–2,000 characters.");
+ if(!["low","medium","high"].includes(String(v.confidence)))throw new Error("Invalid confidence.");
+ for(const k of ["safety_flags","recommended_actions","questions_for_manager"] as const){const a=v[k];if(!Array.isArray(a)||a.length>8||!a.every(y=>textOk(y,500)))throw new Error(k+" must contain up to 8 non-empty strings of at most 500 characters.");}
+ return {category:(v.category as string).trim(),urgency:v.urgency as Analysis["urgency"],summary:(v.summary as string).trim(),safety_flags:(v.safety_flags as string[]).map(y=>y.trim()),recommended_actions:(v.recommended_actions as string[]).map(y=>y.trim()),questions_for_manager:(v.questions_for_manager as string[]).map(y=>y.trim()),reasoning:(v.reasoning as string).trim(),confidence:v.confidence as Analysis["confidence"]};
+}
+export function ScoutPanel({requests}:{requests:RequestOption[]}){
+ const [requestId,setRequestId]=useState("");const [analysis,setAnalysis]=useState<Analysis|null>(null);const [busy,setBusy]=useState(false);const [reviewBusy,setReviewBusy]=useState(false);
+ const [error,setError]=useState("");const [savedAt,setSavedAt]=useState("");const [history,setHistory]=useState<Item[]>([]);const [loading,setLoading]=useState(false);const [historyError,setHistoryError]=useState("");const [selectedId,setSelectedId]=useState("");
+ const [mode,setMode]=useState<"edit"|"dismiss"|null>(null);const [reviewJson,setReviewJson]=useState("");const [note,setNote]=useState("");const [refreshFailed,setRefreshFailed]=useState(false);
+ const active=useRef(requestId);const token=useRef(0);useEffect(()=>{active.current=requestId;},[requestId]);
+ async function load(target:string,newest=false):Promise<boolean>{
+  if(!supabase||!target)return false;const t=++token.current;setLoading(true);setHistoryError("");
+  const {data,error:e}=await supabase.from("ai_analyses").select("id,agent,provider,model,structured_output,reviewed_output,review_note,reviewed_by,reviewed_at,created_at,review_outcome").eq("request_id",target).order("created_at",{ascending:false}).limit(20);
+  if(t!==token.current||active.current!==target)return false;if(e){setHistoryError("Could not load analysis history. Check manager access and try again.");setLoading(false);return false;}
+  const rows=(data??[]) as Item[];const id=!newest&&rows.some(x=>x.id===selectedId)?selectedId:(rows[0]?.id??"");const chosen=rows.find(x=>x.id===id);
+  setHistory(rows);setSelectedId(id);setAnalysis(chosen?.structured_output??null);setSavedAt(chosen?.created_at??"");setNote(chosen?.review_note??"");setReviewJson(chosen?json(chosen.reviewed_output??chosen.structured_output):"");setMode(null);setLoading(false);return true;
+ }
+ useEffect(()=>{const target=requestId,t=++token.current;let cancelled=false;async function run(){
+  if(!supabase||!target){if(cancelled||t!==token.current)return;setHistory([]);setSelectedId("");setAnalysis(null);setSavedAt("");setHistoryError("");setLoading(false);setMode(null);setNote("");setReviewJson("");return;}
+  setLoading(true);setHistoryError("");const {data,error:e}=await supabase.from("ai_analyses").select("id,agent,provider,model,structured_output,reviewed_output,review_note,reviewed_by,reviewed_at,created_at,review_outcome").eq("request_id",target).order("created_at",{ascending:false}).limit(20);
+  if(cancelled||t!==token.current||active.current!==target)return;if(e){setHistory([]);setHistoryError("Could not load analysis history. Check manager access and try again.");}else{const rows=(data??[]) as Item[],first=rows[0];setHistory(rows);setSelectedId(first?.id??"");setAnalysis(first?.structured_output??null);setSavedAt(first?.created_at??"");setNote(first?.review_note??"");setReviewJson(first?json(first.reviewed_output??first.structured_output):"");}setLoading(false);
+ }void run();return()=>{cancelled=true;};},[requestId]);
+ async function runScout(){if(!supabase||!requestId||busy||reviewBusy)return;setBusy(true);setError("");try{const {data,error:e}=await supabase.functions.invoke("scout-analyze",{body:{request_id:requestId}});if(e)throw new Error(e.message||"Scout could not analyse this request.");if(data?.error)throw new Error(data.error);if(!data?.analysis)throw new Error("Scout returned an unexpected response.");setAnalysis(data.analysis as Analysis);setSavedAt(data.saved_at||"");if(!await load(requestId,true))setError("Analysis completed, but history could not refresh. Reload to verify the saved result.");}catch(e){setError(e instanceof Error?e.message:"Scout could not complete the analysis.");}finally{setBusy(false);}}
+ function choose(x:Item){if(reviewBusy)return;setSelectedId(x.id);setAnalysis(x.structured_output);setSavedAt(x.created_at);setNote(x.review_note??"");setReviewJson(json(x.reviewed_output??x.structured_output));setMode(null);setError("");}
+ async function review(outcome:Outcome){const item=history.find(x=>x.id===selectedId);if(!supabase||!item||reviewBusy)return;setError("");const managerNote=note.trim();if(managerNote.length>2000){setError("Manager note cannot exceed 2,000 characters.");return;}let output:Analysis|null=null;if(outcome==="accepted")output=item.structured_output;if(outcome==="edited"){try{output=validate(JSON.parse(reviewJson) as unknown);}catch(e){setError(e instanceof Error?e.message:"Edited analysis is invalid JSON.");return;}}if(outcome==="dismissed"&&!managerNote){setError("Provide a reason before dismissing this assessment.");return;}
+  setReviewBusy(true);setRefreshFailed(false);try{const {data:auth,error:ae}=await supabase.auth.getUser();if(ae||!auth.user)throw new Error("Session could not be verified. Sign in again.");const {data:updated,error:e}=await supabase.from("ai_analyses").update({reviewed_by:auth.user.id,review_outcome:outcome,reviewed_output:output,review_note:managerNote||null}).eq("id",item.id).is("review_outcome",null).select("id");if(e)throw new Error(e.message||"Review could not be saved.");if(!updated?.length)throw new Error("This analysis has already been reviewed. Reload history before trying again.");if(!await load(requestId)){setRefreshFailed(true);setError("Review saved, but history refresh failed. Reload before continuing.");return;}setMode(null);}catch(e){setError(e instanceof Error?e.message:"Review could not be saved.");}finally{setReviewBusy(false);}}
+ const selected=history.find(x=>x.id===selectedId);const reviewed=Boolean(selected?.review_outcome);const shown=selected?.review_outcome==="edited"&&selected.reviewed_output?selected.reviewed_output:analysis;
+ return <section className="workflow-panel scout-panel">
+  <div className="scout-heading"><div><span className="scout-kicker">FIXFLOW INTELLIGENCE</span><h2>Scout · Maintenance triage</h2><p>Turn a resident's report into a clear, reviewable maintenance assessment.</p></div><span className="scout-avatar">S</span></div>
+  <div className="scout-callout">Scout is advisory only. It will not change request status, priority, approvals or contractor assignments.</div>
+  {requests.length===0?<p>No maintenance requests are available to analyse yet.</p>:<div className="scout-controls"><label>Choose a maintenance request<select value={requestId} disabled={busy||reviewBusy} onChange={e=>{setRequestId(e.target.value);setAnalysis(null);setSavedAt("");setError("");}}><option value="">Select a request</option>{requests.map(r=><option key={r.id} value={r.id}>{r.title} · {r.status}</option>)}</select></label><button className="primary" disabled={!requestId||busy||reviewBusy} onClick={()=>void runScout()}>{busy?"Scout is analysing…":"✦ Analyse with Scout"}</button></div>}
+  {error&&<div className="workflow-notice scout-error" role="alert">{error}</div>}
+  {requestId&&<div className="scout-history"><div className="scout-history-heading"><div><h3>Analysis history</h3><p>Previous Scout assessments for this request</p></div><span>{history.length} / 20</span></div>
+   {loading?<p className="scout-history-state">Loading saved analyses…</p>:historyError?<p className="scout-history-state scout-history-error" role="alert">{historyError}</p>:history.length===0?<p className="scout-history-state">No saved analyses yet. Run Scout to create the first assessment.</p>:<div className="scout-history-list">{history.map(x=><button type="button" key={x.id} disabled={reviewBusy||loading} className={x.id===selectedId?"scout-history-item selected":"scout-history-item"} onClick={()=>choose(x)}><span><b>{x.structured_output?.category||"Maintenance assessment"}</b><small>{new Date(x.created_at).toLocaleString()}</small><small>{x.review_outcome?"Manager review: "+x.review_outcome:"Awaiting manager review"}</small></span><span className={"scout-history-urgency "+(x.structured_output?.urgency||"low").toLowerCase()}>{x.structured_output?.urgency||"Unknown"}</span></button>)}</div>}
+  </div>}
+  {shown&&<div className="scout-result" aria-live="polite"><div className="scout-result-top"><div><small>{selected?"SAVED ANALYSIS":"ANALYSIS COMPLETE"}</small><h3>{shown.category}</h3></div><span className={"scout-urgency "+shown.urgency.toLowerCase()}>{shown.urgency} suggested urgency</span></div><p className="scout-summary">{shown.summary}</p>
+   <div className="scout-result-grid"><article><h4>Safety flags</h4>{shown.safety_flags.length?<ul>{shown.safety_flags.map((x,i)=><li key={i}>{x}</li>)}</ul>:<p>No specific safety flags identified in the supplied report.</p>}</article><article><h4>Recommended actions</h4>{shown.recommended_actions.length?<ul>{shown.recommended_actions.map((x,i)=><li key={i}>{x}</li>)}</ul>:<p>No actions returned.</p>}</article><article><h4>Questions to confirm</h4>{shown.questions_for_manager.length?<ul>{shown.questions_for_manager.map((x,i)=><li key={i}>{x}</li>)}</ul>:<p>No additional questions returned.</p>}</article><article><h4>Why Scout suggests this</h4><p>{shown.reasoning}</p><span className="scout-confidence">Confidence: {shown.confidence}</span></article></div>
+   {savedAt&&<small className="scout-saved">Saved to request AI analysis history · {new Date(savedAt).toLocaleString()}</small>}{selected?.provider&&<small className="scout-history-meta">Provider: {selected.provider}{selected.model?" · Model: "+selected.model:""}</small>}
+   {selected&&<div className="scout-review"><div className="scout-history-heading"><div><h3>Manager review</h3><p>{reviewed?"Reviewed "+(selected.reviewed_at?new Date(selected.reviewed_at).toLocaleString():""):"Review this assessment before operational action."}</p></div><strong>{selected.review_outcome?selected.review_outcome.toUpperCase():"AWAITING REVIEW"}</strong></div>
+    {reviewed?<div className="workflow-notice">This assessment has been reviewed. The original Scout output remains preserved.{selected.review_note&&<p>Manager note: {selected.review_note}</p>}</div>:<>
+     <label>Manager note<textarea value={note} maxLength={2000} onChange={e=>setNote(e.target.value)} placeholder="Context or reasoning (optional for Accept and Edit)." rows={3}/></label>
+     <div className="scout-review-actions"><button disabled={reviewBusy||refreshFailed} onClick={()=>void review("accepted")}>Accept assessment</button><button disabled={reviewBusy||refreshFailed} onClick={()=>{setMode(mode==="edit"?null:"edit");setReviewJson(json(selected.structured_output));}}>Edit assessment</button><button disabled={reviewBusy||refreshFailed} onClick={()=>setMode(mode==="dismiss"?null:"dismiss")}>Dismiss assessment</button></div>
+     {refreshFailed&&<button disabled={loading} onClick={async()=>{if(await load(requestId)){setRefreshFailed(false);setError("");}}>Reload saved review</button>}
+     {mode==="edit"&&<div className="scout-review-editor"><label>Revised assessment (JSON)<textarea value={reviewJson} onChange={e=>setReviewJson(e.target.value)} rows={16} spellCheck={false}/></label><p>Only the reviewed version is saved. Scout's original assessment remains unchanged.</p><button disabled={reviewBusy||refreshFailed} onClick={()=>void review("edited")}>Save edited assessment</button></div>}
+     {mode==="dismiss"&&<div className="scout-review-editor"><p>Dismissal records that this assessment was not accepted. Provide a reason in the manager note.</p><button disabled={reviewBusy||refreshFailed||!note.trim()} onClick={()=>void review("dismissed")}>Confirm dismissal</button></div>}
+    </>}
+   </div>}
+  </div>}
+ </section>;
 }
