@@ -29,6 +29,7 @@ export function ManagerDashboard() {
   const [properties, setProperties] = useState<PropertyRow[]>([]);
   const [units, setUnits] = useState<UnitRow[]>([]);
   const [requests, setRequests] = useState<RequestRow[]>([]);
+  const [evidenceUrls, setEvidenceUrls] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
@@ -40,6 +41,8 @@ export function ManagerDashboard() {
   const [unitLabel, setUnitLabel] = useState("");
   const [linkUnitId, setLinkUnitId] = useState("");
   const [tenantEmail, setTenantEmail] = useState("");
+  const [whatsappNumber, setWhatsappNumber] = useState("");
+  const [whatsappEnabled, setWhatsappEnabled] = useState(true);
   const [statusDrafts, setStatusDrafts] = useState<Record<string, RequestStatus>>({});
   const [notesDrafts, setNotesDrafts] = useState<Record<string, string>>({});
 
@@ -51,15 +54,31 @@ export function ManagerDashboard() {
       supabase.from("units").select("id,property_id,unit_label,active").order("unit_label"),
       supabase.from("maintenance_requests").select("id,title,description,status,priority,created_at,unit_id,created_by").order("created_at", { ascending: false }),
     ]);
+    const { data: authData } = await supabase.auth.getUser();
+    if (authData.user) {
+      const { data: notificationSettings } = await supabase.from("manager_notification_settings").select("whatsapp_number,enabled").eq("manager_id", authData.user.id).maybeSingle();
+      if (notificationSettings) { setWhatsappNumber(notificationSettings.whatsapp_number); setWhatsappEnabled(notificationSettings.enabled); }
+    }
     const firstError = propertyResult.error || unitResult.error || requestResult.error;
     if (firstError) setNotice(firstError.message);
     setProperties((propertyResult.data || []) as PropertyRow[]);
     setUnits((unitResult.data || []) as UnitRow[]);
     setRequests((requestResult.data || []) as RequestRow[]);
+    const requestIds = (requestResult.data || []).map(row => row.id as string);
+    if (requestIds.length) {
+      const { data: attachments } = await supabase.from("request_attachments").select("request_id,storage_path").in("request_id", requestIds);
+      const grouped: Record<string, string[]> = {};
+      for (const attachment of attachments || []) {
+        const { data: signed } = await supabase.storage.from("maintenance-evidence").createSignedUrl(attachment.storage_path, 60 * 30);
+        if (signed?.signedUrl) grouped[attachment.request_id] = [...(grouped[attachment.request_id] || []), signed.signedUrl];
+      }
+      setEvidenceUrls(grouped);
+    } else setEvidenceUrls({});
     setLoading(false);
   }, []);
 
   useEffect(() => { void loadData(); }, [loadData]);
+  useEffect(() => { if (new URLSearchParams(window.location.search).has("request_id")) setActive("Maintenance Requests"); }, []);
 
   const propertyById = useMemo(() => new Map(properties.map(property => [property.id, property])), [properties]);
   const unitById = useMemo(() => new Map(units.map(unit => [unit.id, unit])), [units]);
@@ -114,6 +133,22 @@ export function ManagerDashboard() {
     setBusy(false);
   }
 
+  async function saveNotificationSettings(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!supabase) return;
+    setBusy(true); setNotice("");
+    const { data: authData, error: authError } = await supabase.auth.getUser();
+    if (authError || !authData.user) { setNotice("Your manager session could not be verified."); setBusy(false); return; }
+    const { error } = await supabase.from("manager_notification_settings").upsert({
+      manager_id: authData.user.id,
+      whatsapp_number: whatsappNumber.trim(),
+      enabled: whatsappEnabled,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "manager_id" });
+    setNotice(error ? error.message : "WhatsApp notification preferences saved.");
+    setBusy(false);
+  }
+
   async function updateRequest(request: RequestRow) {
     if (!supabase) return;
     setBusy(true); setNotice("");
@@ -133,12 +168,12 @@ export function ManagerDashboard() {
     setBusy(false);
   }
 
-  const navItems = ["Overview", "Properties & Units", "Maintenance Requests", "AI Scout"];
+  const navItems = ["Overview", "Properties & Units", "Maintenance Requests", "AI Scout", "Notifications"];
   return <div className="app-shell">
     <aside className="sidebar">
       <div className="brand"><span className="brand-mark">F</span><span><b>FixFlow</b><small>PROPERTY OPERATIONS</small></span><span className="pro">MVP</span></div>
       <p className="nav-label">WORKSPACE</p>
-      <nav>{navItems.map((item, index) => <button key={item} className={active === item ? "nav-item selected" : "nav-item"} onClick={() => setActive(item)}><span>{["▦", "▤", "◷"][index]}</span>{item}{item === "Maintenance Requests" && <strong>{activeRequests.length}</strong>}</button>)}</nav>
+      <nav>{navItems.map((item, index) => <button key={item} className={active === item ? "nav-item selected" : "nav-item"} onClick={() => setActive(item)}><span>{["▦", "▤", "◷", "✦", "◉"][index]}</span>{item}{item === "Maintenance Requests" && <strong>{activeRequests.length}</strong>}</button>)}</nav>
       <div className="sidebar-foot"><span className="online-dot"/> Live Supabase data <b>v0.2.0</b></div>
     </aside>
     <main className="main">
@@ -174,7 +209,8 @@ export function ManagerDashboard() {
           </form></article>
           <article className="workflow-panel workflow-wide"><h2>Your properties and units</h2>{properties.length === 0 ? <p>No properties yet. Create your first property above.</p> : properties.map(property => <div className="property-card" key={property.id}><div><b>{property.name}</b><small>{[property.address_line_1, property.locality, property.region].filter(Boolean).join(", ")}</small></div><div className="unit-chips">{units.filter(unit => unit.property_id === property.id).map(unit => <span key={unit.id}>{unit.unit_label}{!unit.active ? " · Inactive" : ""}</span>)}{units.every(unit => unit.property_id !== property.id) && <small>No units added yet</small>}</div></div>)}</article>
         </section>}
-        {active === "Maintenance Requests" && <section className="workflow-panel"><h2>Maintenance request queue</h2><p>Review resident reports and record the next status. Mark a request Completed only after the work has been verified.</p>{requests.length === 0 ? <p>No maintenance requests yet. Once a linked tenant submits an issue, it will appear here.</p> : requests.map(request => <article className="request-manager-card" key={request.id}><div className="request-manager-heading"><div><small>{propertyById.get(unitById.get(request.unit_id)?.property_id || "")?.name || "Property"} · {unitById.get(request.unit_id)?.unit_label || "Unit"}</small><h3>{request.title}</h3></div><span className={"priority-pill " + request.priority.toLowerCase()}>{request.priority}</span></div><p>{request.description}</p><div className="request-meta">Submitted {new Date(request.created_at).toLocaleString()} · {request.status}</div><div className="workflow-inline-form"><label>Update status<select value={statusDrafts[request.id] || request.status} onChange={event => setStatusDrafts(current => ({ ...current, [request.id]: event.target.value as RequestStatus }))}>{statuses.map(status => <option key={status}>{status}</option>)}</select></label><label>Manager note<input value={notesDrafts[request.id] || ""} onChange={event => setNotesDrafts(current => ({ ...current, [request.id]: event.target.value }))} placeholder="Optional update for your records"/></label><button className="primary" disabled={busy} onClick={() => void updateRequest(request)}>Save update</button></div></article>)}</section>}
+        {active === "Maintenance Requests" && <section className="workflow-panel"><h2>Maintenance request queue</h2><p>Review resident reports and record the next status. Mark a request Completed only after the work has been verified.</p>{requests.length === 0 ? <p>No maintenance requests yet. Once a linked tenant submits an issue, it will appear here.</p> : requests.map(request => <article className="request-manager-card" key={request.id}><div className="request-manager-heading"><div><small>{propertyById.get(unitById.get(request.unit_id)?.property_id || "")?.name || "Property"} · {unitById.get(request.unit_id)?.unit_label || "Unit"}</small><h3>{request.title}</h3></div><span className={"priority-pill " + request.priority.toLowerCase()}>{request.priority}</span></div><p>{request.description}</p>{evidenceUrls[request.id]?.length ? <div className="manager-evidence-grid">{evidenceUrls[request.id].map((url, index) => <a href={url} target="_blank" rel="noreferrer" key={url}><img src={url} alt={`Resident evidence ${index + 1}`}/></a>)}</div> : null}<div className="request-meta">Submitted {new Date(request.created_at).toLocaleString()} · {request.status}</div><div className="workflow-inline-form"><label>Update status<select value={statusDrafts[request.id] || request.status} onChange={event => setStatusDrafts(current => ({ ...current, [request.id]: event.target.value as RequestStatus }))}>{statuses.map(status => <option key={status}>{status}</option>)}</select></label><label>Manager note<input value={notesDrafts[request.id] || ""} onChange={event => setNotesDrafts(current => ({ ...current, [request.id]: event.target.value }))} placeholder="Optional update for your records"/></label><button className="primary" disabled={busy} onClick={() => void updateRequest(request)}>Save update</button></div></article>)}</section>}
+        {active === "Notifications" && <section className="workflow-panel notification-settings"><h2>WhatsApp manager alerts</h2><p>Choose the WhatsApp number that should receive new maintenance alerts for properties you manage. Use international E.164 format, for example +27821234567.</p><form className="workflow-form" onSubmit={saveNotificationSettings}><label>Manager WhatsApp number<input type="tel" value={whatsappNumber} onChange={event => setWhatsappNumber(event.target.value)} placeholder="+27821234567" pattern="\\+[1-9][0-9]{7,14}" required/></label><label className="notification-toggle"><input type="checkbox" checked={whatsappEnabled} onChange={event => setWhatsappEnabled(event.target.checked)}/> Enable WhatsApp notifications</label><button className="primary" disabled={busy}>{busy ? "Saving…" : "Save notification settings"}</button></form><p className="notification-help">Delivery also requires the FixFlow WhatsApp Business credentials and an approved message template to be configured securely by the administrator.</p></section>}
         {active === "AI Scout" && <ScoutPanel requests={requests.map(request => ({ id: request.id, title: request.title, description: request.description, status: request.status, priority: request.priority }))} />}
       </>}
       <footer>FIXFLOW · HUMAN-LED PROPERTY OPERATIONS · MANAGER DECISIONS STAY WITH PEOPLE</footer>
