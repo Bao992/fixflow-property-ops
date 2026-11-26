@@ -187,7 +187,7 @@ Deno.serve(async (request) => {
 
     const { data: maintenance, error: requestError } = await supabase
       .from("maintenance_requests")
-      .select("id,title,description,category,priority,status,unit_id,units!inner(property_id,properties!inner(manager_id,name))")
+      .select("id,title,description,category,priority,status,unit_id,created_by,units!inner(property_id,properties!inner(manager_id,name))")
       .eq("id", requestId)
       .single();
 
