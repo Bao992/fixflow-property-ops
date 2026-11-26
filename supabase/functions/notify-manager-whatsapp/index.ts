@@ -65,7 +65,7 @@ Deno.serve(async (request) => {
     const analysis = analysisRows?.[0]?.structured_output as Record<string, unknown> | undefined;
     const urgency = typeof analysis?.urgency === "string" ? analysis.urgency : "Pending review";
     const summary = typeof analysis?.summary === "string" ? analysis.summary : maintenance.description.slice(0, 240);
-    const reportUrl = `${appBaseUrl.replace(/\/$/, "")}/`;
+    const reportUrl = `${appBaseUrl.replace(/\/$/, "")}/?request_id=${encodeURIComponent(requestId)}`;
 
     const graphResponse = await fetch(`https://graph.facebook.com/${graphVersion}/${phoneNumberId}/messages`, {
       method: "POST",
