@@ -78,6 +78,7 @@ export function ManagerDashboard() {
   }, []);
 
   useEffect(() => { void loadData(); }, [loadData]);
+  useEffect(() => { if (new URLSearchParams(window.location.search).has("request_id")) setActive("Maintenance Requests"); }, []);
 
   const propertyById = useMemo(() => new Map(properties.map(property => [property.id, property])), [properties]);
   const unitById = useMemo(() => new Map(units.map(unit => [unit.id, unit])), [units]);
@@ -172,7 +173,7 @@ export function ManagerDashboard() {
     <aside className="sidebar">
       <div className="brand"><span className="brand-mark">F</span><span><b>FixFlow</b><small>PROPERTY OPERATIONS</small></span><span className="pro">MVP</span></div>
       <p className="nav-label">WORKSPACE</p>
-      <nav>{navItems.map((item, index) => <button key={item} className={active === item ? "nav-item selected" : "nav-item"} onClick={() => setActive(item)}><span>{["▦", "▤", "◷"][index]}</span>{item}{item === "Maintenance Requests" && <strong>{activeRequests.length}</strong>}</button>)}</nav>
+      <nav>{navItems.map((item, index) => <button key={item} className={active === item ? "nav-item selected" : "nav-item"} onClick={() => setActive(item)}><span>{["▦", "▤", "◷", "✦", "◉"][index]}</span>{item}{item === "Maintenance Requests" && <strong>{activeRequests.length}</strong>}</button>)}</nav>
       <div className="sidebar-foot"><span className="online-dot"/> Live Supabase data <b>v0.2.0</b></div>
     </aside>
     <main className="main">
