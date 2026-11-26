@@ -90,8 +90,13 @@ export function TenantWorkspace({ profile, onSignOut }: { profile: Profile; onSi
         if (metadataError) throw new Error(`Your request was saved, but photo details could not be recorded: ${metadataError.message}`);
       }
 
+      const submittedWithPhotos = evidence.length > 0;
       setTitle(""); setDescription(""); setEvidence([]);
-      setNotice(evidence.length ? "Your maintenance request and photos have been submitted." : "Your maintenance request has been submitted.");
+      setNotice(submittedWithPhotos ? "Your maintenance request and photos were submitted. Scout is analysing the report…" : "Your maintenance request was submitted. Scout is analysing the report…");
+      const { error: scoutError } = await supabase.functions.invoke("scout-analyze", { body: { request_id: requestId } });
+      setNotice(scoutError
+        ? "Your maintenance request is safe and submitted. Scout analysis could not run yet; your property manager can retry it from the dashboard."
+        : "Your maintenance request was submitted and Scout has completed its initial analysis for the property manager.");
       await loadWorkspace();
     } catch (error) {
       setNotice(error instanceof Error ? error.message : "We could not submit your request. Please try again.");
