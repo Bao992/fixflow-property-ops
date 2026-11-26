@@ -29,6 +29,7 @@ export function ManagerDashboard() {
   const [properties, setProperties] = useState<PropertyRow[]>([]);
   const [units, setUnits] = useState<UnitRow[]>([]);
   const [requests, setRequests] = useState<RequestRow[]>([]);
+  const [evidenceUrls, setEvidenceUrls] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
@@ -56,6 +57,16 @@ export function ManagerDashboard() {
     setProperties((propertyResult.data || []) as PropertyRow[]);
     setUnits((unitResult.data || []) as UnitRow[]);
     setRequests((requestResult.data || []) as RequestRow[]);
+    const requestIds = (requestResult.data || []).map(row => row.id as string);
+    if (requestIds.length) {
+      const { data: attachments } = await supabase.from("request_attachments").select("request_id,storage_path").in("request_id", requestIds);
+      const grouped: Record<string, string[]> = {};
+      for (const attachment of attachments || []) {
+        const { data: signed } = await supabase.storage.from("maintenance-evidence").createSignedUrl(attachment.storage_path, 60 * 30);
+        if (signed?.signedUrl) grouped[attachment.request_id] = [...(grouped[attachment.request_id] || []), signed.signedUrl];
+      }
+      setEvidenceUrls(grouped);
+    } else setEvidenceUrls({});
     setLoading(false);
   }, []);
 
@@ -174,7 +185,7 @@ export function ManagerDashboard() {
           </form></article>
           <article className="workflow-panel workflow-wide"><h2>Your properties and units</h2>{properties.length === 0 ? <p>No properties yet. Create your first property above.</p> : properties.map(property => <div className="property-card" key={property.id}><div><b>{property.name}</b><small>{[property.address_line_1, property.locality, property.region].filter(Boolean).join(", ")}</small></div><div className="unit-chips">{units.filter(unit => unit.property_id === property.id).map(unit => <span key={unit.id}>{unit.unit_label}{!unit.active ? " · Inactive" : ""}</span>)}{units.every(unit => unit.property_id !== property.id) && <small>No units added yet</small>}</div></div>)}</article>
         </section>}
-        {active === "Maintenance Requests" && <section className="workflow-panel"><h2>Maintenance request queue</h2><p>Review resident reports and record the next status. Mark a request Completed only after the work has been verified.</p>{requests.length === 0 ? <p>No maintenance requests yet. Once a linked tenant submits an issue, it will appear here.</p> : requests.map(request => <article className="request-manager-card" key={request.id}><div className="request-manager-heading"><div><small>{propertyById.get(unitById.get(request.unit_id)?.property_id || "")?.name || "Property"} · {unitById.get(request.unit_id)?.unit_label || "Unit"}</small><h3>{request.title}</h3></div><span className={"priority-pill " + request.priority.toLowerCase()}>{request.priority}</span></div><p>{request.description}</p><div className="request-meta">Submitted {new Date(request.created_at).toLocaleString()} · {request.status}</div><div className="workflow-inline-form"><label>Update status<select value={statusDrafts[request.id] || request.status} onChange={event => setStatusDrafts(current => ({ ...current, [request.id]: event.target.value as RequestStatus }))}>{statuses.map(status => <option key={status}>{status}</option>)}</select></label><label>Manager note<input value={notesDrafts[request.id] || ""} onChange={event => setNotesDrafts(current => ({ ...current, [request.id]: event.target.value }))} placeholder="Optional update for your records"/></label><button className="primary" disabled={busy} onClick={() => void updateRequest(request)}>Save update</button></div></article>)}</section>}
+        {active === "Maintenance Requests" && <section className="workflow-panel"><h2>Maintenance request queue</h2><p>Review resident reports and record the next status. Mark a request Completed only after the work has been verified.</p>{requests.length === 0 ? <p>No maintenance requests yet. Once a linked tenant submits an issue, it will appear here.</p> : requests.map(request => <article className="request-manager-card" key={request.id}><div className="request-manager-heading"><div><small>{propertyById.get(unitById.get(request.unit_id)?.property_id || "")?.name || "Property"} · {unitById.get(request.unit_id)?.unit_label || "Unit"}</small><h3>{request.title}</h3></div><span className={"priority-pill " + request.priority.toLowerCase()}>{request.priority}</span></div><p>{request.description}</p>{evidenceUrls[request.id]?.length ? <div className="manager-evidence-grid">{evidenceUrls[request.id].map((url, index) => <a href={url} target="_blank" rel="noreferrer" key={url}><img src={url} alt={`Resident evidence ${index + 1}`}/></a>)}</div> : null}<div className="request-meta">Submitted {new Date(request.created_at).toLocaleString()} · {request.status}</div><div className="workflow-inline-form"><label>Update status<select value={statusDrafts[request.id] || request.status} onChange={event => setStatusDrafts(current => ({ ...current, [request.id]: event.target.value as RequestStatus }))}>{statuses.map(status => <option key={status}>{status}</option>)}</select></label><label>Manager note<input value={notesDrafts[request.id] || ""} onChange={event => setNotesDrafts(current => ({ ...current, [request.id]: event.target.value }))} placeholder="Optional update for your records"/></label><button className="primary" disabled={busy} onClick={() => void updateRequest(request)}>Save update</button></div></article>)}</section>}
         {active === "AI Scout" && <ScoutPanel requests={requests.map(request => ({ id: request.id, title: request.title, description: request.description, status: request.status, priority: request.priority }))} />}
       </>}
       <footer>FIXFLOW · HUMAN-LED PROPERTY OPERATIONS · MANAGER DECISIONS STAY WITH PEOPLE</footer>
