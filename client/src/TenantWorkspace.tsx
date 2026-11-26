@@ -9,7 +9,7 @@ type EvidenceFile = { file: File; preview: string };
 
 const MAX_FILES = 4;
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
-const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/heic"];
+const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 export function TenantWorkspace({ profile, onSignOut }: { profile: Profile; onSignOut: () => void }) {
   const [units, setUnits] = useState<TenantUnit[]>([]);
@@ -48,20 +48,19 @@ export function TenantWorkspace({ profile, onSignOut }: { profile: Profile; onSi
   }
 
   useEffect(() => { void loadWorkspace(); }, [profile.id]);
-  useEffect(() => () => evidence.forEach(item => URL.revokeObjectURL(item.preview)), [evidence]);
 
   function addEvidence(files: FileList | null) {
     if (!files) return;
     const selected = Array.from(files);
     if (evidence.length + selected.length > MAX_FILES) { setNotice(`You can attach up to ${MAX_FILES} photos to one request.`); return; }
     const invalid = selected.find(file => !ACCEPTED_TYPES.includes(file.type) || file.size > MAX_FILE_SIZE);
-    if (invalid) { setNotice("Use JPEG, PNG, WebP or HEIC photos up to 5 MB each."); return; }
+    if (invalid) { setNotice("Use JPEG, PNG or WebP photos up to 5 MB each."); return; }
     setEvidence(current => [...current, ...selected.map(file => ({ file, preview: URL.createObjectURL(file) }))]);
     setNotice("");
   }
 
   function removeEvidence(index: number) {
-    setEvidence(current => current.filter((_, itemIndex) => itemIndex !== index));
+    setEvidence(current => { const removed = current[index]; if (removed) URL.revokeObjectURL(removed.preview); return current.filter((_, itemIndex) => itemIndex !== index); });
   }
 
   async function submitRequest(event: FormEvent<HTMLFormElement>) {
@@ -91,7 +90,7 @@ export function TenantWorkspace({ profile, onSignOut }: { profile: Profile; onSi
       }
 
       const submittedWithPhotos = evidence.length > 0;
-      setTitle(""); setDescription(""); setEvidence([]);
+      setTitle(""); setDescription(""); evidence.forEach(item => URL.revokeObjectURL(item.preview)); setEvidence([]);
       setNotice(submittedWithPhotos ? "Your maintenance request and photos were submitted. Scout is analysing the report…" : "Your maintenance request was submitted. Scout is analysing the report…");
       const { error: scoutError } = await supabase.functions.invoke("scout-analyze", { body: { request_id: requestId } });
       const { data: notificationResult, error: notificationError } = await supabase.functions.invoke("notify-manager-whatsapp", { body: { request_id: requestId } });
@@ -124,7 +123,7 @@ export function TenantWorkspace({ profile, onSignOut }: { profile: Profile; onSi
         <label>Unit<select value={unitId} onChange={event => setUnitId(event.target.value)} required>{units.map(unit => <option key={unit.id} value={unit.id}>{propertyById.get(unit.property_id)?.name || "Property"} · {unit.unit_label}</option>)}</select></label>
         <label>Issue title<input value={title} onChange={event => setTitle(event.target.value)} placeholder="e.g. Leaking kitchen tap" required maxLength={160}/></label>
         <label>Description<textarea value={description} onChange={event => setDescription(event.target.value)} placeholder="Tell us what happened, where it is, and when you first noticed it…" required minLength={5} maxLength={10000}/></label>
-        <div className="evidence-picker"><div><b>Photo evidence</b><p>Add up to {MAX_FILES} photos (5 MB each). Avoid including people or private documents.</p></div><label className="evidence-upload"> <span>📷 Take or choose photos</span><input type="file" accept="image/jpeg,image/png,image/webp,image/heic" capture="environment" multiple onChange={event => { addEvidence(event.target.files); event.currentTarget.value = ""; }} /></label>
+        <div className="evidence-picker"><div><b>Photo evidence</b><p>Add up to {MAX_FILES} photos (5 MB each). Avoid including people or private documents.</p></div><label className="evidence-upload"> <span>📷 Take or choose photos</span><input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" multiple onChange={event => { addEvidence(event.target.files); event.currentTarget.value = ""; }} /></label>
         {evidence.length > 0 && <div className="evidence-grid">{evidence.map((item, index) => <div className="evidence-preview" key={item.preview}><img src={item.preview} alt={`Maintenance evidence ${index + 1}`}/><button type="button" onClick={() => removeEvidence(index)} aria-label={`Remove photo ${index + 1}`}>×</button></div>)}</div>}
         </div><button className="primary" disabled={busy}>{busy ? "Submitting…" : "Submit maintenance request"}</button></form></article>
         <article className="tenant-property-card"><h2>Your maintenance requests</h2>{requests.length === 0 ? <p>You haven't submitted any maintenance requests yet.</p> : requests.map(request => <div className="tenant-request-card" key={request.id}><div><span className="workflow-status">{request.status}</span><small>{unitById.get(request.unit_id)?.unit_label || "Unit"} · {request.priority} priority</small></div><h3>{request.title}</h3><p>{request.description}</p><small>Submitted {new Date(request.created_at).toLocaleString()}</small></div>)}</article></div>
