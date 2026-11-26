@@ -42,6 +42,7 @@ begin
   end loop;
  elsif new.review_outcome='dismissed' then
   if new.reviewed_output is not null then raise exception 'Dismissed analyses cannot have reviewed output'; end if;
+  if new.review_note is null or char_length(btrim(new.review_note))=0 then raise exception 'A manager note is required to dismiss an analysis'; end if;
  else raise exception 'Invalid AI analysis review outcome';
  end if;
  return new;
